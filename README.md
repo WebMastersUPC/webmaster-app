@@ -1,7 +1,12 @@
-# Vue 3 + Vite
+# WebMasters202301
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Aplicación para publicacion y seguimiento de un proyecto (publicado por una empresa) por parte de un desarrollador freelance.
 
-## Recommended IDE Setup
+Desarrollado por la Start-up FromZero usando elementos Vue.js para el frontend
 
-- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
+Equipo de trabajo:
+- Alvarez Araguache, Samira Jetzabel
+- Arroyo Ormeño, André Alonso
+- Llacchua Peralta, Joseph Ulysses
+- Ramirez Contreras, Zaid Valentino
+- Velasquez Pizarro, Jair
