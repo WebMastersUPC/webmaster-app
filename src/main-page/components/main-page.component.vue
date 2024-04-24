@@ -116,11 +116,11 @@ hr{
 }
 
 .p-card {
-  width: 25rem;
+  width: 30rem;
   min-width: 20rem;
   box-shadow: 0 20px 40px rgb(57, 57, 57);
   margin-top: 4rem;
-  max-height: 600px;
+  max-height: 800px;
 }
 .p-card-title {
   display: flex;
@@ -198,7 +198,7 @@ span{
   display:block;
   justify-content: center;
   overflow:auto;
-  height: 90%;
+  height: 96%;
 }
 .project{
   background-color:#D9D9D9;
