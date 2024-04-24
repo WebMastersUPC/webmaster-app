@@ -1,12 +1,9 @@
 <script setup>
-
+import MainPage from "./main-page/components/main-page.component.vue";
 </script>
 
 <template>
-
-  <div>
-    <img src="https://pbs.twimg.com/media/EpNJ3CGXYAI68mZ.jpg" alt="jaja messi calvo">
-  </div>
+  <MainPage/>
   
 </template>
 
