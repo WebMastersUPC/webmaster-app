@@ -55,6 +55,7 @@ const toggleEditingCategory = (index) => {
       <template #content>
         <hr>
         <template class="project-list">
+
           <div class="project">
             <h4>Nombre Proyecto</h4>
             <p class="subtitle tipo-proyecto">Tipo de proyecto</p>
@@ -90,6 +91,7 @@ const toggleEditingCategory = (index) => {
             <p class="subtitle tipo-proyecto">Tipo de proyecto</p>
             <pv-progressbar :value="100"></pv-progressbar>
           </div>
+
         </template>
 
       </template>
@@ -213,7 +215,7 @@ span{
 }
 .project:hover{
   cursor:pointer;
-  transform: scale(1.01, 1.01);
+  transform: scale(1.04, 1.04);
 }
 
 .tipo-proyecto{
