@@ -13,6 +13,7 @@ import Toolbar from "primevue/toolbar";
 import Card from "primevue/card";
 import Avatar from "primevue/avatar";
 import Rating from "primevue/rating";
+import Paginator from "primevue/paginator";
 
 createApp(App)
     .use(PrimeVue)
@@ -21,4 +22,5 @@ createApp(App)
     .component('pv-card', Card)
     .component('pv-avatar', Avatar)
     .component('pv-rating', Rating)
+    .component('pv-paginator', Paginator)
     .mount('#app')

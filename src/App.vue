@@ -1,13 +1,14 @@
 <script setup>
 
+import DeveloperCard from "./search-developer/components/developer-card.component.vue";
+import SearchDeveloperList from "./search-developer/pages/search-developer-list.component.vue";
+
 </script>
 
 <template>
 
-  <div>
-    <img src="https://pbs.twimg.com/media/EpNJ3CGXYAI68mZ.jpg" alt="jaja messi calvo">
-  </div>
-  
+  <search-developer-list></search-developer-list>
+
 </template>
 
 <style scoped>
