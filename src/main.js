@@ -13,6 +13,13 @@ import Toolbar from "primevue/toolbar";
 import Card from "primevue/card";
 import Avatar from "primevue/avatar";
 import Rating from "primevue/rating";
+import InputText from 'primevue/inputtext';
+import FloatLabel from "primevue/floatlabel";
+import Dropdown from "primevue/dropdown";
+import Textarea from "primevue/textarea";
+import Toast from "primevue/toast";
+import FileUpload from "primevue/fileupload";
+import ToastService from "primevue/toastservice";
 
 createApp(App)
     .use(PrimeVue)
@@ -21,4 +28,11 @@ createApp(App)
     .component('pv-card', Card)
     .component('pv-avatar', Avatar)
     .component('pv-rating', Rating)
+    .component('pv-inputtext', InputText)
+    .component('pv-floatlabel', FloatLabel)
+    .component('pv-dropdown', Dropdown)
+    .component('pv-textarea', Textarea)
+    .use(ToastService)
+    .component('pv-toast', Toast)
+    .component('pv-fileupload', FileUpload)
     .mount('#app')

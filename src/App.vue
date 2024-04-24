@@ -1,13 +1,9 @@
 <script setup>
-
+import Support from "./support/components/support.component.vue";
 </script>
 
 <template>
-
-  <div>
-    <img src="https://pbs.twimg.com/media/EpNJ3CGXYAI68mZ.jpg" alt="jaja messi calvo">
-  </div>
-  
+  <Support/>
 </template>
 
 <style scoped>
