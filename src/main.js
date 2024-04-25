@@ -6,6 +6,7 @@ import PrimeVue from "primevue/config";
 
 //Import styled mode for PrimeVue
 import 'primevue/resources/themes/aura-light-green/theme.css'
+import 'primeicons/primeicons.css'
 
 //Import PrimeVue Components
 import Button from "primevue/button";
@@ -20,6 +21,7 @@ import Textarea from "primevue/textarea";
 import Toast from "primevue/toast";
 import FileUpload from "primevue/fileupload";
 import ToastService from "primevue/toastservice";
+
 
 createApp(App)
     .use(PrimeVue)

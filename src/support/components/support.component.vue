@@ -11,12 +11,14 @@ export default {
         { name: 'Error type4', code: '404' },
         { name: 'Error type5', code: '404' },
 
-      ]
+      ],
+      files: []
     };
   },
   methods: {
-    onUpload() {
-      this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
+    handleFileChange(event) {
+      this.files = [...this.files,...event.target.files];
+      console.log(this.files)
     }
   }
 };
@@ -35,12 +37,21 @@ export default {
       <pv-textarea v-model="value" rows="5" cols="30" />
       <label class="area-label">Descripción del problema</label>
     </pv-floatlabel>
-    <template>
-      <div class="card flex justify-content-center">
-        <pv-toast />
-        <pv-fileupload mode="basic" name="demo[]" url="/api/upload" accept="image/*" :maxFileSize="1000000" @upload="onUpload" />
+
+      <div class="card flex justify-content-center" id="upload">
+        <label for="file-input" class="flex align-items-center" id="upload-button">
+          <i class="pi pi-file-plus"></i>
+          <span class="ml-2">Subir Archivo</span>
+          <input type="file" id="file-input" multiple @change="handleFileChange" style="display: none;">
+        </label>
+        <hr style="background-color:black; width: 100%">
+        <ul>
+          <li v-for="(file, index) in files" :key="index">
+            {{ file.name }} ({{ file.size }} bytes)
+          </li>
+        </ul>
       </div>
-    </template>
+
   </div>
 </template>
 
@@ -72,5 +83,17 @@ div.support-details{
 
 div, .p-float-label{
   margin-top:1.4rem;
+}
+#upload{
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+}
+
+#upload-button{
+  transition: transform 0.3s ease;
+}
+#upload-button:hover{
+  transform: scale(1.1);
 }
 </style>
