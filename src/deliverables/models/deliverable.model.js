@@ -7,8 +7,7 @@ export class DeliverableEntity{
     number;
     files = [];
 
-    constructor(deliverableName, deliverableDescription, deliverableDueDate, deliverableDeliveryDate, deliverableStatus, deliverableNumber, deliverableFiles) {
-        this.name = deliverableName;
+    constructor(deliverableDescription, deliverableDueDate, deliverableDeliveryDate, deliverableStatus, deliverableNumber, deliverableFiles) {
         this.description = deliverableDescription;
         this.dueDate = deliverableDueDate;
         this.deliveryDate = deliverableDeliveryDate;
