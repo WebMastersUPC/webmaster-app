@@ -22,7 +22,7 @@ export default {
 
 <template>
 
-  <pv-card>
+  <pv-card class="shadow-8">
     <template #title>
       <div class="flex flex-column justify-content-center align-items-center mt-3 mb-4">
         <div>Entregable Nº{{deliverable.number}}</div>

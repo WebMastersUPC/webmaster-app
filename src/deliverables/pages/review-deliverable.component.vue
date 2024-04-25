@@ -1,10 +1,11 @@
 <script>
 import {DeliverableEntity} from "../models/deliverable.model.js";
 import DeliverableCard from "../components/deliverable-card.component.vue";
+import ConfirmationDialog from "../components/confirmationDialog.component.vue";
 
 export default {
   name: "review-deliverable",
-  components:{DeliverableCard},
+  components:{ConfirmationDialog, DeliverableCard},
   data(){
     return {
       myDeliverable: null
@@ -28,7 +29,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div >
     <deliverableCard :deliverable="myDeliverable"></deliverableCard>
   </div>
 </template>
