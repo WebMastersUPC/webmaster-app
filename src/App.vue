@@ -1,12 +1,12 @@
 <script setup>
 
+import ReviewDeliverable from "./deliverables/pages/review-deliverable.component.vue";
+
 </script>
 
 <template>
 
-  <div>
-    <img src="https://pbs.twimg.com/media/EpNJ3CGXYAI68mZ.jpg" alt="jaja messi calvo">
-  </div>
+  <review-deliverable></review-deliverable>
   
 </template>
 
