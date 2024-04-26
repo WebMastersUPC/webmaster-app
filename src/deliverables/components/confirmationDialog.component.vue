@@ -2,6 +2,11 @@
 
 export default {
   name: "confirmationDialog",
+  methods: {
+    cancel() {
+      this.$emit('cancel');
+    }
+  }
 }
 
 </script>
@@ -22,7 +27,7 @@ export default {
     <template #footer>
       <div class="flex justify-content-center align-items-center gap-8">
         <pv-button label="Aceptar" outlined class="text-lg"></pv-button>
-        <pv-button label="Cancelar" outlined class="text-lg"></pv-button>
+        <pv-button label="Cancelar" outlined class="text-lg" @click="cancel"></pv-button>
       </div>
     </template>
 

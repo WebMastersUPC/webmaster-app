@@ -5,7 +5,12 @@ import {formatDate} from "../../utils/formatDate.js";
 
 export default {
   name: "deliverable-card",
-  methods: {formatDate},
+  methods: {
+    formatDate,
+    approveDelivery() {
+      this.$emit('approve-delivery');
+    }
+  },
   components: {},
   props: {
     deliverable: {
@@ -44,7 +49,7 @@ export default {
             <a :href="file" target="_blank">Archivo {{ index + 1 }}</a>
           </li>
         </div>
-        <pv-button label="Aprobar Entrega"></pv-button>
+        <pv-button label="Aprobar Entrega" @click="approveDelivery"></pv-button>
       </div>
     </template>
 

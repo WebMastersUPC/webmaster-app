@@ -8,7 +8,8 @@ export default {
   components:{ConfirmationDialog, DeliverableCard},
   data(){
     return {
-      myDeliverable: null
+      myDeliverable: null,
+      showConfirmationDialog: false,
     }
   },
   created(){
@@ -29,11 +30,32 @@ export default {
 </script>
 
 <template>
-  <div >
-    <deliverableCard :deliverable="myDeliverable"></deliverableCard>
+
+  <div :class="{ blur: showConfirmationDialog }">
+    <deliverable-card :deliverable="myDeliverable" @approve-delivery="showConfirmationDialog = true"></deliverable-card>
   </div>
+  <div v-if="showConfirmationDialog" class="dialog-container">
+    <confirmation-dialog @cancel="showConfirmationDialog = false"></confirmation-dialog>
+  </div>
+
 </template>
 
 <style scoped>
+
+.blur {
+  filter: blur(2px);
+}
+
+.dialog-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: This adds a semi-transparent background */
+}
 
 </style>
