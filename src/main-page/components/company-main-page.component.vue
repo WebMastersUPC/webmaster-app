@@ -1,18 +1,24 @@
-<script setup>
-import { ref } from 'vue'
+<script>
 
-const isEditingMain = ref(false)
-const mainText = ref('Texto inicial')
-const isEditingCategories = ref([false, false, false, false, false, false])
-const categoryTexts = ref(['Texto inicial', 'Texto inicial', 'Texto inicial', 'Texto inicial', 'Texto inicial', 'Texto inicial'])
-const categories = ref(['Categoría 1', 'Categoría 2', 'Categoría 3', 'Categoría 4', 'Categoría 4', 'Categoría 5', 'Categoría 6'])
+export default {
+  data() {
+    return {
+      isEditingMain: false,
+      mainText: 'Texto inicial',
+      isEditingCategories: [false, false, false, false, false, false],
+      categoryTexts: ['Texto inicial', 'Texto inicial', 'Texto inicial', 'Texto inicial', 'Texto inicial', 'Texto inicial'],
+      categories: ['Categoría 1', 'Categoría 2', 'Categoría 3', 'Categoría 4', 'Categoría 4', 'Categoría 5', 'Categoría 6']
+    };
+  },
+  methods: {
+    toggleEditingMain() {
+      this.isEditingMain = !this.isEditingMain;
+    },
 
-const toggleEditingMain = () => {
-  isEditingMain.value = !isEditingMain.value
-}
-
-const toggleEditingCategory = (index) => {
-  isEditingCategories.value[index] = !isEditingCategories.value[index]
+    toggleEditingCategory(index) {
+      this.isEditingCategories[index] = !this.isEditingCategories[index];
+    }
+  }
 }
 
 </script>
