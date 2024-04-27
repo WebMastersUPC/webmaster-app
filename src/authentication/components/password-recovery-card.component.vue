@@ -55,5 +55,15 @@ export default {
 </template>
 
 <style scoped>
+.color-auth{
+  color:#38B397;
+}
+.color-confirm{
+  color:#B864F3;
+}
 
+.border-card{
+  border: 2px solid #333333;
+  border-radius: 5rem;
+}
 </style>

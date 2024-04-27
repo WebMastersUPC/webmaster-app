@@ -47,5 +47,8 @@ export default {
 </template>
 
 <style scoped>
-
+.border-card{
+  border: 2px solid #333333;
+  border-radius: 5rem;
+}
 </style>
