@@ -14,6 +14,7 @@ import Toolbar from "primevue/toolbar";
 import Card from "primevue/card";
 import Avatar from "primevue/avatar";
 import Rating from "primevue/rating";
+import FileUpload from "primevue/fileupload";
 
 createApp(App)
     .use(PrimeVue)
@@ -22,4 +23,5 @@ createApp(App)
     .component('pv-card', Card)
     .component('pv-avatar', Avatar)
     .component('pv-rating', Rating)
+    .component('pv-file-upload', FileUpload)
     .mount('#app')
