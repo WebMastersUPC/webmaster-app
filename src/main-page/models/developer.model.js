@@ -1,5 +1,6 @@
 export class DeveloperEntity{
     name;
+    img;
     rating;
     description;
     country;
@@ -8,7 +9,7 @@ export class DeveloperEntity{
     projectsFinished;
     specialties;
     projects= [];
-    constructor(name, rating,
+    constructor(name, img, rating,
                 description,
                 country,
                 phone,
@@ -17,6 +18,7 @@ export class DeveloperEntity{
                 specialties,
                 projects= []){
         this.name = name;
+        this.img = img;
         this.rating = rating;
         this.description = description;
         this.country = country;

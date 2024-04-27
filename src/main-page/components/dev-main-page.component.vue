@@ -6,7 +6,7 @@ export default {
   data() {
     return {
       isEditingMain: false,
-      mainText: 'Texto inicial',
+      mainText: '',
       isEditingCategories: [false, false, false, false, false, false],
       categoryTexts: [],
       categories: ['País', 'Teléfono', 'Correo', 'Proyectos Realizados', 'Especialidades'],
@@ -32,6 +32,7 @@ export default {
   created() {
     //console.log(this.developer);
     this.categoryTexts = [
+      this.developer.name,
       this.developer.country,
       this.developer.phone,
       this.developer.email,
@@ -39,18 +40,18 @@ export default {
       this.developer.specialties
     ];
     this.value= this.developer.rating
+    this.mainText = this.developer.description
   }
 }
 
 </script>
 
 <template>
-  <div id="main-container">
     <pv-card>
       <template #title>
-        <pv-avatar image="https://pbs.twimg.com/media/EpNJ3CGXYAI68mZ.jpg" class="mr-2" size="xlarge" shape="circle" />
+        <pv-avatar :image="developer.img" class="mr-2" size="xlarge" shape="circle" />
         <div>
-          <p>Messi Calvo jaja</p>
+          <p>{{developer.name}}</p>
           <pv-rating v-model="value" readonly :cancel="false" />
         </div>
       </template>
@@ -59,7 +60,7 @@ export default {
         <hr>
         <div class="subtitle">Resumen</div>
         <div class="editable-container">
-          <span v-if="!isEditingMain" class="editable-text">{{developer.description}}</span>
+          <span v-if="!isEditingMain" class="editable-text">{{mainText}}</span>
           <pv-textarea v-else v-model="mainText" type="text" class="editable-input" autoResize/>
           <pv-button @click="toggleEditingMain" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingMain" />
           <pv-button @click="toggleEditingMain" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
@@ -79,51 +80,9 @@ export default {
       </template>
     </pv-card>
 
-    <pv-card>
-      <template #title> <p  style="color: #3554BC">Proyectos</p></template>
-
-      <template #content>
-        <hr>
-        <template class="project-list">
-
-          <div class="project">
-            <h4>Nombre Proyecto</h4>
-            <p class="subtitle tipo-proyecto">Tipo de proyecto</p>
-            <pv-progressbar :value="50"></pv-progressbar>
-          </div>
-
-          <div class="project">
-            <h4>Nombre Proyecto</h4>
-            <p class="subtitle tipo-proyecto">Tipo de proyecto</p>
-            <pv-progressbar :value="15"></pv-progressbar>
-          </div>
-
-          <div class="project">
-            <h4>Nombre Proyecto</h4>
-            <p class="subtitle tipo-proyecto">Tipo de proyecto</p>
-            <pv-progressbar :value="70"></pv-progressbar>
-          </div>
-
-          <div class="project">
-            <h4>Nombre Proyecto</h4>
-            <p class="subtitle tipo-proyecto">Tipo de proyecto</p>
-            <pv-progressbar :value="100"></pv-progressbar>
-          </div>
-
-        </template>
-
-      </template>
-    </pv-card>
-  </div>
 </template>
 
-<style>
-#main-container{
-  display:flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  margin-bottom: 6rem;
-}
+<style scoped>
 
 hr{
   opacity:0.3;
@@ -142,13 +101,13 @@ hr{
   margin-top: 4rem;
   max-height: 800px;
 }
-.p-card-title {
+:deep(.p-card-title) {
   display: flex;
   align-items: center;
   margin: 20px 20px 0 20px;
   justify-content: center;
 }
-.p-avatar {
+:deep(.p-avatar) {
   display: flex;
   justify-content: center;
 }
@@ -156,10 +115,10 @@ img {
   min-width: 64px;
 }
 
-.p-card-content {
+:deep(.p-card-content) {
   margin: 0 20px;
 }
-.p-rating .p-rating-item.p-rating-item-active .p-rating-icon {
+:deep(.p-rating .p-rating-item.p-rating-item-active .p-rating-icon) {
   color: gold;
 }
 .subtitle {
@@ -191,7 +150,7 @@ img {
   min-height: 1.2rem;
 }
 
-.p-inputtext {
+:deep(.p-inputtext) {
   box-shadow: 0 0 #0000, 0 0 #0000, 0 0 0 0 rgba(18, 18, 23, 0.05) !important;
   padding: 0 !important;
   border-radius: 0px;
@@ -206,7 +165,7 @@ span{
   padding: 6px;
   height: 100%;
 }
-.p-button.p-button-text {
+:deep(.p-button.p-button-text) {
   background-color: transparent;
   color: #B864F3;
   border-color: transparent;
@@ -216,48 +175,4 @@ span{
   grid-template-columns: 10fr 10fr 1fr;
 }
 
-.project-list{
-  display:block;
-  justify-content: center;
-  overflow:auto;
-  height: 96%;
-}
-.project{
-  background-color:#D9D9D9;
-  border-radius: 15px;
-  box-shadow: 0 2px 4px rgb(197, 197, 197);
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin: 10px;
-  height: 80px;
-  transition: transform 0.2s ease;
-}
-.project:hover{
-  cursor:pointer;
-  transform: scale(1.04, 1.04);
-}
-
-.tipo-proyecto{
-  font-size: 0.8rem;
-}
-
-h4{
-  margin: 1px
-}
-.postulantes{
-  margin-top: 10px;
-  color: #3554BC
-}
-
-.p-progressbar{
-  width: 70%;
-  align-self: center;
-  height: 15px;
-  margin-top: 5px;
-}
-
-.p-progressbar .p-progressbar-value{
-  background: linear-gradient(to right, #3554BC, #B864F3);;
-}
 </style>

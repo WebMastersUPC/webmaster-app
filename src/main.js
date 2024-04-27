@@ -20,7 +20,7 @@ import Avatar from "primevue/avatar";
 import Rating from "primevue/rating";
 import Textarea from 'primevue/textarea';
 import ProgressBar from 'primevue/progressbar';
-
+import Dialog from "primevue/dialog";
 
 
 createApp(App)
@@ -32,4 +32,5 @@ createApp(App)
     .component('pv-rating', Rating)
     .component('pv-textarea', Textarea)
     .component('pv-progressbar', ProgressBar)
+    .component('pv-dialog',Dialog)
     .mount('#app')
