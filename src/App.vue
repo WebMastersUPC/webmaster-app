@@ -1,13 +1,13 @@
-<script setup>
+<script>
+import PostulateProjectPage from "./postulate-project/pages/postulate-project-page.component.vue";
 
+export default{
+  components: {PostulateProjectPage}
+}
 </script>
 
 <template>
-
-  <div>
-    <img src="https://pbs.twimg.com/media/EpNJ3CGXYAI68mZ.jpg" alt="jaja messi calvo">
-  </div>
-  
+  <postulate-project-page/>
 </template>
 
 <style scoped>
