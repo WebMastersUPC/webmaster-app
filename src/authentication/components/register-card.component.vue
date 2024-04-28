@@ -47,6 +47,9 @@ export default {
 </template>
 
 <style scoped>
+.p-button{
+  border:0;
+}
 .border-card{
   border: 2px solid #333333;
   border-radius: 5rem;

@@ -55,6 +55,9 @@ export default {
 </template>
 
 <style scoped>
+.p-button{
+  border:0;
+}
 .color-auth{
   color:#38B397;
 }
