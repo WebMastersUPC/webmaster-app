@@ -6,14 +6,16 @@ export default {
   data() {
     return {
       position: 'center',
-      visible: false
+      visible: false,
+      applicantsList: []
     };
   },
   methods: {
-    openPosition(position, started) {
+    openPosition(position, started, applicants) {
       if (!started) {
         this.position = position;
         this.visible = true;
+        this.applicantsList = applicants;
       }
     }
   },
@@ -35,10 +37,10 @@ export default {
     <template #content>
       <hr>
       <template class="project-list" v-for="(project, index) in projects" :key="index">
-        <div class="project" @click="openPosition('center', project.started)">
+        <div class="project" @click="openPosition('center', project.started, project.applicants)">
           <h4>{{project.name}}</h4>
           <p class="subtitle tipo-proyecto">{{project.type}}</p>
-          <p class="postulantes"  v-if="!project.started">Postulantes: 10</p>
+          <p class="postulantes"  v-if="!project.started">Postulantes: {{project.applicants.length}}</p>
           <pv-progressbar v-else :value="project.progress"></pv-progressbar>
         </div>
       </template>
@@ -46,11 +48,13 @@ export default {
   </pv-card>
 
   <div class="card">
-    <pv-dialog v-model:visible="visible" header="Elegir postulante" :style="{ width: '25rem', height: '100vh' }" :position="position" :modal="true" :draggable="false">
-      <template class="project-list" v-for="(applicant, index) in projects.applicants" :key="index">
-        <div class="project" @click="">
-          <h4>{{applicant[index].name}}</h4>
-          <pv-rating v-model="applicant[index].rating" readonly :cancel="false" />
+    <pv-dialog v-model:visible="visible" header="Elegir postulante" :style="{ width: '25rem', height: '100vh', display: 'block', overflow:'auto' }" :position="position" :modal="true" :draggable="false">
+      <template class="applicants-list" v-for="(applicant, index) in this.applicantsList" :key="index">
+        <div class="project applicant" @click="">
+          <h4>{{applicant.name}}</h4>
+          <pv-avatar :image="applicant.img" class="mr-2" size="xlarge" shape="circle" />
+          <pv-rating v-model="applicant.rating" readonly :cancel="false" />
+          <span>{{applicant.description}}</span>
         </div>
       </template>
     </pv-dialog>
@@ -154,5 +158,24 @@ h4{
 :deep(.p-dialog) {
   border-radius: 12px;
   background-color: blue;
+  display:block;
+}
+
+:deep(.p-rating .p-rating-item.p-rating-item-active .p-rating-icon) {
+  color: gold;
+}
+
+:root(.p-dialog.p-component.p-ripple-disabled){
+  display: block !important;
+}
+
+.project.applicant{
+  height: 100%;
+}
+.applicants-list{
+  height:100vh;
+}
+:root(.p-dialog-content){
+  height: 100vh;
 }
 </style>

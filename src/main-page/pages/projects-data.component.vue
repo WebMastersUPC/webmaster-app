@@ -14,8 +14,8 @@ export default {
   },
   created(){
     this.myProjects= [
-      new ProjectEntity("Project A", "Graphic Design", "Creating a website for a local business", 10, 50,true),
-      new ProjectEntity("Project X", "Web Development", "Designing logos and branding materials for startups", 7, 0, false,
+      new ProjectEntity("Project A", "Graphic Design", "Creating a website for a local business",  50,true),
+      new ProjectEntity("Project X", "Web Development", "Designing logos and branding materials for startups",  0, false,
       [new DeveloperEntity('Joseph',
           'https://raw.githubusercontent.com/WebMastersUPC/FromZero-LandingPage/main/src/assets/images/Joseph.png',
           4,
@@ -37,7 +37,7 @@ export default {
 
       ]
       ),
-      new ProjectEntity("Project Alpha", "Machine Learning", "Implementing a recommendation system for an e-commerce platform", 15, 80, true)
+      new ProjectEntity("Project Alpha", "Machine Learning", "Implementing a recommendation system for an e-commerce platform", 80, true)
       // Add more ProjectEntity instances as needed
     ]
   }
