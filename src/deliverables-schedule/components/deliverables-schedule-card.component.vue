@@ -21,7 +21,7 @@ export default{
 
   <pv-card class="w-8 border-round-3xl shadow-4">
     <template #header>
-      <div class="box flex flex-row justify-content-center mt-4 -mb-4 gap-5 mx-3 text-container overflow-hidden">
+      <div class="flex flex-row justify-content-center mt-4 -mb-4 gap-5 mx-3 text-container overflow-hidden">
         <h2>{{deliverable.name}}</h2>
       </div>
     </template>
@@ -35,13 +35,13 @@ export default{
 
     <template #content>
 
-      <div class="box2 flex flex-row">
+      <div class=" flex flex-row justify-content-between">
 
         <div class="box xl:mr-8 sm:mr-2 text-container overflow-hidden">
           {{deliverable.description}}
         </div>
 
-        <div class='box3 flex flex-column mr-5 -mt-6'>
+        <div class='flex flex-column mr-5 -mt-6'>
 
           <div>
             <div class=" flex flex-column align-items-center relative-container">
