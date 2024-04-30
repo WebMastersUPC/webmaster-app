@@ -3,7 +3,6 @@ import './style.css'
 import App from './App.vue'
 import PrimeVue from "primevue/config";
 
-
 //Import styled mode for PrimeVue
 import 'primevue/resources/themes/aura-light-green/theme.css'
 import 'primeflex/primeflex.css'
@@ -19,6 +18,7 @@ import InputText from 'primevue/inputtext';
 import Dialog from 'primevue/dialog';
 import Textarea from 'primevue/textarea';
 import Dropdown from 'primevue/dropdown';
+import Paginator from "primevue/paginator";
 
 createApp(App)
     .use(PrimeVue)
@@ -31,4 +31,5 @@ createApp(App)
     .component('pv-textarea',Textarea)
     .component('pv-avatar', Avatar)
     .component('pv-rating', Rating)
+    .component('pv-paginator', Paginator)
     .mount('#app')
