@@ -9,7 +9,7 @@ import 'primevue/resources/themes/aura-light-green/theme.css'
 import 'primeflex/primeflex.css'
 import 'primeicons/primeicons.css'
 
-//Prime
+//PrimeServices
 import ConfirmationService from 'primevue/confirmationservice';
 import ToastService from 'primevue/toastservice';
 
