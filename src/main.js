@@ -22,6 +22,9 @@ import Textarea from 'primevue/textarea';
 import Dropdown from 'primevue/dropdown';
 import Paginator from "primevue/paginator";
 import FileUpload from "primevue/fileupload";
+import Divider from 'primevue/divider';
+import ScrollPanel from 'primevue/scrollpanel';
+import FloatLabel from 'primevue/floatlabel';
 
 createApp(App)
     .use(PrimeVue)
@@ -38,4 +41,7 @@ createApp(App)
     .component('pv-file-upload', FileUpload)
     .component('pv-progressbar', ProgressBar)
     .component('pv-dialog',Dialog)
+    .component('pv-floatlabel', FloatLabel)
+    .component('pv-divider', Divider)
+    .component('pv-scrollpanel', ScrollPanel)
     .mount('#app')
