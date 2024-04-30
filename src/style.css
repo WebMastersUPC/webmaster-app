@@ -1,20 +1,3 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-}
-body {
-  background: rgb(0, 33, 73);
-  background: linear-gradient(180deg, rgba(0, 33, 73, 1) 22%, rgba(0, 42, 94, 1) 59%, rgba(0, 75, 167, 1) 82%, rgba(0, 114, 255, 1) 100%);
-}
 
-.triangle {
-  width: 521.5px;
-  height: 386px;
-  background: conic-gradient(from -13.54deg at 68.36% 69.69%, #B864F3 -42.53deg, #0072FF 62.28deg, #002149 124.67deg, #002149 237.72deg, #D599FF 310.56deg, #B864F3 317.47deg, #0072FF 422.28deg);
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: -1;
-  clip-path: polygon(100% 0, 100% 100%, 0 0);
-}
+
+
