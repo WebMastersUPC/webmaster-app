@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import PrimeVue from "primevue/config";
+import 'primeicons/primeicons.css'
 
 //Import styled mode for PrimeVue
 import 'primevue/resources/themes/aura-light-green/theme.css'
@@ -19,6 +20,7 @@ import Dialog from 'primevue/dialog';
 import Textarea from 'primevue/textarea';
 import Dropdown from 'primevue/dropdown';
 import Paginator from "primevue/paginator";
+import FileUpload from "primevue/fileupload";
 
 createApp(App)
     .use(PrimeVue)
@@ -32,4 +34,5 @@ createApp(App)
     .component('pv-avatar', Avatar)
     .component('pv-rating', Rating)
     .component('pv-paginator', Paginator)
+    .component('pv-file-upload', FileUpload)
     .mount('#app')
