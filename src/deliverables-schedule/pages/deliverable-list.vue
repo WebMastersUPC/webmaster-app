@@ -31,9 +31,17 @@ export default {
       });
       this.newDeliverable = { name: '', description: '' };
       this.closeModal();
-    }
-  },
+    },
 
+    editTitle(deliverable) {
+      deliverable.isEditingTitle = !deliverable.isEditingTitle;
+    },
+
+    editDescription(deliverable) {
+      deliverable.isEditingDescription = !deliverable.isEditingDescription;
+    }
+
+  },
 
   created(){
     this.deliverables=[
@@ -78,7 +86,7 @@ export default {
 
       <div class=" flex flex-row align-items-center justify-content-center flex-wrap">
         <div class=" flex flex-column w-10">
-          <pv-textarea type="text" maxlength="50" v-model="newDeliverable.name" placeholder="Nombre" class="mb-3 pr-5 "/>
+          <pv-textarea type="text" v-model="newDeliverable.name" placeholder="Nombre" class="mb-3 pr-5 " maxlength="50"/>
           <pv-textarea v-model="newDeliverable.description" placeholder="Descripción" class="mb-3" />
         </div>
 
