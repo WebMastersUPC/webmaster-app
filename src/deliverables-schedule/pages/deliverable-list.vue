@@ -33,14 +33,6 @@ export default {
       this.closeModal();
     },
 
-    editTitle(deliverable) {
-      deliverable.isEditingTitle = !deliverable.isEditingTitle;
-    },
-
-    editDescription(deliverable) {
-      deliverable.isEditingDescription = !deliverable.isEditingDescription;
-    }
-
   },
 
   created(){
