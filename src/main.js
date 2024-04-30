@@ -15,6 +15,7 @@ import Toolbar from "primevue/toolbar";
 import Card from "primevue/card";
 import Avatar from "primevue/avatar";
 import Rating from "primevue/rating";
+import ProgressBar from 'primevue/progressbar';
 import InputText from 'primevue/inputtext';
 import Dialog from 'primevue/dialog';
 import Textarea from 'primevue/textarea';
@@ -35,4 +36,6 @@ createApp(App)
     .component('pv-rating', Rating)
     .component('pv-paginator', Paginator)
     .component('pv-file-upload', FileUpload)
+    .component('pv-progressbar', ProgressBar)
+    .component('pv-dialog',Dialog)
     .mount('#app')
