@@ -1,4 +1,5 @@
 export class DeveloperEntity{
+    id;
     name;
     img;
     rating;
@@ -9,7 +10,7 @@ export class DeveloperEntity{
     projectsFinished;
     specialties;
     projects= [];
-    constructor(name, img, rating,
+    constructor(id,name, img, rating,
                 description,
                 country,
                 phone,
@@ -17,6 +18,7 @@ export class DeveloperEntity{
                 projectsFinished,
                 specialties,
                 projects= []){
+        this.id=id;
         this.name = name;
         this.img = img;
         this.rating = rating;

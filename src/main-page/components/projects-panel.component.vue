@@ -17,6 +17,14 @@ export default {
         this.visible = true;
         this.applicantsList = applicants;
       }
+    },
+
+    chooseApplicant(applicant) {
+      console.log(applicant);
+    },
+
+    goToDevProfile(applicant){
+      console.log(`go to dev profile, id: ${applicant}`);
     }
   },
   props:{
@@ -50,11 +58,14 @@ export default {
   <div class="card">
     <pv-dialog v-model:visible="visible" header="Elegir postulante" :style="{ width: '25rem', height: '100vh', display: 'block', overflow:'auto' }" :position="position" :modal="true" :draggable="false">
       <template class="applicants-list" v-for="(applicant, index) in this.applicantsList" :key="index">
-        <div class="project applicant" @click="">
+        <div class="project applicant">
           <h4>{{applicant.name}}</h4>
-          <pv-avatar :image="applicant.img" class="mr-2" size="xlarge" shape="circle" />
+          <div class="p-card-title">
+          <pv-avatar :image="applicant.img" class="mr-2" size="xlarge" shape="circle" @click="goToDevProfile(applicant.id)" />
           <pv-rating v-model="applicant.rating" readonly :cancel="false" />
+          </div>
           <span>{{applicant.description}}</span>
+          <pv-button class="choose-dev" @click="chooseApplicant(applicant.id)">Elegir Developer</pv-button>
         </div>
       </template>
     </pv-dialog>
@@ -157,7 +168,7 @@ h4{
 
 :deep(.p-dialog) {
   border-radius: 12px;
-  background-color: blue;
+  background-color: #3554BC;
   display:block;
 }
 
@@ -177,5 +188,15 @@ h4{
 }
 :root(.p-dialog-content){
   height: 100vh;
+}
+
+:deep(.p-button){
+  background:#3554BC;
+  border:none;
+}
+
+
+.choose-dev:hover{
+  background: #B864F3;
 }
 </style>

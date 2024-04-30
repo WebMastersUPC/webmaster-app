@@ -16,7 +16,7 @@ export default {
     this.myProjects= [
       new ProjectEntity("Project A", "Graphic Design", "Creating a website for a local business",  50,true),
       new ProjectEntity("Project X", "Web Development", "Designing logos and branding materials for startups",  0, false,
-      [new DeveloperEntity('Joseph',
+      [new DeveloperEntity(2,'Joseph',
           'https://raw.githubusercontent.com/WebMastersUPC/FromZero-LandingPage/main/src/assets/images/Joseph.png',
           4,
           'esto es una descripcion',
@@ -25,7 +25,7 @@ export default {
           "example@mail.com",
           3,
           "CSS, Javascript, HTML5, C++, Python, Vue, Angular, MOO, Binario"),
-          new DeveloperEntity("Samira",
+          new DeveloperEntity(3, "Samira",
               "https://raw.githubusercontent.com/WebMastersUPC/FromZero-LandingPage/main/src/assets/images/Samira.png",
               4,
               "esto es otra descripción diferente",
