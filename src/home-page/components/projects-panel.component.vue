@@ -1,4 +1,5 @@
 <script>
+import { useRouter } from 'vue-router';
 
 export default {
   name: "projects-panel.component",
@@ -17,6 +18,10 @@ export default {
         this.visible = true;
         this.applicantsList = applicants;
       }
+      else{
+        this.$router.push('/deliverables-list');
+      }
+
     },
 
     chooseApplicant(applicant) {
@@ -25,7 +30,10 @@ export default {
 
     goToDevProfile(applicant){
       console.log(`go to dev profile, id: ${applicant}`);
-    }
+    },
+    // navigateToDeliverablesList() {
+    //   this.$router.push('/deliverables-list');
+    // },
   },
   props:{
     projects:{

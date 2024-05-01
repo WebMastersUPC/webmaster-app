@@ -11,6 +11,7 @@ import FooterWebstormComponent from "../public/components/footer-webstorm.compon
 import HomePage from "../home-page/components/home-page.component.vue";
 import MessagePage from "../components/message/message-page.component.vue";
 import CreateProject from "../components/create/create-project-component.vue";
+import DeliverableList from "../deliverables-schedule/pages/deliverable-list.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -58,6 +59,11 @@ const router = createRouter({
                     path: '/create-project',
                     name: 'create-project',
                     component: CreateProject
+                },
+                {
+                    path: '/deliverables-list',
+                    name: 'deliverable-list',
+                    component: DeliverableList
                 }
             ]
         },
