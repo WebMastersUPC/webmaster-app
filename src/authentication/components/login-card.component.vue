@@ -6,12 +6,16 @@ export default {
       user: '',
       password: ''
     };
+  },
+  methods: {
+    navigateToHome() {
+      this.$router.push('/main');
+    }
   }
 };
 </script>
 
 <template>
-
   <div class="mt-5 mx-3">
     <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
   </div>
@@ -31,11 +35,15 @@ export default {
             <pv-inputText type="text" v-model="password" placeholder="Contraseña" class="border-round-3xl"/>
           </div>
 
-          <pv-button label="Iniciar sesion" class="border-round-xl w-10rem bg-blue-600 text-lg"/>
+          <pv-button label="Iniciar sesion" class="border-round-xl w-10rem bg-blue-600 text-lg" @click="navigateToHome"/>
         </div>
         <div class="color-auth font-bold">
-          <p>¿Olvidaste tu contraseña?</p>
-          <p class="-mt-1">Crear cuenta</p>
+          <p>
+            <router-link aria-label="go to login" to="/password-recovery" class="text-purple-500 text-sm">¿Olvidaste tu contraseña?</router-link>
+          </p>
+          <p class="-mt-1">
+            <router-link aria-label="go to login" to="/register" class="text-purple-500 text-sm">Crear cuenta</router-link>
+          </p>
         </div>
       </template>
     </pv-card>
@@ -55,4 +63,8 @@ export default {
   border: 2px solid #333333;
   border-radius: 5rem;
 }
+:deep(body){
+  background-color: #F5F5F5 !important;
+}
+
 </style>

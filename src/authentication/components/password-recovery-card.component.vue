@@ -46,7 +46,9 @@ export default {
         </div>
 
         <div class="color-auth font-bold">
-          <p>Volver a iniciar sesión</p>
+          <p>
+            <router-link aria-label="go to login" to="/login" class="text-purple-500 text-sm">Volver a iniciar sesión</router-link>
+          </p>
         </div>
       </template>
     </pv-card>
