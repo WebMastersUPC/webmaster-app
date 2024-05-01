@@ -6,7 +6,7 @@
         <div class="title-container">
           <img src="/Geekit.png"/>
           <h1 class="text-center" v-if="!isEditingTitle">{{ titleText }}</h1>
-          <pv-inputtext v-else v-model="titleText" type="text" class="editable-input" />
+          <pv-inputText v-else v-model="titleText" type="text" class="editable-input" />
           <pv-button @click="toggleEditingTitle" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingTitle" />
           <pv-button @click="toggleEditingTitle" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
         </div>
@@ -44,23 +44,23 @@
                   <div class="language-section">
                     <h3>Lenguajes</h3>
                     <div v-for="(language, index) in languages" :key="index" class="language-item">
-                      <pv-inputtext v-if="editingLanguageIndex === index" v-model="languages[index]" />
+                      <pv-inputText v-if="editingLanguageIndex === index" v-model="languages[index]" />
                       <span v-else>{{ language }}</span>
                       <pv-button @click="startEditingLanguage(index)" label="Editar" v-if="editingLanguageIndex !== index" />
                       <pv-button @click="finishEditingLanguage" label="Guardar" v-else />
                     </div>
-                    <pv-inputtext v-model="newLanguage" placeholder="Añadir un nuevo lenguaje" />
+                    <pv-inputText v-model="newLanguage" placeholder="Añadir un nuevo lenguaje" />
                     <pv-button @click="addLanguage" label="Añadir" />
                   </div>
                   <div class="framework-section">
                     <h3>Frameworks</h3>
                     <div v-for="(framework, index) in frameworks" :key="index" class="framework-item">
-                      <pv-inputtext v-if="editingFrameworkIndex === index" v-model="frameworks[index]" />
+                      <pv-inputText v-if="editingFrameworkIndex === index" v-model="frameworks[index]" />
                       <span v-else>{{ framework }}</span>
                       <pv-button @click="startEditingFramework(index)" label="Editar" v-if="editingFrameworkIndex !== index" />
                       <pv-button @click="finishEditingFramework" label="Guardar" v-else />
                     </div>
-                    <pv-inputtext v-model="newFramework" placeholder="Añadir un nuevo framework" />
+                    <pv-inputText v-model="newFramework" placeholder="Añadir un nuevo framework" />
                     <pv-button @click="addFramework" label="Añadir" />
                   </div>
                 </div>
@@ -72,21 +72,21 @@
             <h2 class="text-center">Recursos y Documentacion</h2>
 
             <pv-scrollpanel ref="scrollPanel" class="pv-scrollpanel" style="width: 100%; height: 400px">
-              <pv-fileupload class="large-fileupload" name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" :maxFileSize="1000000" accept=".pdf,.doc,.docx">
+              <pv-file-upload class="large-fileupload" name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" :maxFileSize="1000000" accept=".pdf,.doc,.docx">
                 <template #empty>
                   <div v-for="(image, index) in uploadedImages" :key="index">
                     <p>{{ image.name }}</p>
                   </div>
                   <p>Drag and drop files to here to upload.</p>
                 </template>
-              </pv-fileupload>
+              </pv-file-upload>
             </pv-scrollpanel>
           </div>
 
           <div class="seccion-derecha">
             <h2 class="text-center">Presupuesto: $50,000</h2>
             <p v-if="!isEditingBudget">{{ budgetText }}</p>
-            <pv-inputtext v-else v-model="budgetText" type="text" class="editable-input" />
+            <pv-inputText v-else v-model="budgetText" type="text" class="editable-input" />
             <pv-button @click="toggleEditingBudget" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingBudget" />
             <pv-button @click="toggleEditingBudget" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
             <hr>
@@ -96,10 +96,10 @@
             </ol>
             <div v-else>
               <div v-for="(methodology, index) in methodologies" :key="index">
-                <pv-inputtext v-model="methodologies[index]" type="text" class="editable-input" />
+                <pv-inputText v-model="methodologies[index]" type="text" class="editable-input" />
                 <pv-button @click="removeMethodology(index)" label="Eliminar" />
               </div>
-              <pv-inputtext v-model="newMethodology" placeholder="Añadir una nueva metodología" />
+              <pv-inputText v-model="newMethodology" placeholder="Añadir una nueva metodología" />
               <pv-button @click="addMethodology" label="Añadir" />
             </div>
             <pv-button @click="toggleEditingMethodologies" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingMethodologies" />
