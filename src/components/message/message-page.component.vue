@@ -1,13 +1,13 @@
 <template>
   <div class="form-container">
     <div class="p-field p-col-12 p-md-6 pv-fluid">
-      <pv-inputtext class="p-inputtext" id="recipient" v-model="form.recipient" placeholder="Destinatario" />
+      <pv-inputText class="p-inputtext" id="recipient" v-model="form.recipient" placeholder="Destinatario" />
     </div>
     <div class="p-field p-col-12 p-md-6">
-      <pv-inputtext class="p-inputtext" id="title" v-model="form.title" placeholder="Título del mensaje" />
+      <pv-inputText class="p-inputtext" id="title" v-model="form.title" placeholder="Título del mensaje" />
     </div>
     <div class="p-field p-col-12">
-      <pv-inputtext class="p-inputtext" id="subject" v-model="form.subject" placeholder="Asunto" />
+      <pv-inputText class="p-inputtext" id="subject" v-model="form.subject" placeholder="Asunto" />
     </div>
     <div class="p-field p-col-12">
       <pv-textarea class="p-textarea" id="message" v-model="form.message" placeholder="Mensaje" />
@@ -16,14 +16,14 @@
       <div class="p-inputtext">
         <label for="file">Adjuntar archivos</label>
         <pv-scrollpanel ref="scrollPanel" class="pv-scrollpanel" style="width: 100%; height: 400px">
-          <pv-fileupload class="large-fileupload" name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" :maxFileSize="1000000" accept=".pdf,.doc,.docx">
+          <pv-file-upload class="large-fileupload" name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" :maxFileSize="1000000" accept=".pdf,.doc,.docx">
             <template #empty>
               <div v-for="(image, index) in uploadedImages" :key="index">
                 <p>{{ image.name }}</p>
               </div>
               <p>Drag and drop files to here to upload.</p>
             </template>
-          </pv-fileupload>
+          </pv-file-upload>
         </pv-scrollpanel>
       </div>
     </div>
