@@ -1,5 +1,5 @@
 <template>
-  <div class="p-grid p-justify-center p-align-center" style="height: 100vh;">
+  <div class="p-grid p-justify-center p-align-center flex-container" >
     <pv-card class="card-flex form-container">
 
       <template #title>
@@ -230,14 +230,21 @@ export default {
 </script>
 
 <style>
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .card-flex {
   max-width: 1300px;
   width:100%;
-  margin: 100px auto;
+  margin: 50px auto;
   font-family: 'Roboto', sans-serif;
   padding: 2rem;
   border-radius: 10px;
   height: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .contenedor-secciones {
@@ -312,9 +319,9 @@ hr {
   width: 100%;
   min-height: 50px;
 }
-
-
-
+.p-grid.p-justify-center.p-align-center {
+  margin-bottom: 50px;
+}
 
 .language-framework-container {
   display: flex;
@@ -337,4 +344,5 @@ hr {
 .framework-item span {
   flex-grow: 1;
 }
+
 </style>
