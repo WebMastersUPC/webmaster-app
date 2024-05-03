@@ -1,32 +1,49 @@
 <script>
 import CompanyMainPageComponent from "../components/company-main-page.component.vue";
 import {CompanyEntity} from "../models/company.model.js";
+import {AuthService} from "../../../public/services/auth.service.js";
+
 
 export default {
   name: "company-data",
   components:{CompanyMainPageComponent},
   data(){
     return{
-      myCom:null
+      authService: new AuthService(),
+      myCom:null,
+      enterprise:null
     }
   },
   created(){
-    this.myCom=new CompanyEntity('André Corp.',
-        'https://raw.githubusercontent.com/WebMastersUPC/FromZero-LandingPage/main/src/assets/images/Andre.png',
-        'Hola esto es un texto por defecto, no hay ningun tipo de informacion relevante aca. Para que sigues leyendo, ya te dije que no hay nada. Para de leer, porfavor te lo estoy pidiendo amablemente. Felicidades pertiste tu tiempo leyendo este texto inutil',
-        'Peru',
-        12321321,
-        99999999,
-        'example@mail.com',
-        'https://example.com',
-        'clothes');
+    let id = localStorage.getItem('user id')
+     this.authService.getEnterpriseInfoByID(id).then((response) => {
+     this.enterprise = response.data;
+       console.log('a',this.enterprise);
+       this.createUser()
+    });
+  },
+  methods:{
+    createUser(){
+      return this.myCom = new CompanyEntity(this.enterprise.username,
+          this.enterprise.imageProfile,
+          this.enterprise.summary,
+          this.enterprise.country,
+          this.enterprise.socialRazon,
+          this.enterprise.cellphone,
+          this.enterprise.email,
+          this.enterprise.website,
+          this.enterprise.sector);
+    }
   }
 }
 </script>
 
 <template>
-  <div >
+  <div v-if="enterprise">
     <CompanyMainPageComponent :company="myCom"></CompanyMainPageComponent>
+    <ul>
+      <li v-for="item in enterprise" :key="item.id">{{ item.name }}</li>
+    </ul>
   </div>
 </template>
 

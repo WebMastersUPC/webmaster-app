@@ -21,5 +21,5 @@ export class CompanyEntity{
         this.sector = sector;
         this.projects = projects;
 
-    }
+    };
 }

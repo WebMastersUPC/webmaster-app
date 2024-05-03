@@ -46,8 +46,19 @@ export default {
     navigateToHome() {
       //elimina datos del array pq ya no se van a usar
       this.users=[]
+      if (this.userType === 0) {
+        this.userType = 'enterprises'
+      }else{
+        this.userType = 'developers'
+      }
+      this.saveUserIdToLocalStorage(this.loggedId);
       this.$router.push(`/main/${this.userType}/${this.loggedId}`);
     },
+    saveUserIdToLocalStorage(id) {
+      const idJSON = JSON.stringify(id);
+
+      localStorage.setItem('user id', idJSON);
+    }
   }
 }
 </script>

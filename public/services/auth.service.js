@@ -8,4 +8,8 @@ export class AuthService{
     getUsers(){
         return http.get('/users')
     }
+
+    getEnterpriseInfoByID(id){
+        return http.get(`/enterprises/${id}`)
+    }
 }
