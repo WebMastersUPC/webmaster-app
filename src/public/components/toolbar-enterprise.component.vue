@@ -5,12 +5,14 @@ export default {
     return{
       id: localStorage.getItem('user id'),
       type: localStorage.getItem('user type'),
+      visibleRight: false,
     }
   }
 }
 </script>
 
 <template>
+
   <div class="flex flex-wrap justify-content-center">
     <pv-toolbar style=" border-radius: 4rem; " class="bg-white my-4">
       <template #start>
@@ -36,6 +38,51 @@ export default {
       </template>
     </pv-toolbar>
   </div>
+  <!--Sidebar-->
+  <div class="flex flex-wrap justify-content-center">
+    <pv-toolbar class="bg-white my-4 w-full">
+      <template #start>
+        <img src="https://imgur.com/8o8Veec.jpg" alt="logo de la app">
+      </template>
+      <template #end>
+        <div class="card">
+          <div class="flex gap-2 justify-content-center ">
+            <pv-button  @click="visibleRight = true" class="bg-blue-600">
+              <i class="pi-align-justify" style="font-size: 2rem"></i>
+            </pv-button>
+          </div>
+          <pv-sidebar v-model:visible="visibleRight" header="Options" position="right" class="flex flex-column gap-5">
+            <router-link to="/search-developer" class="p-mb-2">
+              <pv-button text plain>
+                <h3>Explorar Desarrolladores</h3>
+              </pv-button>
+            </router-link>
+            <router-link to="/message-page" class="p-mb-2">
+              <pv-button text plain>
+                <h3>Mensajes</h3>
+              </pv-button>
+            </router-link>
+            <router-link :to="`/main/${type}/${id}`" class="p-mb-2">
+              <pv-button text plain>
+                <h3>Inicio</h3>
+              </pv-button>
+            </router-link>
+            <router-link to="/create-project" class="p-mb-2">
+              <pv-button text plain>
+                <h3>Publicar proyecto</h3>
+              </pv-button>
+            </router-link>
+            <router-link to="/login" class="p-mb-2">
+              <pv-button text plain>
+                <h3>Salir</h3>
+              </pv-button>
+            </router-link>
+          </pv-sidebar>
+        </div>
+      </template>
+    </pv-toolbar>
+  </div>
+
 </template>
 
 <style scoped>
