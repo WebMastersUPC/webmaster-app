@@ -32,7 +32,8 @@
         {
           "id": 1,
           "name": "Landing Page Geekit",
-          "state": "En proceso",
+          "type": "hola",
+          "started": 1,
           "progress": 50,
           "deliverables": [
             {
@@ -43,7 +44,7 @@
               "status":2
             },
             {
-              "id":2,
+              "id": 2,
               "title":"Documento de Especificacion de Requisitos del Software (SRS)",
               "description":"Este entregable consistirá en un documento detallado que describe los requisitos funcionales y no funcionales de la Plataforma de Comercio Electrónico Geekit. Incluirá casos de uso, diagramas de flujo, requisitos de usuario, requisitos de sistema y cualquier otra información relevante para guiar el desarrollo del software.",
               "deadLine": "2024-08-24T00:00:00Z",
@@ -54,24 +55,9 @@
         {
           "id": 2,
           "name": "Aplicacion Web Geekit",
-          "state": "En busqueda",
-          "candidates": [
-            {
-              "name": "Tonito Guido",
-              "description": "Tonito es un desarrollador web con más de 5 años de experiencia en la creación de sitios web y aplicaciones móviles. Apasionado por la tecnología y el diseño, se especializa en el desarrollo frontend y backend, utilizando tecnologías como HTML, CSS, JavaScript, React y Node.js.",
-              "image": "https://vivolabs.es/wp-content/uploads/2022/03/perfil-hombre-vivo.png",
-              "state": "En espera",
-              "link": "https://github.com/Purak189"
-            },
-            {
-              "name": "Fernanda Rodriguez",
-              "description": "Fernanda es un desarrolladora web con más de 3 años de experiencia en la creación de sitios web y aplicaciones móviles. Apasionado por la tecnología y el diseño, se especializa en el desarrollo frontend y backend, utilizando tecnologías como HTML, CSS, JavaScript, React y Node.js.",
-              "image": "https://redbote.com/wp-content/uploads/2023/05/portada-foto-perfil-redes-sociales-consejos.jpg",
-              "state": "En espera",
-              "link": "https://github.com/Purak189"
-            }
-          ],
-          "numCandidates": 2
+          "type": "hola",
+          "started": 0,
+          "candidates": [1,3]
         }
       ]
     },

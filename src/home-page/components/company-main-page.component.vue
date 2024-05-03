@@ -29,7 +29,7 @@ export default {
     }
   },
   created() {
-    console.log(this.company);
+    //console.log(this.company);
     this.categoryTexts = [
       this.company.country,
       this.company.RUC,

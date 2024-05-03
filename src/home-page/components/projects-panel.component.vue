@@ -42,7 +42,7 @@ export default {
     }
   },
   created(){
-    console.log(this.projects);
+    console.log('pene',this.projects);
   }
 }
 </script>
@@ -56,13 +56,14 @@ export default {
         <div class="project" @click="openPosition('center', project.started, project.applicants)">
           <h4>{{project.name}}</h4>
           <p class="subtitle tipo-proyecto">{{project.type}}</p>
-          <p class="postulantes"  v-if="!project.started">Postulantes: {{project.applicants.length}}</p>
+          <p class="postulantes"  v-if="!project.started">Postulantes: {{project.candidates.length}}</p>
           <pv-progressbar v-else :value="project.progress"></pv-progressbar>
         </div>
       </template>
     </template>
   </pv-card>
 
+  <!--
   <div class="card">
     <pv-dialog v-model:visible="visible" header="Elegir postulante" :style="{ width: '25rem', height: '100vh', display: 'block', overflow:'auto' }" :position="position" :modal="true" :draggable="false">
       <template class="applicants-list" v-for="(applicant, index) in this.applicantsList" :key="index">
@@ -77,7 +78,7 @@ export default {
         </div>
       </template>
     </pv-dialog>
-  </div>
+  </div>-->
 </template>
 
 <style scoped>

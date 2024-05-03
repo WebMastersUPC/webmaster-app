@@ -18,7 +18,7 @@ export default {
     let id = localStorage.getItem('user id')
      this.authService.getEnterpriseInfoByID(id).then((response) => {
      this.enterprise = response.data;
-       console.log('a',this.enterprise);
+       //console.log('a',this.enterprise);
        this.createUser()
     });
   },

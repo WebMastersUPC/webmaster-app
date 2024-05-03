@@ -1,7 +1,7 @@
 <script>
-import { ProjectEntity } from '../models/project.model.js';
 import {DeveloperEntity} from "../models/developer.model.js";
 import ProjectsPanelComponent from "../components/projects-panel.component.vue";
+import {AuthService} from "../../../public/services/auth.service.js";
 
 export default {
   components: {
@@ -9,43 +9,30 @@ export default {
   },
   data() {
     return {
+      authService: new AuthService(),
+      proyectsData:[],
       myProjects:[]
     };
   },
   created(){
-    this.myProjects= [
-      new ProjectEntity("Project A", "Graphic Design", "Creating a website for a local business",  50,true),
-      new ProjectEntity("Project X", "Web Development", "Designing logos and branding materials for startups",  0, false,
-      [new DeveloperEntity(2,'Joseph',
-          'https://raw.githubusercontent.com/WebMastersUPC/FromZero-LandingPage/main/src/assets/images/Joseph.png',
-          4,
-          'esto es una descripcion',
-          "Peru",
-          99999999,
-          "example@mail.com",
-          3,
-          "CSS, Javascript, HTML5, C++, Python, Vue, Angular, MOO, Binario"),
-          new DeveloperEntity(3, "Samira",
-              "https://raw.githubusercontent.com/WebMastersUPC/FromZero-LandingPage/main/src/assets/images/Samira.png",
-              4,
-              "esto es otra descripción diferente",
-              "Peru",
-              123456789,
-              "email@example.com",
-              4,
-              "Java, SQL, React, Node.js, MongoDB, HTML, CSS")
+    let id = localStorage.getItem('user id')
+    this.authService.getEnterpriseInfoByID(id).then((response) => {
+      this.proyectsData = response.data.projects;
+      this.createProject()
+    });
 
-      ]
-      ),
-      new ProjectEntity("Project Alpha", "Machine Learning", "Implementing a recommendation system for an e-commerce platform", 80, true)
-      // Add more ProjectEntity instances as needed
-    ]
+  },
+  methods:{
+    createProject(){
+      this.myProjects = this.proyectsData
+      console.log('caca',this.myProjects)
+    }
   }
 };
 </script>
 
 <template>
-  <div>
+  <div v-if="myProjects">
     <ProjectsPanelComponent :projects="myProjects"/>
   </div>
 </template>

@@ -1,6 +1,12 @@
 <script>
 export default {
   name: 'toolbar-enterprise',
+  data(){
+    return{
+      id: localStorage.getItem('user id'),
+      type: localStorage.getItem('user type'),
+    }
+  }
 }
 </script>
 
@@ -14,7 +20,7 @@ export default {
         <router-link to="/message-page">
           <pv-button label="Mensajes" text plain class="responsive-button justify-content-center"/>
         </router-link>
-        <router-link to="/main">
+        <router-link :to="`/main/${type}/${id}`">
           <pv-button label="" text plain class="responsive-button justify-content-center">
             <img src="https://imgur.com/yeuv7Nq.jpg" alt="" class="imgsize">
           </pv-button>

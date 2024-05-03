@@ -51,13 +51,15 @@ export default {
       }else{
         this.userType = 'developers'
       }
-      this.saveUserIdToLocalStorage(this.loggedId);
+      this.saveUserToLocalStorage(this.loggedId,this.userType);
       this.$router.push(`/main/${this.userType}/${this.loggedId}`);
     },
-    saveUserIdToLocalStorage(id) {
+    saveUserToLocalStorage(id, type) {
       const idJSON = JSON.stringify(id);
+      const typJSON =(type);
 
       localStorage.setItem('user id', idJSON);
+      localStorage.setItem('user type', typJSON)
     }
   }
 }
