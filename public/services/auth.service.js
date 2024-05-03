@@ -12,4 +12,8 @@ export class AuthService{
     getEnterpriseInfoByID(id){
         return http.get(`/enterprises/${id}`)
     }
+
+    getDeveloperList(){
+        return http.get('/developers');
+    }
 }
