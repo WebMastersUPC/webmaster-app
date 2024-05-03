@@ -12,6 +12,7 @@ import HomePage from "../home-page/components/home-page.component.vue";
 import MessagePage from "../components/message/message-page.component.vue";
 import CreateProject from "../components/create/create-project-component.vue";
 import DeliverableList from "../deliverables-schedule/pages/deliverable-list.vue";
+import LoginComponent from "../authentication/pages/login.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -22,7 +23,7 @@ const router = createRouter({
         },
         {
             path: '/login',
-            component: LoginCard,
+            component: LoginComponent,
             name: 'login'
         },
         {
@@ -41,7 +42,7 @@ const router = createRouter({
             component:  MainPage ,
             children: [
                 {
-                  path: '/main',
+                  path: '/main/:type/:id',
                   component: HomePage,
                   name: 'main'
                 },

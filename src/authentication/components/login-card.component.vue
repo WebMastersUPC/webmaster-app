@@ -8,8 +8,9 @@ export default {
     };
   },
   methods: {
-    navigateToHome() {
-      this.$router.push('/main');
+    login() {
+      // Le devuelve los datos al login.component
+      this.$emit('login', { user: this.user, password: this.password });
     }
   }
 };
@@ -32,10 +33,10 @@ export default {
         <div class=" flex flex-column gap-3 align-items-center">
           <div class="flex flex-column gap-4 ">
             <pv-inputText type="text" v-model="user" placeholder="Usuario" class="border-round-3xl"/>
-            <pv-inputText type="text" v-model="password" placeholder="Contraseña" class="border-round-3xl"/>
+            <pv-password v-model="password" :feedback="false" placeholder="Contraseña" class="border-round-3xl"/>
           </div>
 
-          <pv-button label="Iniciar sesion" class="border-round-xl w-10rem bg-blue-600 text-lg" @click="navigateToHome"/>
+          <pv-button label="Iniciar sesion" class="border-round-xl w-10rem bg-blue-600 text-lg" @click="login()"/>
         </div>
         <div class="color-auth font-bold">
           <p>
@@ -67,4 +68,7 @@ export default {
   background-color: #F5F5F5 !important;
 }
 
+:deep(.p-inputtext){
+  border-radius: 1.5rem !important;
+}
 </style>
