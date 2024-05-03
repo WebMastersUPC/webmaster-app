@@ -2,18 +2,39 @@
 export default {
   name: 'toolbar-enterprise',
   data(){
-    return{
+    return {
       id: localStorage.getItem('user id'),
       type: localStorage.getItem('user type'),
       visibleRight: false,
+      screenWidth: window.innerWidth
+    }
+  },
+  computed: {
+    showSidebar() {
+      return this.screenWidth <= 768;
+    }
+  },
+  mounted() {
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
+  },
+  methods: {
+    handleResize() {
+      this.screenWidth = window.innerWidth;
+      if (this.screenWidth > 768) {
+        this.visibleRight = false;
+      }
     }
   }
 }
+
 </script>
 
 <template>
-
-  <div class="flex flex-wrap justify-content-center">
+  <!--Toolbar-->
+  <div class="flex flex-wrap justify-content-center" v-if="!showSidebar">
     <pv-toolbar style=" border-radius: 4rem; " class="bg-white my-4">
       <template #start>
         <router-link to="/search-developer">
@@ -38,42 +59,42 @@ export default {
       </template>
     </pv-toolbar>
   </div>
-  <!--Sidebar-->
-  <div class="flex flex-wrap justify-content-center">
+  <!--Toolbar con Sidebar-->
+  <div v-else class="flex flex-wrap justify-content-center">
     <pv-toolbar class="bg-white my-4 w-full">
       <template #start>
         <img src="https://imgur.com/8o8Veec.jpg" alt="logo de la app">
       </template>
       <template #end>
         <div class="card">
-          <div class="flex gap-2 justify-content-center ">
-            <pv-button  @click="visibleRight = true" class="bg-blue-600">
+          <div class="flex gap-2 justify-content-center pr-2">
+            <pv-button  @click="visibleRight = true" class="bg-blue-600 ">
               <i class="pi-align-justify" style="font-size: 2rem"></i>
             </pv-button>
           </div>
           <pv-sidebar v-model:visible="visibleRight" header="Options" position="right" class="flex flex-column gap-5">
             <router-link to="/search-developer" class="p-mb-2">
-              <pv-button text plain>
+              <pv-button text plain class="w-full">
                 <h3>Explorar Desarrolladores</h3>
               </pv-button>
             </router-link>
             <router-link to="/message-page" class="p-mb-2">
-              <pv-button text plain>
+              <pv-button text plain class="w-full">
                 <h3>Mensajes</h3>
               </pv-button>
             </router-link>
             <router-link :to="`/main/${type}/${id}`" class="p-mb-2">
-              <pv-button text plain>
+              <pv-button text plain class="w-full">
                 <h3>Inicio</h3>
               </pv-button>
             </router-link>
             <router-link to="/create-project" class="p-mb-2">
-              <pv-button text plain>
+              <pv-button text plain class="w-full">
                 <h3>Publicar proyecto</h3>
               </pv-button>
             </router-link>
             <router-link to="/login" class="p-mb-2">
-              <pv-button text plain>
+              <pv-button text plain class="w-full">
                 <h3>Salir</h3>
               </pv-button>
             </router-link>
