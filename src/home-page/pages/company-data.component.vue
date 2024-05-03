@@ -41,9 +41,6 @@ export default {
 <template>
   <div v-if="enterprise">
     <CompanyMainPageComponent :company="myCom"></CompanyMainPageComponent>
-    <ul>
-      <li v-for="item in enterprise" :key="item.id">{{ item.name }}</li>
-    </ul>
   </div>
 </template>
 

@@ -1,22 +1,30 @@
 <script>
 import { useRouter } from 'vue-router';
+import {AuthService} from "../../../public/services/auth.service.js";
 
 export default {
   name: "projects-panel.component",
   components: {},
   data() {
     return {
+      authService: new AuthService(),
       position: 'center',
       visible: false,
       applicantsList: []
     };
   },
   methods: {
-    openPosition(position, started, applicants) {
+    async openPosition(position, started, candidates) {
       if (!started) {
         this.position = position;
         this.visible = true;
-        this.applicantsList = applicants;
+        //console.log(candidates)
+
+        for(let candidate of candidates){
+          this.authService.getDevInfoByID(candidate).then((response) => {
+            this.applicantsList.push(response.data)
+          });
+        }
       }
       else{
         this.$router.push('/deliverables-list');
@@ -39,10 +47,14 @@ export default {
     projects:{
       type: Array,
       required: true
+    },
+    applicants:{
+      type: Array,
+      required: false
     }
   },
   created(){
-    console.log('pene',this.projects);
+
   }
 }
 </script>
@@ -52,8 +64,8 @@ export default {
     <template #title> <p  style="color: #3554BC">Proyectos</p></template>
     <template #content>
       <hr>
-      <template class="project-list" v-for="(project, index) in projects" :key="index">
-        <div class="project" @click="openPosition('center', project.started, project.applicants)">
+      <template class="project-list" v-for="project in projects">
+        <div class="project" @click="openPosition('center', project.started, project.candidates)">
           <h4>{{project.name}}</h4>
           <p class="subtitle tipo-proyecto">{{project.type}}</p>
           <p class="postulantes"  v-if="!project.started">Postulantes: {{project.candidates.length}}</p>
@@ -63,22 +75,22 @@ export default {
     </template>
   </pv-card>
 
-  <!--
+
   <div class="card">
     <pv-dialog v-model:visible="visible" header="Elegir postulante" :style="{ width: '25rem', height: '100vh', display: 'block', overflow:'auto' }" :position="position" :modal="true" :draggable="false">
-      <template class="applicants-list" v-for="(applicant, index) in this.applicantsList" :key="index">
+      <template class="applicants-list" v-for="(applicant) in this.applicantsList">
         <div class="project applicant">
           <h4>{{applicant.name}}</h4>
           <div class="p-card-title">
-          <pv-avatar :image="applicant.img" class="mr-2" size="xlarge" shape="circle" @click="goToDevProfile(applicant.id)" />
+          <pv-avatar :image="applicant.profileImage" class="mr-2" size="xlarge" shape="circle" @click="goToDevProfile(applicant.id)" />
           <pv-rating v-model="applicant.rating" readonly :cancel="false" />
           </div>
-          <span>{{applicant.description}}</span>
+          <span>{{ applicant.description.length > 150 ? `${applicant.description.slice(0, 150)}...` : applicant.description }}</span>
           <pv-button class="choose-dev" @click="chooseApplicant(applicant.id)">Elegir Developer</pv-button>
         </div>
       </template>
     </pv-dialog>
-  </div>-->
+  </div>
 </template>
 
 <style scoped>

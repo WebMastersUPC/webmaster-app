@@ -34,6 +34,7 @@
           "name": "Landing Page Geekit",
           "type": "hola",
           "started": 1,
+          "candidates": [],
           "progress": 50,
           "deliverables": [
             {

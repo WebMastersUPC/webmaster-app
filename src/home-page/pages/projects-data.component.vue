@@ -11,6 +11,7 @@ export default {
     return {
       authService: new AuthService(),
       proyectsData:[],
+      applicantsData:[],
       myProjects:[]
     };
   },
@@ -25,7 +26,6 @@ export default {
   methods:{
     createProject(){
       this.myProjects = this.proyectsData
-      console.log('caca',this.myProjects)
     }
   }
 };

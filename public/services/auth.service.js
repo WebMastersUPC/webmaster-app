@@ -13,7 +13,12 @@ export class AuthService{
         return http.get(`/enterprises/${id}`)
     }
 
-    getDeveloperList(){
+
+    getDeveloperList() {
         return http.get('/developers');
+    }
+    
+    getDevInfoByID(id){
+        return http.get(`/developers/${id}`)
     }
 }
