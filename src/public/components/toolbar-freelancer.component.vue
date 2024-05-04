@@ -1,8 +1,8 @@
 <script>
 export default {
-  name: 'toolbar-enterprise',
+  name: "toolbar-freelancer",
   data(){
-    return {
+    return{
       id: localStorage.getItem('user id'),
       type: localStorage.getItem('user type'),
       visibleRight: false,
@@ -29,7 +29,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <template>
@@ -37,21 +36,19 @@ export default {
   <div class="flex flex-wrap justify-content-center" v-if="!showSidebar">
     <pv-toolbar style=" border-radius: 4rem; " class="bg-white my-4">
       <template #start>
-        <router-link to="/search-developer">
-          <pv-button label="Explorar Desarrolladores" text plain class="responsive-button justify-content-center"/>
+        <router-link to="">
+          <pv-button label="Inicio" text plain class="responsive-button justify-content-center"/>
         </router-link>
-        <router-link to="/message-page">
+        <router-link to="">
           <pv-button label="Mensajes" text plain class="responsive-button justify-content-center"/>
         </router-link>
-        <router-link :to="`/main/${type}/${id}`">
-          <pv-button label="" text plain class="responsive-button justify-content-center">
-            <img src="https://imgur.com/yeuv7Nq.jpg" alt="" class="imgsize">
-          </pv-button>
+          <div  class="responsive-button flex flex-wrap justify-content-center">
+            <img src="https://imgur.com/yeuv7Nq.jpg" alt="logo" class="imgsize">
+          </div>
+        <router-link to="">
+          <pv-button label="Explorar Proyecto" text plain class="responsive-button justify-content-center"/>
         </router-link>
-        <router-link to="/create-project">
-          <pv-button label="Publicar proyecto" text plain class="responsive-button justify-content-center"/>
-        </router-link>
-        <router-link to="/login">
+        <router-link to="">
           <pv-button label="" text plain class="responsive-button justify-content-center">
             <i class="pi pi-sign-out" style="font-size: 1.4rem"> <br> salir</i>
           </pv-button>
@@ -73,27 +70,22 @@ export default {
             </pv-button>
           </div>
           <pv-sidebar v-model:visible="visibleRight" header="Options" position="right" class="flex flex-column gap-5">
-            <router-link to="/search-developer" class="p-mb-2">
-              <pv-button text plain class="w-full">
-                <h3>Explorar Desarrolladores</h3>
-              </pv-button>
-            </router-link>
-            <router-link to="/message-page" class="p-mb-2">
-              <pv-button text plain class="w-full">
-                <h3>Mensajes</h3>
-              </pv-button>
-            </router-link>
-            <router-link :to="`/main/${type}/${id}`" class="p-mb-2">
+            <router-link to="" class="p-mb-2">
               <pv-button text plain class="w-full">
                 <h3>Inicio</h3>
               </pv-button>
             </router-link>
-            <router-link to="/create-project" class="p-mb-2">
+            <router-link to="" class="p-mb-2">
               <pv-button text plain class="w-full">
-                <h3>Publicar proyecto</h3>
+                <h3>Mensajes</h3>
               </pv-button>
             </router-link>
-            <router-link to="/login" class="p-mb-2">
+            <router-link to="" class="p-mb-2">
+              <pv-button text plain class="w-full">
+                <h3>Explorar Proyecto</h3>
+              </pv-button>
+            </router-link>
+            <router-link to="" class="p-mb-2">
               <pv-button text plain class="w-full">
                 <h3>Salir</h3>
               </pv-button>
@@ -103,7 +95,6 @@ export default {
       </template>
     </pv-toolbar>
   </div>
-
 </template>
 
 <style scoped>
