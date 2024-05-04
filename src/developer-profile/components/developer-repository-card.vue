@@ -20,25 +20,26 @@ export default {
 </script>
 
 <template>
-  <pv-card>
-    <template #title> <p  style="color: #3554BC">Proyectos</p></template>
+  <pv-card aria-label="Projects card">
+    <template #title> <p  style="color: #3554BC" aria-label="Projects Title">Proyectos</p></template>
     <template #content>
-      <hr>
-      <div class="project-container">
-        <template v-if="projects.length" class="project-list" v-for="project in projects">
-          <div class="project bg-blue-100">
+      <hr aria-label="Separator Line">
+      <div class="project-container" aria-label="Project Container">
+        <template v-if="projects.length" class="project-list" v-for="project in projects" aria-label="Project Item">
+          <div class="project bg-blue-100" aria-label="Project Information">
             <h4>{{project.title}}</h4>
-            <a :href="project.urlPage" target="_blank">Link a la pagina.</a>
+            <a :href="project.urlPage" target="_blank" aria-label="Link to Project Page">Link a la página.</a>
           </div>
         </template>
-        <template v-else>
-          <div class="project bg-gray-100" v-for="i in 5">
-            <div class="grey-rectangle"></div>
+        <template v-else aria-label="No Projects Message">
+          <div class="project bg-gray-100" v-for="i in 5" aria-label="Placeholder Project">
+            <div class="grey-rectangle" aria-label="Placeholder Rectangle"></div>
           </div>
         </template>
       </div>
     </template>
   </pv-card>
+
 </template>
 
 <style scoped>

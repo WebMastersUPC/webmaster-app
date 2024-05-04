@@ -1,37 +1,38 @@
 <template>
   <div class="form-container">
     <div class="p-field p-col-12 p-md-6 pv-fluid">
-      <pv-inputText class="p-inputtext" id="recipient" v-model="form.recipient" placeholder="Destinatario" />
+      <pv-inputText class="p-inputtext" id="recipient" v-model="form.recipient" placeholder="Destinatario" aria-label="Recipient" />
     </div>
     <div class="p-field p-col-12 p-md-6">
-      <pv-inputText class="p-inputtext" id="title" v-model="form.title" placeholder="Título del mensaje" />
+      <pv-inputText class="p-inputtext" id="title" v-model="form.title" placeholder="Título del mensaje" aria-label="Message Title" />
     </div>
     <div class="p-field p-col-12">
-      <pv-inputText class="p-inputtext" id="subject" v-model="form.subject" placeholder="Asunto" />
+      <pv-inputText class="p-inputtext" id="subject" v-model="form.subject" placeholder="Asunto" aria-label="Subject" />
     </div>
     <div class="p-field p-col-12">
-      <pv-textarea class="p-textarea" id="message" v-model="form.message" placeholder="Mensaje" />
+      <pv-textarea class="p-textarea" id="message" v-model="form.message" placeholder="Mensaje" aria-label="Message" />
     </div>
     <div class="p-field p-col-12">
       <div class="p-inputtext">
-        <label for="file">Adjuntar archivos</label>
-        <pv-scrollpanel ref="scrollPanel" class="pv-scrollpanel" style="width: 100%; height: 400px">
-          <pv-file-upload class="large-fileupload" name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" :maxFileSize="1000000" accept=".pdf,.doc,.docx">
+        <label for="file" aria-label="File Attachment Label">Adjuntar archivos</label>
+        <pv-scrollpanel ref="scrollPanel" class="pv-scrollpanel" style="width: 100%; height: 400px" aria-label="File Upload Scroll Panel">
+          <pv-file-upload class="large-fileupload" name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" :maxFileSize="1000000" accept=".pdf,.doc,.docx" aria-label="File Upload">
             <template #empty>
               <div v-for="(image, index) in uploadedImages" :key="index">
                 <p>{{ image.name }}</p>
               </div>
-              <p>Drag and drop files to here to upload.</p>
+              <p aria-label="File Upload Instructions">Drag and drop files to here to upload.</p>
             </template>
           </pv-file-upload>
         </pv-scrollpanel>
       </div>
     </div>
     <div class="p-field p-col-12">
-      <pv-button class="p-button" label="Enviar" @click="submitForm" />
+      <pv-button class="p-button" label="Enviar" @click="submitForm" aria-label="Submit Form Button" />
     </div>
   </div>
 </template>
+
 
 <script>
 import { ref } from "vue";

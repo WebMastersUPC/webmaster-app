@@ -41,38 +41,39 @@ export default {
 
 <template>
 
-  <pv-card>
+  <pv-card aria-label="Developer Card">
     <template #title>
-      <div class="flex align-items-center gap-4">
-        <pv-avatar :image="developer.profileImage" class="mr-2" size="xlarge" shape="circle" />
-        <div>
+      <div class="flex align-items-center gap-4" aria-label="Developer Information">
+        <pv-avatar :image="developer.profileImage" class="mr-2" size="xlarge" shape="circle" aria-label="Developer Avatar" />
+        <div aria-label="Developer Name and Rating">
           <p>{{developer.name}}</p>
-          <pv-rating v-model="developer.rating" readonly :cancel="false" />
+          <pv-rating v-model="developer.rating" readonly :cancel="false" aria-label="Developer Rating" />
         </div>
-        <router-link to="/message-page">
-          <i class="pi pi-send text-xl text-purple-500"></i>
+        <router-link to="/message-page" aria-label="Send Message Link">
+          <i class="pi pi-send text-xl text-purple-500" aria-label="Send Message Icon"></i>
         </router-link>
       </div>
     </template>
 
     <template #content>
-      <hr>
-      <div class="subtitle">Resumen</div>
-      <div class="editable-container">
+      <hr aria-label="Separator Line">
+      <div class="subtitle" aria-label="Summary Title">Resumen</div>
+      <div class="editable-container" aria-label="Developer Description">
         <p>{{developer.description}}</p>
       </div>
 
       <template v-for="(category, index) in categories" :key="index">
-        <hr>
-        <div class="editable-container secondary">
+        <hr aria-label="Separator Line" />
+        <div class="editable-container secondary" aria-label="Category Information">
           <div class="subtitle">{{ category }}</div>
           <span class="editable-text">{{ categoryTexts[index] }}</span>
-          </div>
+        </div>
       </template>
 
     </template>
   </pv-card>
 </template>
+
 
 <style scoped>
 

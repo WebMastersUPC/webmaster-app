@@ -22,7 +22,7 @@ export default {
   </div>
 
   <div class="flex justify-content-center align-items-center text-center" style="height: 80vh;">
-    <pv-card class=" flex border-card shadow-4 px-6 ">
+    <pv-card aria-label="Login Form" class=" flex border-card shadow-4 px-6 ">
       <template #title>
         <div>
           <img src="../../assets/logo.png" alt="Webmaster's logo" width="210" class="-m-2 ">
@@ -32,18 +32,18 @@ export default {
       <template #content>
         <div class=" flex flex-column gap-3 align-items-center">
           <div class="flex flex-column gap-4 ">
-            <pv-inputText type="text" v-model="user" placeholder="Usuario" class="border-round-3xl"/>
-            <pv-password v-model="password" :feedback="false" placeholder="Contraseña" class="border-round-3xl"/>
+            <pv-inputText aria-label="User input field" type="text" v-model="user" placeholder="Usuario" class="border-round-3xl"/>
+            <pv-password aria-label="Password input field" v-model="password" :feedback="false" placeholder="Contraseña" class="border-round-3xl"/>
           </div>
 
-          <pv-button label="Iniciar sesion" class="border-round-xl w-10rem bg-blue-600 text-lg" @click="login()"/>
+          <pv-button aria-label="Login button" label="Iniciar sesion" class="border-round-xl w-10rem bg-blue-600 text-lg" @click="login()"/>
         </div>
         <div class="color-auth font-bold">
           <p>
-            <router-link aria-label="go to login" to="/password-recovery" class="text-purple-500 text-sm">¿Olvidaste tu contraseña?</router-link>
+            <router-link aria-label="Go to password recovery" to="/password-recovery" class="text-purple-500 text-sm">¿Olvidaste tu contraseña?</router-link>
           </p>
           <p class="-mt-1">
-            <router-link aria-label="go to login" to="/register" class="text-purple-500 text-sm">Crear cuenta</router-link>
+            <router-link aria-label="Go to registration page" to="/register" class="text-purple-500 text-sm">Crear cuenta</router-link>
           </p>
         </div>
       </template>

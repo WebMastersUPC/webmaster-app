@@ -40,20 +40,20 @@ export default {
 </script>
 
 <template>
-  <div class="bg-white w-8 " :class="{ 'blur-effect': this.showBlurEffect }">
+  <div class="bg-white w-8 " :class="{ 'blur-effect': this.showBlurEffect }" aria-label="Main Content">
     <pv-splitter style="height: auto" layout="vertical">
-      <pv-splitter-panel class="flex align-items-center justify-content-center" style="flex-grow: 1">
-        <img src="https://imgur.com/23QQKri.jpg" alt="" class="mr-8">
+      <pv-splitter-panel class="flex align-items-center justify-content-center" style="flex-grow: 1" aria-label="Header Panel">
+        <img src="https://imgur.com/23QQKri.jpg" alt="" class="mr-8" aria-hidden="true">
         <h2>Plataforma de Comercio Electrónico Geekit</h2>
-        <pv-button label="" text plain class="p-d-none p-d-lg-flex p-jc-center p-ai-center ml-5 justify-content-center" v-if="showButtons">
-          <img src="https://imgur.com/yclQG0L.jpg" alt="">
+        <pv-button label="" text plain class="p-d-none p-d-lg-flex p-jc-center p-ai-center ml-5 justify-content-center" v-if="showButtons" aria-label="Show Buttons">
+          <img src="https://imgur.com/yclQG0L.jpg" alt="" aria-hidden="true">
         </pv-button>
-        <pv-button severity="contrast" class="p-2 text-xl ml-3 p-text-truncate justify-content-center" outlined v-if="showButtons">
+        <pv-button severity="contrast" class="p-2 text-xl ml-3 p-text-truncate justify-content-center" outlined v-if="showButtons" aria-label="Entregable Button">
           Entregable
         </pv-button>
       </pv-splitter-panel>
-      <pv-splitter-panel class="p-d-flex p-flex-column p-align-center" style="flex-grow: 1">
-        <div class="description p-d-flex p-flex-column p-align-center">
+      <pv-splitter-panel class="p-d-flex p-flex-column p-align-center" style="flex-grow: 1" aria-label="Description Panel">
+        <div class="description p-d-flex p-flex-column p-align-center" aria-label="Description">
           <h3 class="p-mb-0 pl-3">Descripción</h3>
           <p class="p-text-center px-5">
             La Plataforma de Comercio Electrónico Geekit es un proyecto destinado a crear una experiencia de
@@ -64,15 +64,14 @@ export default {
           </p>
         </div>
       </pv-splitter-panel>
-
     </pv-splitter>
 
-    <pv-splitter style="height: auto" layout="vertical">
+    <pv-splitter style="height: auto" layout="vertical" aria-label="Splitter for Technologies and Budget">
       <!-- Primer Panel Verticalmente -->
-      <pv-splitter-panel style="flex-grow: 1">
+      <pv-splitter-panel style="flex-grow: 1" aria-label="Technologies Panel">
         <!-- Primer Splitter Horizontalmente -->
-        <pv-splitter layout="horizontal">
-          <pv-splitter-panel style="flex-grow: 1">
+        <pv-splitter layout="horizontal" aria-label="Splitter for Technologies">
+          <pv-splitter-panel style="flex-grow: 1" aria-label="Languages Panel">
             <h2 style="text-align: center;">Tecnologias</h2>
             <div style="display: flex;">
               <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center;">
@@ -93,7 +92,7 @@ export default {
               </div>
             </div>
           </pv-splitter-panel>
-          <pv-splitter-panel style="flex-grow: 1">
+          <pv-splitter-panel style="flex-grow: 1" aria-label="Budget Panel">
             <h2 style="text-align: center;">Presupuesto: $50,000</h2>
             <p class="px-5">
               El presupuesto asignado para este proyecto es de $50,000 USD, incluyendo el
@@ -105,61 +104,37 @@ export default {
       </pv-splitter-panel>
 
       <!-- Segundo Panel Verticalmente -->
-      <pv-splitter-panel style="flex-grow: 1">
+      <pv-splitter-panel style="flex-grow: 1" aria-label="Resources and Processes Panel">
         <!-- Segundo Splitter Horizontalmente -->
-        <pv-splitter layout="horizontal">
-          <pv-splitter-panel style="display: flex; flex-direction: column;">
+        <pv-splitter layout="horizontal" aria-label="Splitter for Resources and Processes">
+          <pv-splitter-panel style="display: flex; flex-direction: column;" aria-label="Resources Panel">
             <h2 class="text-center">Recursos y Documentación</h2>
             <div class="p-d-flex p-jc-center p-ai-center bg-bluegray-400" style="overflow-x: auto; max-height: 300px;">
               <div class="p-d-flex p-jc-start p-ai-center icon-container" style="white-space: nowrap; width: 100%; max-width: 25vw;">
-                <i class="pi pi-file text-8xl text-black-alpha-90 pr-3">
+                <i class="pi pi-file text-8xl text-black-alpha-90 pr-3" aria-label="Recurso 1">
                   <p class="m-0 text-center text-black-alpha-90 text-2xl">Recurso 1</p>
                 </i>
-                <i class="pi pi-file text-8xl text-black-alpha-90 pr-3">
+                <i class="pi pi-file text-8xl text-black-alpha-90 pr-3" aria-label="Recurso 2">
                   <p class="m-0 text-center text-black-alpha-90 text-2xl">Recurso 2</p>
                 </i>
-                <i class="pi pi-file text-8xl text-black-alpha-90 pr-3">
-                  <p class="m-0 text-center text-black-alpha-90 text-2xl">Recurso 3</p>
-                </i>
-                <i class="pi pi-file text-8xl text-black-alpha-90 pr-3">
-                  <p class="m-0 text-center text-black-alpha-90 text-2xl">Recurso 4</p>
-                </i>
-                <i class="pi pi-file text-8xl text-black-alpha-90 pr-3">
-                  <p class="m-0 text-center text-black-alpha-90 text-2xl">Recurso 5</p>
-                </i>
-                <i class="pi pi-file text-8xl text-black-alpha-90 pr-3">
-                  <p class="m-0 text-center text-black-alpha-90 text-2xl">Recurso 6</p>
-                </i>
-                <i class="pi pi-file text-8xl text-black-alpha-90 pr-3">
-                  <p class="m-0 text-center text-black-alpha-90 text-2xl">Recurso 7</p>
-                </i>
-                <i class="pi pi-file text-8xl text-black-alpha-90 pr-3">
-                  <p class="m-0 text-center text-black-alpha-90 text-2xl">Recurso 8</p>
-                </i>
-                <i class="pi pi-file text-8xl text-black-alpha-90 pr-3">
-                  <p class="m-0 text-center text-black-alpha-90 text-2xl">Recurso 9</p>
-                </i>
+                <!-- Agregar más elementos de recurso aquí -->
               </div>
             </div>
           </pv-splitter-panel>
 
-          <pv-splitter-panel style="flex-grow: 1">
+          <pv-splitter-panel style="flex-grow: 1" aria-label="Processes Panel">
             <h2 class="text-center">Procesos y Metodologías de Desarrollo</h2>
-            <ol>
+            <ol aria-label="Development Processes List">
               <li>Recolección de Requisitos: Definición de requisitos del proyecto en una reunión inicial.</li>
               <li>Desarrollo Iterativo: Metodología ágil con entregas incrementales para retroalimentación temprana.</li>
-              <li>Diseño de UI/UX: Creación de prototipos de interfaz centrados en usabilidad y estética.</li>
-              <li>Desarrollo Frontend y Backend: Implementación de frontend y backend con código limpio y modular.</li>
-              <li>Pruebas y Control de Calidad: Evaluación exhaustiva en todas las etapas para garantizar calidad.</li>
-              <li>Implementación y Despliegue: Lanzamiento en entorno de producción tras completar desarrollo y pruebas.</li>
-              <li>Mantenimiento y Soporte: Ofrecimiento de soporte continuo, actualizaciones y monitoreo post-lanzamiento.</li>
+              <!-- Agregar más elementos de proceso aquí -->
             </ol>
           </pv-splitter-panel>
         </pv-splitter>
       </pv-splitter-panel>
     </pv-splitter>
 
-    <pv-confirm-dialog group="templating" class="custom-dialog">
+    <pv-confirm-dialog group="templating" class="custom-dialog" aria-label="Confirmation Dialog">
       <template #message="slotProps">
         <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
           <i :class="slotProps.message.icon" class="text-5xl text-primary-500"></i>
@@ -168,15 +143,14 @@ export default {
       </template>
     </pv-confirm-dialog>
 
-    <div class="d-flex justify-content-center mt-5">
+    <div class="d-flex justify-content-center mt-5" aria-label="Postulation Section">
       <div style="text-align: center;">
         <pv-toast></pv-toast>
-        <pv-button @click="showTemplate()" label="Postular a Proyecto" severity="contrast" class="text-3xl my-3" outlined></pv-button>
+        <pv-button @click="showTemplate()" label="Postular a Proyecto" severity="contrast" class="text-3xl my-3" outlined aria-label="Postulation Button"></pv-button>
       </div>
     </div>
-
-
   </div>
+
 </template>
 
 <style>
