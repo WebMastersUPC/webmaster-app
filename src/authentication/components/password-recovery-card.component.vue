@@ -19,7 +19,10 @@ export default {
 <template>
 
   <div class="mt-5 mx-3">
-    <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
+    <router-link aria-label="go to login" to="/login" class="text-purple-500 text-sm">
+      <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
+    </router-link>
+
   </div>
 
   <div class="flex justify-content-center align-items-center text-center" style="height: 80vh;">
