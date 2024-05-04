@@ -1,53 +1,38 @@
 <template>
-  <div class="p-grid p-justify-center p-align-center flex-container">
-
+  <div class="p-grid p-justify-center p-align-center flex-container m-2" >
     <pv-card aria-label="Create Project Form" class="card-flex form-container">
-
-
-      <div class="mt-5 mx-3">
-        <i aria-label="Go back to previous page" class="pi pi-chevron-left" style="font-size: 2rem"></i>
-      </div>
-
 
       <template #title>
         <div class="title-container">
           <img src="/Geekit.png"/>
           <h1 class="text-center" v-if="!isEditingTitle">{{ titleText }}</h1>
           <pv-inputText aria-label="Project Title" v-else v-model="titleText" type="text" class="editable-input" />
-          <pv-button @click="toggleEditingTitle" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingTitle" aria-label="Edit Title"/>
-          <pv-button @click="toggleEditingTitle" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else aria-label="Save Title"/>
+          <pv-button @click="toggleEditingTitle" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingTitle" />
+          <pv-button @click="toggleEditingTitle" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
         </div>
       </template>
-
-
-      <template #subtitle aria-label="Project Description Title">Descripción</template>
-
-
+      <template #subtitle>
+        Descripción
+      </template>
       <template #content>
         <p class="m-0" v-if="!isEditingDescription">{{ descriptionText }}</p>
         <pv-textarea aria-label="Project Description" v-else v-model="descriptionText" type="text" class="editable-input" autoResize/>
-        <pv-button @click="toggleEditingDescription" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingDescription" aria-label="Edit Description"/>
-        <pv-button @click="toggleEditingDescription" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else aria-label="Save Description"/>
+        <pv-button @click="toggleEditingDescription" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingDescription" />
+        <pv-button @click="toggleEditingDescription" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
         <hr>
-
-
         <div class="contenedor-secciones">
-
           <div class="seccion-izquierda">
-            <h2 class="text-center" aria-label="Project Technologies">Tecnologías</h2>
+            <h2 class="text-center">Tecnologías</h2>
 
-
-            <div class="language-framework-container" aria-label="Languages and Frameworks">
-
-              <div v-if="!isEditingTechnologies" class="language-framework-container">
-                <div class="language-section">
-                  <h3>Lenguajes</h3>
+            <div class="flex justify-content-center">
+              <div class=" flex flex-wrap  w-11 justify-content-between" v-if="!isEditingTechnologies" >
+                <div class="">
+                  <h3 >Lenguajes</h3>
                   <ul>
                     <li v-for="(language, index) in languages" :key="index">{{ language }}</li>
                   </ul>
                 </div>
-
-                <div class="framework-section">
+                <div class="">
                   <h3>Frameworks</h3>
                   <ul>
                     <li v-for="(framework, index) in frameworks" :key="index">{{ framework }}</li>
@@ -55,65 +40,92 @@
                 </div>
               </div>
 
-
               <div v-else>
-                <div class="language-framework-container">
-                  <div class="language-section">
+                <div class=" ml-3 flex flex-row flex-wrap justify-content-center w-10">
+                  <div class="  w-10 "> <!--box1-->
                     <h3>Lenguajes</h3>
-                    <div v-for="(language, index) in languages" :key="index" class="language-item">
-                      <pv-inputText v-if="editingLanguageIndex === index" v-model="languages[index]" />
-                      <span v-else>{{ language }}</span>
-                      <pv-button @click="startEditingLanguage(index)" label="Editar" v-if="editingLanguageIndex !== index" />
-                      <pv-button @click="finishEditingLanguage" label="Guardar" v-else />
+                    <div class="" v-for="(language, index) in languages" :key="index" >
+                      <div class="flex justify-content-between flex-wrap align-items-center">
+                        <div class="">
+                          <pv-inputText class="w-7 mb-2 " v-if="editingLanguageIndex === index" v-model="languages[index]" />
+                          <p v-else>{{ language }}</p>
+                        </div>
+
+                        <div class=" flex align-items-center justify-content-center">
+                          <pv-button style="height:70%;" @click="startEditingLanguage(index)" label="Editar" v-if="editingLanguageIndex !== index" />
+                          <pv-button style="width:100%;" @click="finishEditingLanguage" label="Guardar" v-else />
+                        </div>
+                      </div>
                     </div>
-                    <pv-inputText v-model="newLanguage" placeholder="Añadir un nuevo lenguaje" />
-                    <pv-button @click="addLanguage" label="Añadir" />
+
+                    <div class=" flex flex-column gap-2 mt-2  justify-content-center ">
+                      <pv-inputText v-model="newLanguage" placeholder="Añadir nuevo lenguaje" />
+                      <pv-button @click="addLanguage" label="Añadir" />
+                    </div>
                   </div>
-                  <div class="framework-section">
+
+                  <div class="w-10">
                     <h3>Frameworks</h3>
-                    <div v-for="(framework, index) in frameworks" :key="index" class="framework-item">
-                      <pv-inputText v-if="editingFrameworkIndex === index" v-model="frameworks[index]" />
-                      <span v-else>{{ framework }}</span>
-                      <pv-button @click="startEditingFramework(index)" label="Editar" v-if="editingFrameworkIndex !== index" />
-                      <pv-button @click="finishEditingFramework" label="Guardar" v-else />
+                    <div class=" " v-for="(framework, index) in frameworks" :key="index" >
+                      <div class="flex justify-content-between flex-wrap align-items-center">
+                        <pv-inputText class="w-7 box2 flex" v-if="editingFrameworkIndex === index" v-model="frameworks[index]" />
+                        <span v-else>{{ framework }}</span>
+
+                        <div class="  flex mb-2 align-items-center justify-content-center">
+                          <pv-button style="height:70%;" @click="startEditingFramework(index)" label="Editar" v-if="editingFrameworkIndex !== index" />
+                          <pv-button style="width:100%;" @click="finishEditingFramework" label="Guardar" v-else />
+                        </div>
+
+                      </div>
+
+
                     </div>
-                    <pv-inputText v-model="newFramework" placeholder="Añadir un nuevo framework" />
-                    <pv-button @click="addFramework" label="Añadir" />
+
+                    <div class=" flex flex-column gap-2 mt-2  justify-content-center">
+                      <pv-inputText v-model="newFramework" placeholder="Añadir nuevo framework" />
+                      <pv-button @click="addFramework" label="Añadir" />
+                    </div>
+
                   </div>
+
                 </div>
               </div>
             </div>
-            <pv-button @click="toggleEditingTechnologies" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingTechnologies" aria-label="Edit Technologies"/>
-            <pv-button @click="toggleEditingTechnologies" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else aria-label="Save Technologies"/>
+            <pv-button @click="toggleEditingTechnologies" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingTechnologies" />
+            <pv-button @click="toggleEditingTechnologies" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
             <hr>
 
 
-            <h2 class="text-center" aria-label="Project Resources and Documentation">Recursos y Documentacion</h2>
-            <pv-scrollpanel ref="scrollPanel" class="pv-scrollpanel" style="width: 100%; height: 400px" aria-label="Scrollable Area">
-              <pv-file-upload class="large-fileupload" name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" :maxFileSize="1000000" accept=".pdf,.doc,.docx" aria-label="File Upload">
-                <template #empty>
-                  <div v-for="(image, index) in uploadedImages" :key="index">
-                    <p>{{ image.name }}</p>
-                  </div>
-                  <p aria-label="File Upload Instructions">Drag and drop files to here to upload.</p>
-                </template>
-              </pv-file-upload>
-            </pv-scrollpanel>
-          </div>
+            <div class="flex flex-column  text-overflow-clip">
+              <div>
+                <h2 class=" flex overflow-auto ">Recursos y Documentacion</h2>
+              </div>
+
+
+
+              <pv-scrollpanel ref="scrollPanel" class="pv-scrollpanel" style="width: 100%; height: 400px">
+                <pv-file-upload class="large-fileupload" name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" :maxFileSize="1000000" accept=".pdf,.doc,.docx">
+                  <template #empty>
+                    <div v-for="(image, index) in uploadedImages" :key="index">
+                      <p>{{ image.name }}</p>
+                    </div>
+                    <p>Drag and drop files to here to upload.</p>
+                  </template>
+                </pv-file-upload>
+              </pv-scrollpanel>
+            </div>
+            </div>
 
 
           <div class="seccion-derecha">
-
-            <h2 class="text-center" aria-label="Project Budget">Presupuesto: $50,000</h2>
+            <h2  class="text-center">Presupuesto: $50,000</h2>
             <p v-if="!isEditingBudget">{{ budgetText }}</p>
-            <pv-inputText v-else v-model="budgetText" type="text" class="editable-input" />
-            <pv-button @click="toggleEditingBudget" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingBudget" aria-label="Edit Budget"/>
-            <pv-button @click="toggleEditingBudget" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else aria-label="Save Budget"/>
+            <pv-inputText aria-label="Project Budget" v-else v-model="budgetText" type="text" class="editable-input" />
+            <pv-button @click="toggleEditingBudget" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingBudget" />
+            <pv-button @click="toggleEditingBudget" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
             <hr>
-
-
-            <h2 class="text-center" aria-label="Project Development Processes and Methodologies">Procesos y Metodologías de Desarrollo</h2>
-            <ol v-if="!isEditingMethodologies" aria-label="Development Methodologies">
+            <h2 class="text-center">Procesos y Metodologías de Desarrollo</h2>
+            <ol v-if="!isEditingMethodologies">
               <li v-for="(methodology, index) in methodologies" :key="index">{{ methodology }}</li>
             </ol>
             <div v-else>
@@ -124,30 +136,28 @@
               <pv-inputText v-model="newMethodology" placeholder="Añadir una nueva metodología" />
               <pv-button @click="addMethodology" label="Añadir" />
             </div>
-            <pv-button @click="toggleEditingMethodologies" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingMethodologies" aria-label="Edit Methodologies"/>
-            <pv-button @click="toggleEditingMethodologies" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else aria-label="Save Methodologies"/>
+            <pv-button @click="toggleEditingMethodologies" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingMethodologies" />
+            <pv-button @click="toggleEditingMethodologies" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
           </div>
         </div>
         <div style="margin-top: 50px;"></div>
-
-
-        <pv-button class="publish button" @click="showDialog = true" aria-label="Publish Project">Publicar Proyecto</pv-button>
-
-
-        <pv-dialog v-model:visible="showDialog" :modal="true" :closable="false" class="custom-dialog" aria-label="Publish Confirmation">
-          <template #header><h2>¿Estas seguro de que quieres publicar el proyecto?</h2></template>
-
-          <p aria-label="Publish Dialog Body">Podrás editar el proyecto cuando quieras, hasta que hayas aceptado a un desarrollador para trabajar.</p>
-
+        <pv-dialog v-model:visible="showDialog" :modal="true" :closable="false" class="custom-dialog">
+          <template #header>
+            <h2>¿Estas seguro de que quieres publicar el proyecto?</h2>
+          </template>
+          <p>Podrás editar el proyecto cuando quieras, hasta que hayas aceptado a un desarrollador para trabajar.</p>
           <template #footer class="text-center">
-            <pv-button label="Aceptar" @click="publishProject" class="p-button-primary" aria-label="Accept Publish"/>
-            <pv-button label="Cancelar" @click="showDialog = false" class="p-button-text" aria-label="Cancel Publish"/>
+            <pv-button label="Aceptar" @click="publishProject" class="p-button-primary"/>
+            <pv-button label="Cancelar" @click="showDialog = false" class="p-button-text"/>
           </template>
         </pv-dialog>
+
+        <pv-button class="publish-button" @click="showDialog = true">Publicar Proyecto</pv-button>
       </template>
 
     </pv-card>
   </div>
+
 </template>
 
 <script>
@@ -254,6 +264,8 @@ export default {
 </script>
 
 <style>
+
+
 .flex-container {
   display: flex;
   justify-content: center;
@@ -347,26 +359,7 @@ hr {
   margin-bottom: 50px;
 }
 
-.language-framework-container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
 
-.language-section,
-.framework-section {
-  width: 48%;
-}
 
-.language-item,
-.framework-item {
-  display: flex;
-  align-items: center;
-}
-
-.language-item span,
-.framework-item span {
-  flex-grow: 1;
-}
 
 </style>
