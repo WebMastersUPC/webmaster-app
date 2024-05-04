@@ -32,7 +32,7 @@
         {
           "id": 1,
           "name": "Landing Page Geekit",
-          "type": "hola",
+          "type": "Landing Page",
           "started": 1,
           "candidates": [],
           "progress": 50,
@@ -56,7 +56,7 @@
         {
           "id": 2,
           "name": "Aplicacion Web Geekit",
-          "type": "hola",
+          "type": "Aplicación Web",
           "started": 0,
           "candidates": [1,3]
         }

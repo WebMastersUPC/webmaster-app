@@ -69,7 +69,7 @@ export default {
         <div class="card">
           <div class="flex gap-2 justify-content-center pr-2">
             <pv-button  @click="visibleRight = true" class="bg-blue-600 ">
-              <i class="pi-align-justify" style="font-size: 2rem"></i>
+              <i class="pi pi-bars" style="font-size: 2rem"></i>
             </pv-button>
           </div>
           <pv-sidebar v-model:visible="visibleRight" header="Options" position="right" class="flex flex-column gap-5">
