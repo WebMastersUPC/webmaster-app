@@ -1,6 +1,5 @@
 <script>
-
-import {DeveloperProfileEntity} from "../model/developer-profile.model.js";
+import {DeveloperProfileEntity} from "../../developer-profile/models/developer-profile.js";
 
 export default {
   name: "developer-card",
@@ -9,6 +8,12 @@ export default {
     developer: {
       type: DeveloperProfileEntity,
       required: true
+    }
+  },
+  methods: {
+    redirectToProfile() {
+      localStorage.setItem('developer id', this.developer.id)
+      this.$router.push({name: 'developer-profile', params: {id: this.developer.id}})
     }
   }
 }
@@ -21,7 +26,9 @@ export default {
       <template #header>
         <div class="flex flex-row justify-content-center mt-4 gap-5">
           <pv-avatar :image=developer.profileImage class="mr-2 mt-2" size="xlarge" shape="circle" />
-          <h3>{{developer.name}}</h3>
+          <h3 @click="redirectToProfile">
+            {{developer.name}}
+          </h3>
         </div>
       </template>
       <template #title>Descripcion</template>

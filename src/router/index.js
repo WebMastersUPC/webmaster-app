@@ -13,6 +13,7 @@ import MessagePage from "../components/message/message-page.component.vue";
 import CreateProject from "../components/create/create-project-component.vue";
 import DeliverableList from "../deliverables-schedule/pages/deliverable-list.vue";
 import LoginComponent from "../authentication/pages/login.component.vue";
+import DeveloperProfilePage from "../developer-profile/pages/developer-profile-page.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -65,6 +66,11 @@ const router = createRouter({
                     path: '/deliverables-list',
                     name: 'deliverable-list',
                     component: DeliverableList
+                },
+                {
+                    path: '/developer-profile/:id',
+                    name: 'developer-profile',
+                    component: DeveloperProfilePage
                 }
             ]
         },

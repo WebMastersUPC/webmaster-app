@@ -15,14 +15,26 @@ export default {
       required: true
     }
   },
-  created() {
-    this.categoryTexts = [
-      this.developer.country,
-      this.developer.cellphone,
-      this.developer.email,
-      this.developer.completedProjects,
-      this.developer.skills
-    ];
+  watch: {
+    developer: {
+      handler: 'updateCategoryTexts',
+      immediate: true,
+    },
+  },
+  methods: {
+    updateCategoryTexts() {
+      if(this.developer){
+        this.categoryTexts = [
+          this.developer.country,
+          this.developer.cellphone,
+          this.developer.email,
+          this.developer.completedProjects,
+          this.developer.skills
+        ];
+        console.log(this.categoryTexts);
+        console.log(this.developer);
+      }
+    }
   }
 }
 </script>
@@ -31,10 +43,15 @@ export default {
 
   <pv-card>
     <template #title>
-      <pv-avatar :image="developer.profileImage" class="mr-2" size="xlarge" shape="circle" />
-      <div>
-        <p>{{developer.name}}</p>
-        <pv-rating v-model="developer.rating" readonly :cancel="false" />
+      <div class="flex align-items-center gap-4">
+        <pv-avatar :image="developer.profileImage" class="mr-2" size="xlarge" shape="circle" />
+        <div>
+          <p>{{developer.name}}</p>
+          <pv-rating v-model="developer.rating" readonly :cancel="false" />
+        </div>
+        <router-link to="/message-page">
+          <i class="pi pi-send text-xl text-purple-500"></i>
+        </router-link>
       </div>
     </template>
 
