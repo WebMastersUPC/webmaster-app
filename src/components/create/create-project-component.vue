@@ -1,12 +1,12 @@
 <template>
-  <div class="p-grid p-justify-center p-align-center" style="height: 100vh;">
-    <pv-card class="card-flex form-container">
+  <div class="p-grid p-justify-center p-align-center flex-container m-2" >
+    <pv-card aria-label="Create Project Form" class="card-flex form-container">
 
       <template #title>
         <div class="title-container">
           <img src="/Geekit.png"/>
           <h1 class="text-center" v-if="!isEditingTitle">{{ titleText }}</h1>
-          <pv-inputtext v-else v-model="titleText" type="text" class="editable-input" />
+          <pv-inputText aria-label="Project Title" v-else v-model="titleText" type="text" class="editable-input" />
           <pv-button @click="toggleEditingTitle" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingTitle" />
           <pv-button @click="toggleEditingTitle" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
         </div>
@@ -16,22 +16,23 @@
       </template>
       <template #content>
         <p class="m-0" v-if="!isEditingDescription">{{ descriptionText }}</p>
-        <pv-textarea v-else v-model="descriptionText" type="text" class="editable-input" autoResize/>
+        <pv-textarea aria-label="Project Description" v-else v-model="descriptionText" type="text" class="editable-input" autoResize/>
         <pv-button @click="toggleEditingDescription" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingDescription" />
         <pv-button @click="toggleEditingDescription" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
         <hr>
         <div class="contenedor-secciones">
           <div class="seccion-izquierda">
             <h2 class="text-center">Tecnologías</h2>
-            <div class="language-framework-container">
-              <div v-if="!isEditingTechnologies" class="language-framework-container">
-                <div class="language-section">
-                  <h3>Lenguajes</h3>
+
+            <div class="flex justify-content-center">
+              <div class=" flex flex-wrap  w-11 justify-content-between" v-if="!isEditingTechnologies" >
+                <div class="">
+                  <h3 >Lenguajes</h3>
                   <ul>
                     <li v-for="(language, index) in languages" :key="index">{{ language }}</li>
                   </ul>
                 </div>
-                <div class="framework-section">
+                <div class="">
                   <h3>Frameworks</h3>
                   <ul>
                     <li v-for="(framework, index) in frameworks" :key="index">{{ framework }}</li>
@@ -40,53 +41,86 @@
               </div>
 
               <div v-else>
-                <div class="language-framework-container">
-                  <div class="language-section">
+                <div class=" ml-3 flex flex-row flex-wrap justify-content-center w-10">
+                  <div class="  w-10 "> <!--box1-->
                     <h3>Lenguajes</h3>
-                    <div v-for="(language, index) in languages" :key="index" class="language-item">
-                      <pv-inputtext v-if="editingLanguageIndex === index" v-model="languages[index]" />
-                      <span v-else>{{ language }}</span>
-                      <pv-button @click="startEditingLanguage(index)" label="Editar" v-if="editingLanguageIndex !== index" />
-                      <pv-button @click="finishEditingLanguage" label="Guardar" v-else />
+                    <div class="" v-for="(language, index) in languages" :key="index" >
+                      <div class="flex justify-content-between flex-wrap align-items-center">
+                        <div class="">
+                          <pv-inputText class="w-7 mb-2 " v-if="editingLanguageIndex === index" v-model="languages[index]" />
+                          <p v-else>{{ language }}</p>
+                        </div>
+
+                        <div class=" flex align-items-center justify-content-center">
+                          <pv-button style="height:70%;" @click="startEditingLanguage(index)" label="Editar" v-if="editingLanguageIndex !== index" />
+                          <pv-button style="width:100%;" @click="finishEditingLanguage" label="Guardar" v-else />
+                        </div>
+                      </div>
                     </div>
-                    <pv-inputtext v-model="newLanguage" placeholder="Añadir un nuevo lenguaje" />
-                    <pv-button @click="addLanguage" label="Añadir" />
+
+                    <div class=" flex flex-column gap-2 mt-2  justify-content-center ">
+                      <pv-inputText v-model="newLanguage" placeholder="Añadir nuevo lenguaje" />
+                      <pv-button @click="addLanguage" label="Añadir" />
+                    </div>
                   </div>
-                  <div class="framework-section">
+
+                  <div class="w-10">
                     <h3>Frameworks</h3>
-                    <div v-for="(framework, index) in frameworks" :key="index" class="framework-item">
-                      <pv-inputtext v-if="editingFrameworkIndex === index" v-model="frameworks[index]" />
-                      <span v-else>{{ framework }}</span>
-                      <pv-button @click="startEditingFramework(index)" label="Editar" v-if="editingFrameworkIndex !== index" />
-                      <pv-button @click="finishEditingFramework" label="Guardar" v-else />
+                    <div class=" " v-for="(framework, index) in frameworks" :key="index" >
+                      <div class="flex justify-content-between flex-wrap align-items-center">
+                        <pv-inputText class="w-7 box2 flex" v-if="editingFrameworkIndex === index" v-model="frameworks[index]" />
+                        <span v-else>{{ framework }}</span>
+
+                        <div class="  flex mb-2 align-items-center justify-content-center">
+                          <pv-button style="height:70%;" @click="startEditingFramework(index)" label="Editar" v-if="editingFrameworkIndex !== index" />
+                          <pv-button style="width:100%;" @click="finishEditingFramework" label="Guardar" v-else />
+                        </div>
+
+                      </div>
+
+
                     </div>
-                    <pv-inputtext v-model="newFramework" placeholder="Añadir un nuevo framework" />
-                    <pv-button @click="addFramework" label="Añadir" />
+
+                    <div class=" flex flex-column gap-2 mt-2  justify-content-center">
+                      <pv-inputText v-model="newFramework" placeholder="Añadir nuevo framework" />
+                      <pv-button @click="addFramework" label="Añadir" />
+                    </div>
+
                   </div>
+
                 </div>
               </div>
             </div>
             <pv-button @click="toggleEditingTechnologies" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingTechnologies" />
             <pv-button @click="toggleEditingTechnologies" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
             <hr>
-            <h2 class="text-center">Recursos y Documentacion</h2>
 
-            <pv-scrollpanel ref="scrollPanel" class="pv-scrollpanel" style="width: 100%; height: 400px">
-              <pv-fileupload class="large-fileupload" name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" :maxFileSize="1000000" accept=".pdf,.doc,.docx">
-                <template #empty>
-                  <div v-for="(image, index) in uploadedImages" :key="index">
-                    <p>{{ image.name }}</p>
-                  </div>
-                  <p>Drag and drop files to here to upload.</p>
-                </template>
-              </pv-fileupload>
-            </pv-scrollpanel>
-          </div>
+
+            <div class="flex flex-column  text-overflow-clip">
+              <div>
+                <h2 class=" flex overflow-auto ">Recursos y Documentacion</h2>
+              </div>
+
+
+
+              <pv-scrollpanel ref="scrollPanel" class="pv-scrollpanel" style="width: 100%; height: 400px">
+                <pv-file-upload class="large-fileupload" name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" :maxFileSize="1000000" accept=".pdf,.doc,.docx">
+                  <template #empty>
+                    <div v-for="(image, index) in uploadedImages" :key="index">
+                      <p>{{ image.name }}</p>
+                    </div>
+                    <p>Drag and drop files to here to upload.</p>
+                  </template>
+                </pv-file-upload>
+              </pv-scrollpanel>
+            </div>
+            </div>
+
 
           <div class="seccion-derecha">
-            <h2 class="text-center">Presupuesto: $50,000</h2>
+            <h2  class="text-center">Presupuesto: $50,000</h2>
             <p v-if="!isEditingBudget">{{ budgetText }}</p>
-            <pv-inputtext v-else v-model="budgetText" type="text" class="editable-input" />
+            <pv-inputText aria-label="Project Budget" v-else v-model="budgetText" type="text" class="editable-input" />
             <pv-button @click="toggleEditingBudget" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingBudget" />
             <pv-button @click="toggleEditingBudget" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
             <hr>
@@ -96,10 +130,10 @@
             </ol>
             <div v-else>
               <div v-for="(methodology, index) in methodologies" :key="index">
-                <pv-inputtext v-model="methodologies[index]" type="text" class="editable-input" />
+                <pv-inputText v-model="methodologies[index]" type="text" class="editable-input" />
                 <pv-button @click="removeMethodology(index)" label="Eliminar" />
               </div>
-              <pv-inputtext v-model="newMethodology" placeholder="Añadir una nueva metodología" />
+              <pv-inputText v-model="newMethodology" placeholder="Añadir una nueva metodología" />
               <pv-button @click="addMethodology" label="Añadir" />
             </div>
             <pv-button @click="toggleEditingMethodologies" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingMethodologies" />
@@ -230,14 +264,23 @@ export default {
 </script>
 
 <style>
+
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .card-flex {
   max-width: 1300px;
   width:100%;
-  margin: 100px auto;
+  margin: 50px auto;
   font-family: 'Roboto', sans-serif;
   padding: 2rem;
   border-radius: 10px;
   height: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .contenedor-secciones {
@@ -312,29 +355,11 @@ hr {
   width: 100%;
   min-height: 50px;
 }
-
-
-
-
-.language-framework-container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+.p-grid.p-justify-center.p-align-center {
+  margin-bottom: 50px;
 }
 
-.language-section,
-.framework-section {
-  width: 48%;
-}
 
-.language-item,
-.framework-item {
-  display: flex;
-  align-items: center;
-}
 
-.language-item span,
-.framework-item span {
-  flex-grow: 1;
-}
+
 </style>

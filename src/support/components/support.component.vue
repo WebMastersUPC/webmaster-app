@@ -25,34 +25,34 @@ export default {
 </script>
 
 <template>
-  <div class="support-details">
-    <pv-floatlabel>
-      <pv-inputtext id="username" v-model="value" />
+  <div class="support-details" aria-label="Support Details">
+    <pv-floatlabel aria-label="Floatlabel for Title">
+      <pv-inputtext id="username" v-model="value" aria-label="Title of the problem" />
       <label for="username">Titulo del problema</label>
     </pv-floatlabel>
-    <div class="card flex">
+    <div class="card flex" aria-label="Dropdown for Problem Type">
       <pv-dropdown v-model="selectedProblem" :options="problems" optionLabel="name" placeholder="Tipo de problema" class="w-full md:w-14rem" />
     </div>
-    <pv-floatlabel>
-      <pv-textarea v-model="value" rows="5" cols="30" />
+    <pv-floatlabel aria-label="Floatlabel for Description">
+      <pv-textarea v-model="value" rows="5" cols="30" aria-label="Description of the problem" />
       <label class="area-label">Descripción del problema</label>
     </pv-floatlabel>
 
-      <div class="card flex justify-content-center" id="upload">
-        <label for="file-input" class="flex align-items-center" id="upload-button">
-          <i class="pi pi-file-plus"></i>
-          <span class="ml-2">Subir Archivo</span>
-          <input type="file" id="file-input" multiple @change="handleFileChange" style="display: none;">
-        </label>
-        <hr style="background-color:black; width: 100%">
-        <ul>
-          <li v-for="(file, index) in files" :key="index">
-            {{ file.name }} ({{ file.size }} bytes)
-          </li>
-        </ul>
-      </div>
-
+    <div class="card flex justify-content-center" id="upload" aria-label="File Upload Section">
+      <label for="file-input" class="flex align-items-center" id="upload-button" aria-label="Upload Button">
+        <i class="pi pi-file-plus"></i>
+        <span class="ml-2">Subir Archivo</span>
+        <input type="file" id="file-input" multiple @change="handleFileChange" style="display: none;" aria-label="File Input" />
+      </label>
+      <hr style="background-color:black; width: 100%" aria-hidden="true">
+      <ul aria-label="Uploaded Files List">
+        <li v-for="(file, index) in files" :key="index">
+          {{ file.name }} ({{ file.size }} bytes)
+        </li>
+      </ul>
+    </div>
   </div>
+
 </template>
 
 <style>

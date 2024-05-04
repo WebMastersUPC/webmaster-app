@@ -33,11 +33,17 @@ import Splitter from "primevue/splitter";
 import SplitterPanel from "primevue/splitterpanel";
 import ConfirmDialog from 'primevue/confirmdialog';
 import Toast from 'primevue/toast';
+import Password from 'primevue/password';
+
+//Import Router
+import router from "./router/index.js";
 
 createApp(App)
-    .use(PrimeVue)
+    .use(PrimeVue, {ripple: true})
     .use(ConfirmationService)
     .use(ToastService)
+    .use(router)
+    .component('pv-password', Password)
     .component('pv-dropDown',Dropdown)
     .component('pv-modal',Dialog)
     .component('pv-inputText',InputText)

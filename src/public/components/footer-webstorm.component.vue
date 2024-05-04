@@ -45,4 +45,6 @@ export default {
 .background-icon{
   background-color: #D9D9D9
 }
+
+
 </style>

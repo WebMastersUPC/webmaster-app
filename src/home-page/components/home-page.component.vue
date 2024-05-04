@@ -4,7 +4,7 @@ import CompanyDataComponent from "../pages/company-data.component.vue"
 import ProjectsDataComponent from "../pages/projects-data.component.vue";
 
 export default {
-  name: "home-page.component",
+  name: "home-page",
   components: { DevDataComponent, ProjectsDataComponent,CompanyDataComponent},
   data() {
     return {

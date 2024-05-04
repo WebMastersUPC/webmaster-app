@@ -47,38 +47,39 @@ export default {
 </script>
 
 <template>
-    <pv-card>
-      <template #title>
-        <pv-avatar :image="developer.img" class="mr-2" size="xlarge" shape="circle" />
-        <div>
-          <p>{{developer.name}}</p>
-          <pv-rating v-model="value" readonly :cancel="false" />
+  <pv-card aria-label="Developer Information">
+    <template #title>
+      <pv-avatar :image="developer.img" class="mr-2" size="xlarge" shape="circle" aria-label="Developer Avatar"/>
+      <div aria-label="Developer Details">
+        <p>{{developer.name}}</p>
+        <pv-rating v-model="value" readonly :cancel="false" aria-label="Developer Rating"/>
+      </div>
+    </template>
+
+    <template #content>
+      <hr aria-label="Separator Line">
+      <div class="subtitle" aria-label="Summary">Resumen</div>
+      <div class="editable-container" aria-label="Main Text Container">
+        <span v-if="!isEditingMain" class="editable-text" aria-label="Main Text">{{mainText}}</span>
+        <pv-textarea v-else v-model="mainText" type="text" class="editable-input" autoResize aria-label="Main Text Input"/>
+        <pv-button @click="toggleEditingMain" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingMain" aria-label="Edit Main Text Button"/>
+        <pv-button @click="toggleEditingMain" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else aria-label="Confirm Main Text Button"/>
+      </div>
+
+      <template v-for="(category, index) in categories" :key="index">
+        <hr aria-label="Separator Line" v-if="index !== 0">
+        <div class="editable-container secondary" aria-label="Category Container">
+          <div class="subtitle" aria-label="Category Title">{{ category }}</div>
+          <span v-if="!isEditingCategories[index]" class="editable-text" aria-label="Category Text">{{ categoryTexts[index] }}</span>
+          <input v-else v-model="categoryTexts[index]" type="text" class="editable-input" aria-label="Category Text Input"/>
+          <pv-button @click="toggleEditingCategory(index)" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingCategories[index]" aria-label="Edit Category Button"/>
+          <pv-button @click="toggleEditingCategory(index)" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else aria-label="Confirm Category Button"/>
         </div>
       </template>
 
-      <template #content>
-        <hr>
-        <div class="subtitle">Resumen</div>
-        <div class="editable-container">
-          <span v-if="!isEditingMain" class="editable-text">{{mainText}}</span>
-          <pv-textarea v-else v-model="mainText" type="text" class="editable-input" autoResize/>
-          <pv-button @click="toggleEditingMain" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingMain" />
-          <pv-button @click="toggleEditingMain" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
-        </div>
+    </template>
+  </pv-card>
 
-        <template v-for="(category, index) in categories" :key="index">
-          <hr>
-          <div class="editable-container secondary">
-            <div class="subtitle">{{ category }}</div>
-            <span v-if="!isEditingCategories[index]" class="editable-text">{{ categoryTexts[index] }}</span>
-            <input v-else v-model="categoryTexts[index]" type="text" class="editable-input" />
-            <pv-button @click="toggleEditingCategory(index)" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingCategories[index]" />
-            <pv-button @click="toggleEditingCategory(index)" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
-          </div>
-        </template>
-
-      </template>
-    </pv-card>
 
 </template>
 
