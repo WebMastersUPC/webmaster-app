@@ -3,7 +3,8 @@ import './style.css'
 import App from './App.vue'
 //prime
 import PrimeVue from "primevue/config";
-
+// Add i18n support
+import i18n from "./i18n.js";
 //Import styled mode for PrimeVue
 import 'primevue/resources/themes/aura-light-green/theme.css'
 import 'primeflex/primeflex.css'
@@ -43,6 +44,7 @@ createApp(App)
     .use(ConfirmationService)
     .use(ToastService)
     .use(router)
+    .use(i18n)
     .component('pv-password', Password)
     .component('pv-dropDown',Dropdown)
     .component('pv-modal',Dialog)
