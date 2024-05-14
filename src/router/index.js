@@ -5,15 +5,16 @@ import LoginCard from '../authentication/components/login-card.component.vue';
 import PasswordRecoveryCard from '../authentication/components/password-recovery-card.component.vue';
 import RegisterCard from '../authentication/components/register-card.component.vue';
 import MainPage from "../main-page/pages/main-page.view.vue";
-import SearchDeveloperList from "../search-developer/pages/search-developer-list.component.vue";
+import SearchDeveloperList from "../enterprise/search-developer/pages/search-developer-list.component.vue";
 import ToolbarEnterpriseComponent from "../public/components/toolbar-enterprise.component.vue";
 import FooterWebstormComponent from "../public/components/footer-webstorm.component.vue";
-import HomePage from "../home-page/components/home-page.component.vue";
-import MessagePage from "../components/message/message-page.component.vue";
-import CreateProject from "../components/create/create-project-component.vue";
-import DeliverableList from "../deliverables-schedule/pages/deliverable-list.vue";
+import HomePage from "../enterprise/home-enterprise/pages/home-page.component.vue";
+import MessagePage from "../shared/components/message-page.component.vue";
+
+import DeliverableList from "../enterprise/deliverables-schedule/pages/deliverable-list.vue";
 import LoginComponent from "../authentication/pages/login.component.vue";
-import DeveloperProfilePage from "../developer-profile/pages/developer-profile-page.vue";
+import DeveloperProfilePage from "../developer/developer-profile/pages/developer-profile-page.vue";
+import CreateProject from "../enterprise/create-project/pages/create-project-page.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),

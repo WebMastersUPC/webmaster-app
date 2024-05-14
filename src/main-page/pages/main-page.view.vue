@@ -2,7 +2,7 @@
 
 import ToolbarEnterprise from "../../public/components/toolbar-enterprise.component.vue";
 import FooterWebmaster from "../../public/components/footer-webstorm.component.vue";
-import HomePage from "../../home-page/components/home-page.component.vue";
+import HomePage from "../../enterprise/home-enterprise/pages/home-page.component.vue";
 
 export default {
   name: "main-page-view",
