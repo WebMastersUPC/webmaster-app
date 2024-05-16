@@ -6,7 +6,9 @@ export default {
       id: localStorage.getItem('user id'),
       type: localStorage.getItem('user type'),
       visibleRight: false,
-      screenWidth: window.innerWidth
+      screenWidth: window.innerWidth,
+      languages: ['en', 'es'],
+      language: 'en'
     }
   },
   computed: {
@@ -35,13 +37,14 @@ export default {
 <template>
   <!--Toolbar-->
   <div class="flex flex-wrap justify-content-center" v-if="!showSidebar">
+    <pv-select-button v-model="$i18n.locale" :options="languages" class="uppercase my-6 mr-6"></pv-select-button>
     <pv-toolbar style=" border-radius: 4rem; " class="bg-white my-4">
       <template #start>
         <router-link to="/search-developer">
-          <pv-button label="Explorar Desarrolladores" text plain class="responsive-button justify-content-center"/>
+          <pv-button :label="$t('toolbar-enterprise-option1')" text plain class="responsive-button justify-content-center"/>
         </router-link>
         <router-link to="/message-page">
-          <pv-button label="Mensajes" text plain class="responsive-button justify-content-center"/>
+          <pv-button :label="$t('toolbar-enterprise-option2')" text plain class="responsive-button justify-content-center"/>
         </router-link>
         <router-link :to="`/main/${type}/${id}`">
           <pv-button label="" text plain class="responsive-button justify-content-center">
@@ -49,11 +52,11 @@ export default {
           </pv-button>
         </router-link>
         <router-link to="/create-project">
-          <pv-button label="Publicar proyecto" text plain class="responsive-button justify-content-center"/>
+          <pv-button :label="$t('toolbar-enterprise-option3')" text plain class="responsive-button justify-content-center"/>
         </router-link>
         <router-link to="/login">
           <pv-button label="" text plain class="responsive-button justify-content-center">
-            <i class="pi pi-sign-out" style="font-size: 1.4rem"> <br> salir</i>
+            <i class="pi pi-sign-out" style="font-size: 1.4rem"> <br> {{$t('toolbar-enterprise-option4')}}</i>
           </pv-button>
         </router-link>
       </template>
@@ -65,6 +68,9 @@ export default {
       <template #start>
         <img src="https://imgur.com/8o8Veec.jpg" alt="logo de la app">
       </template>
+      <template #center>
+        <pv-select-button v-model="$i18n.locale" :options="languages" class="uppercase my-6 mr-6"></pv-select-button>
+      </template>
       <template #end>
         <div class="card">
           <div class="flex gap-2 justify-content-center pr-2">
@@ -75,27 +81,27 @@ export default {
           <pv-sidebar v-model:visible="visibleRight" header="Options" position="right" class="flex flex-column gap-5">
             <router-link to="/search-developer" class="p-mb-2">
               <pv-button text plain class="w-full">
-                <h3>Explorar Desarrolladores</h3>
+                <h3>{{$t('toolbar-enterprise-option1')}}</h3>
               </pv-button>
             </router-link>
             <router-link to="/message-page" class="p-mb-2">
               <pv-button text plain class="w-full">
-                <h3>Mensajes</h3>
+                <h3>{{$t('toolbar-enterprise-option2')}}</h3>
               </pv-button>
             </router-link>
             <router-link :to="`/main/${type}/${id}`" class="p-mb-2">
               <pv-button text plain class="w-full">
-                <h3>Inicio</h3>
+                <h3>{{$t('toolbar-enterprise-option5')}}</h3>
               </pv-button>
             </router-link>
             <router-link to="/create-project" class="p-mb-2">
               <pv-button text plain class="w-full">
-                <h3>Publicar proyecto</h3>
+                <h3>{{$t('toolbar-enterprise-option3')}}</h3>
               </pv-button>
             </router-link>
             <router-link to="/login" class="p-mb-2">
               <pv-button text plain class="w-full">
-                <h3>Salir</h3>
+                <h3>{{$t('toolbar-enterprise-option4')}}</h3>
               </pv-button>
             </router-link>
           </pv-sidebar>

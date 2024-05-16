@@ -36,6 +36,7 @@ import ConfirmDialog from 'primevue/confirmdialog';
 import Toast from 'primevue/toast';
 import Password from 'primevue/password';
 import Sidebar from 'primevue/sidebar';
+import SelectButton from 'primevue/selectbutton';
 //Import Router
 import router from "./router/index.js";
 
@@ -67,4 +68,5 @@ createApp(App)
     .component('pv-confirm-dialog', ConfirmDialog, )
     .component('pv-toast', Toast)
     .component('pv-sidebar', Sidebar)
+    .component('pv-select-button', SelectButton)
     .mount('#app')
