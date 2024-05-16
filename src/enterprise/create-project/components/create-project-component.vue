@@ -12,7 +12,7 @@
         </div>
       </template>
       <template #subtitle>
-        Descripción
+        {{$t('create-project-part1')}}
       </template>
       <template #content>
         <p class="m-0" v-if="!isEditingDescription">{{ descriptionText }}</p>
@@ -22,12 +22,12 @@
         <hr>
         <div class="contenedor-secciones">
           <div class="seccion-izquierda">
-            <h2 class="text-center">Tecnologías</h2>
+            <h2 class="text-center">{{$t('create-project-part2')}}</h2>
 
             <div class="flex justify-content-center">
               <div class=" flex flex-wrap  w-11 justify-content-between" v-if="!isEditingTechnologies" >
                 <div class="">
-                  <h3 >Lenguajes</h3>
+                  <h3 >{{$t('create-project-part3')}}</h3>
                   <ul>
                     <li v-for="(language, index) in languages" :key="index">{{ language }}</li>
                   </ul>
@@ -43,7 +43,7 @@
               <div v-else>
                 <div class=" ml-3 flex flex-row flex-wrap justify-content-center w-10">
                   <div class="  w-10 "> <!--box1-->
-                    <h3>Lenguajes</h3>
+                    <h3>{{$t('create-project-part3')}}</h3>
                     <div class="" v-for="(language, index) in languages" :key="index" >
                       <div class="flex justify-content-between flex-wrap align-items-center">
                         <div class="">
@@ -52,15 +52,15 @@
                         </div>
 
                         <div class=" flex align-items-center justify-content-center">
-                          <pv-button style="height:70%;" @click="startEditingLanguage(index)" label="Editar" v-if="editingLanguageIndex !== index" />
-                          <pv-button style="width:100%;" @click="finishEditingLanguage" label="Guardar" v-else />
+                          <pv-button style="height:70%;" @click="startEditingLanguage(index)" :label="$t('create-project-part4')" v-if="editingLanguageIndex !== index" />
+                          <pv-button style="width:100%;" @click="finishEditingLanguage" :label="$t('create-project-part5')" v-else />
                         </div>
                       </div>
                     </div>
 
                     <div class=" flex flex-column gap-2 mt-2  justify-content-center ">
-                      <pv-inputText v-model="newLanguage" placeholder="Añadir nuevo lenguaje" />
-                      <pv-button @click="addLanguage" label="Añadir" />
+                      <pv-inputText v-model="newLanguage" :placeholder="$t('create-project-part6')" />
+                      <pv-button @click="addLanguage" :label="$t('create-project-part7')" />
                     </div>
                   </div>
 
@@ -72,8 +72,8 @@
                         <span v-else>{{ framework }}</span>
 
                         <div class="  flex mb-2 align-items-center justify-content-center">
-                          <pv-button style="height:70%;" @click="startEditingFramework(index)" label="Editar" v-if="editingFrameworkIndex !== index" />
-                          <pv-button style="width:100%;" @click="finishEditingFramework" label="Guardar" v-else />
+                          <pv-button style="height:70%;" @click="startEditingFramework(index)" :label="$t('create-project-part4')" v-if="editingFrameworkIndex !== index" />
+                          <pv-button style="width:100%;" @click="finishEditingFramework" :label="$t('create-project-part5')" v-else />
                         </div>
 
                       </div>
@@ -82,8 +82,8 @@
                     </div>
 
                     <div class=" flex flex-column gap-2 mt-2  justify-content-center">
-                      <pv-inputText v-model="newFramework" placeholder="Añadir nuevo framework" />
-                      <pv-button @click="addFramework" label="Añadir" />
+                      <pv-inputText v-model="newFramework" :placeholder="$t('create-project-part8')" />
+                      <pv-button @click="addFramework" :label="$t('create-project-part7')" />
                     </div>
 
                   </div>
@@ -98,7 +98,7 @@
 
             <div class="flex flex-column  text-overflow-clip">
               <div>
-                <h2 class=" flex overflow-auto ">Recursos y Documentacion</h2>
+                <h2 class=" flex overflow-auto ">{{$t('create-project-part9')}}</h2>
               </div>
 
 
@@ -109,7 +109,7 @@
                     <div v-for="(image, index) in uploadedImages" :key="index">
                       <p>{{ image.name }}</p>
                     </div>
-                    <p>Drag and drop files to here to upload.</p>
+                    <p>{{$t('create-project-part10')}}</p>
                   </template>
                 </pv-file-upload>
               </pv-scrollpanel>
@@ -118,23 +118,23 @@
 
 
           <div class="seccion-derecha">
-            <h2  class="text-center">Presupuesto: $50,000</h2>
+            <h2  class="text-center">{{$t('create-project-part11')}}: $50,000</h2>
             <p v-if="!isEditingBudget">{{ budgetText }}</p>
             <pv-inputText aria-label="Project Budget" v-else v-model="budgetText" type="text" class="editable-input" />
             <pv-button @click="toggleEditingBudget" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingBudget" />
             <pv-button @click="toggleEditingBudget" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
             <hr>
-            <h2 class="text-center">Procesos y Metodologías de Desarrollo</h2>
+            <h2 class="text-center">{{$t('create-project-part12')}}</h2>
             <ol v-if="!isEditingMethodologies">
               <li v-for="(methodology, index) in methodologies" :key="index">{{ methodology }}</li>
             </ol>
             <div v-else>
               <div v-for="(methodology, index) in methodologies" :key="index">
                 <pv-inputText v-model="methodologies[index]" type="text" class="editable-input" />
-                <pv-button @click="removeMethodology(index)" label="Eliminar" />
+                <pv-button @click="removeMethodology(index)" :label="$t('create-project-part13')" />
               </div>
-              <pv-inputText v-model="newMethodology" placeholder="Añadir una nueva metodología" />
-              <pv-button @click="addMethodology" label="Añadir" />
+              <pv-inputText v-model="newMethodology" :placeholder="$t('create-project-part14')" />
+              <pv-button @click="addMethodology" :label="$t('create-project-part7')" />
             </div>
             <pv-button @click="toggleEditingMethodologies" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingMethodologies" />
             <pv-button @click="toggleEditingMethodologies" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
@@ -143,16 +143,16 @@
         <div style="margin-top: 50px;"></div>
         <pv-dialog v-model:visible="showDialog" :modal="true" :closable="false" class="custom-dialog">
           <template #header>
-            <h2>¿Estas seguro de que quieres publicar el proyecto?</h2>
+            <h2>{{$t('create-project-part15')}}</h2>
           </template>
-          <p>Podrás editar el proyecto cuando quieras, hasta que hayas aceptado a un desarrollador para trabajar.</p>
+          <p>{{$t('create-project-part16')}}</p>
           <template #footer class="text-center">
-            <pv-button label="Aceptar" @click="publishProject" class="p-button-primary"/>
-            <pv-button label="Cancelar" @click="showDialog = false" class="p-button-text"/>
+            <pv-button :label="$t('create-project-part18')" @click="publishProject" class="p-button-primary"/>
+            <pv-button :label="$t('create-project-part19')" @click="showDialog = false" class="p-button-text"/>
           </template>
         </pv-dialog>
 
-        <pv-button class="publish-button" @click="showDialog = true">Publicar Proyecto</pv-button>
+        <pv-button class="publish-button" @click="showDialog = true">{{$t('create-project-part17')}}</pv-button>
       </template>
 
     </pv-card>
