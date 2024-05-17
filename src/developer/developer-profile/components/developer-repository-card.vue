@@ -21,14 +21,14 @@ export default {
 
 <template>
   <pv-card aria-label="Projects card">
-    <template #title> <p  style="color: #3554BC" aria-label="Projects Title">Proyectos</p></template>
+    <template #title> <p  style="color: #3554BC" aria-label="Projects Title">{{$t('developer-repository-card-part1')}}</p></template>
     <template #content>
       <hr aria-label="Separator Line">
       <div class="project-container" aria-label="Project Container">
         <template v-if="projects.length" class="project-list" v-for="project in projects" aria-label="Project Item">
           <div class="project bg-blue-100" aria-label="Project Information">
             <h4>{{project.title}}</h4>
-            <a :href="project.urlPage" target="_blank" aria-label="Link to Project Page">Link a la página.</a>
+            <a :href="project.urlPage" target="_blank" aria-label="Link to Project Page">{{$t('developer-repository-card-part2')}}</a>
           </div>
         </template>
         <template v-else aria-label="No Projects Message">

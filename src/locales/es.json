@@ -44,7 +44,9 @@
     "phone": "Teléfono",
     "email": "Correo",
     "website": "Página web",
-    "sector": "Sector"
+    "sector": "Sector",
+    "projectsFinished": "Proyectos Finalizados",
+    "specialties": "Especialidades"
   },
   "company-main-page-part1": "Resumen",
   "projects-panel-enterprise-part1": "Proyectos",
@@ -71,5 +73,17 @@
   "deliverable-list-part5": "Descripción",
   "deliverable-list-part6": "Fecha",
   "deliverable-list-part7": "límite",
-  "deliverable-list-part8": "Confirmar"
+  "deliverable-list-part8": "Confirmar",
+  "dev-main-page-part1": "Resumen",
+  "developer-profile-card-part1": "Resumen",
+  "developer-repository-card-part1": "Proyectos",
+  "developer-repository-card-part2": "Link a la página.",
+  "apply-project-part1": "Entregable",
+  "apply-project-part2": "Descripción",
+  "apply-project-part3": "Tecnologias",
+  "apply-project-part4": "Lenguajes",
+  "apply-project-part5": "Presupuesto",
+  "apply-project-part6": "Recursos y Documentación",
+  "apply-project-part7": "Procesos y Metodologías de Desarrollo",
+  "apply-project-part8": "Postular a Proyecto"
 }

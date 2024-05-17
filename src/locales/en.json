@@ -44,7 +44,9 @@
     "phone": "Phone",
     "email": "Email",
     "website": "Website",
-    "sector": "Sector"
+    "sector": "Sector",
+    "projectsFinished": "Projects Finished",
+    "specialties": "Specialties"
   },
   "company-main-page-part1": "Summary",
   "projects-panel-enterprise-part1": "Projects",
@@ -71,5 +73,17 @@
   "deliverable-list-part5": "Description",
   "deliverable-list-part6": "Date",
   "deliverable-list-part7": "limit",
-  "deliverable-list-part8": "Confirm"
+  "deliverable-list-part8": "Confirm",
+  "dev-main-page-part1": "Summary",
+  "developer-profile-card-part1": "Summary",
+  "developer-repository-card-part1": "Projects",
+  "developer-repository-card-part2": "Link to the page.",
+  "apply-project-part1": "Deliverable",
+  "apply-project-part2": "Description",
+  "apply-project-part3": "Technologies",
+  "apply-project-part4": "Languages",
+  "apply-project-part5": "Budget",
+  "apply-project-part6": "Resources and Documentation",
+  "apply-project-part7": "Development Processes and Methodologies",
+  "apply-project-part8": "Apply to Project"
 }

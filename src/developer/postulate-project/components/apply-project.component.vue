@@ -49,12 +49,12 @@ export default {
           <img src="https://imgur.com/yclQG0L.jpg" alt="" aria-hidden="true">
         </pv-button>
         <pv-button severity="contrast" class="p-2 text-xl ml-3 p-text-truncate justify-content-center" outlined v-if="showButtons" aria-label="Entregable Button">
-          Entregable
+          {{$t('apply-project-part1')}}
         </pv-button>
       </pv-splitter-panel>
       <pv-splitter-panel class="p-d-flex p-flex-column p-align-center" style="flex-grow: 1" aria-label="Description Panel">
         <div class="description p-d-flex p-flex-column p-align-center" aria-label="Description">
-          <h3 class="p-mb-0 pl-3">Descripción</h3>
+          <h3 class="p-mb-0 pl-3">{{$t('apply-project-part2')}}</h3>
           <p class="p-text-center px-5">
             La Plataforma de Comercio Electrónico Geekit es un proyecto destinado a crear una experiencia de
             compra en línea excepcional para nuestra marca de ropa y accesorios para jóvenes apasionados por
@@ -72,10 +72,10 @@ export default {
         <!-- Primer Splitter Horizontalmente -->
         <pv-splitter layout="horizontal" aria-label="Splitter for Technologies">
           <pv-splitter-panel style="flex-grow: 1" aria-label="Languages Panel">
-            <h2 style="text-align: center;">Tecnologias</h2>
+            <h2 style="text-align: center;">{{$t('apply-project-part3')}}</h2>
             <div style="display: flex;">
               <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center;">
-                <h3 class="text-center">Lenguajes</h3>
+                <h3 class="text-center">{{$t('apply-project-part4')}}</h3>
                 <ul class="p-d-flex p-flex-column p-p-0 p-mb-0">
                   <li class="p-mb-2">HTML5</li>
                   <li class="p-mb-2">CSS3</li>
@@ -93,7 +93,7 @@ export default {
             </div>
           </pv-splitter-panel>
           <pv-splitter-panel style="flex-grow: 1" aria-label="Budget Panel">
-            <h2 style="text-align: center;">Presupuesto: $50,000</h2>
+            <h2 style="text-align: center;">{{$t('apply-project-part5')}}: $50,000</h2>
             <p class="px-5">
               El presupuesto asignado para este proyecto es de $50,000 USD, incluyendo el
               costo de desarrollo, pruebas, implementación y mantenimiento inicial durante los
@@ -108,7 +108,7 @@ export default {
         <!-- Segundo Splitter Horizontalmente -->
         <pv-splitter layout="horizontal" aria-label="Splitter for Resources and Processes">
           <pv-splitter-panel style="display: flex; flex-direction: column;" aria-label="Resources Panel">
-            <h2 class="text-center">Recursos y Documentación</h2>
+            <h2 class="text-center">{{$t('apply-project-part6')}}</h2>
             <div class="p-d-flex p-jc-center p-ai-center bg-bluegray-400" style="overflow-x: auto; max-height: 300px;">
               <div class="p-d-flex p-jc-start p-ai-center icon-container" style="white-space: nowrap; width: 100%; max-width: 25vw;">
                 <i class="pi pi-file text-8xl text-black-alpha-90 pr-3" aria-label="Recurso 1">
@@ -123,7 +123,7 @@ export default {
           </pv-splitter-panel>
 
           <pv-splitter-panel style="flex-grow: 1" aria-label="Processes Panel">
-            <h2 class="text-center">Procesos y Metodologías de Desarrollo</h2>
+            <h2 class="text-center">{{$t('apply-project-part7')}}</h2>
             <ol aria-label="Development Processes List">
               <li>Recolección de Requisitos: Definición de requisitos del proyecto en una reunión inicial.</li>
               <li>Desarrollo Iterativo: Metodología ágil con entregas incrementales para retroalimentación temprana.</li>
@@ -146,7 +146,7 @@ export default {
     <div class="d-flex justify-content-center mt-5" aria-label="Postulation Section">
       <div style="text-align: center;">
         <pv-toast></pv-toast>
-        <pv-button @click="showTemplate()" label="Postular a Proyecto" severity="contrast" class="text-3xl my-3" outlined aria-label="Postulation Button"></pv-button>
+        <pv-button @click="showTemplate()" :label="$t('apply-project-part8')" severity="contrast" class="text-3xl my-3" outlined aria-label="Postulation Button"></pv-button>
       </div>
     </div>
   </div>
