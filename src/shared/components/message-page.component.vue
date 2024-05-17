@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="flex justify-content-center">
-        <pv-button class="p-button" label="Enviar" @click="submitForm" aria-label="Submit Form Button" style="width:30%"/>
+        <pv-button class="p-button" :label="$t('message-part7')" @click="submitForm" aria-label="Submit Form Button" style="width:30%"/>
       </div>
     </div>
 

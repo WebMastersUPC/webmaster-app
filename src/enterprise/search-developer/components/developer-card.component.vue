@@ -29,7 +29,7 @@ export default {
         <h3 @click="redirectToProfile" aria-label="Developer Name">{{developer.name}}</h3>
       </div>
     </template>
-    <template #title aria-label="Card Title">Descripcion</template>
+    <template #title aria-label="Card Title">{{$t('developer-card-part1')}}</template>
     <template #content aria-label="Card Content">
       <p class="m-0">{{developer.description}}</p>
     </template>

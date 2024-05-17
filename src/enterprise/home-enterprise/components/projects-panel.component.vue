@@ -61,14 +61,14 @@ export default {
 
 <template>
   <pv-card>
-    <template #title> <p  style="color: #3554BC">Proyectos</p></template>
+    <template #title> <p  style="color: #3554BC">{{ $t('projects-panel-enterprise-part1') }}</p></template>
     <template #content>
       <hr>
       <template class="project-list" v-for="project in projects">
         <div class="project" @click="openPosition('center', project.started, project.candidates)">
           <h4>{{project.name}}</h4>
           <p class="subtitle tipo-proyecto">{{project.type}}</p>
-          <p class="postulantes"  v-if="!project.started">Postulantes: {{project.candidates.length}}</p>
+          <p class="postulantes"  v-if="!project.started">{{ $t('projects-panel-enterprise-part2') }}: {{project.candidates.length}}</p>
           <pv-progressbar v-else :value="project.progress"></pv-progressbar>
         </div>
       </template>
@@ -77,7 +77,7 @@ export default {
 
 
   <div class="card">
-    <pv-dialog v-model:visible="visible" header="Elegir postulante" :style="{ width: '25rem', height: '100vh', display: 'block', overflow:'auto' }" :position="position" :modal="true" :draggable="false">
+    <pv-dialog v-model:visible="visible" :header="$t('projects-panel-enterprise-part3')" :style="{ width: '25rem', height: '100vh', display: 'block', overflow:'auto' }" :position="position" :modal="true" :draggable="false">
       <template class="applicants-list" v-for="(applicant) in this.applicantsList">
         <div class="project applicant">
           <h4>{{applicant.name}}</h4>
@@ -86,7 +86,7 @@ export default {
           <pv-rating v-model="applicant.rating" readonly :cancel="false" />
           </div>
           <span>{{ applicant.description.length > 150 ? `${applicant.description.slice(0, 150)}...` : applicant.description }}</span>
-          <pv-button class="choose-dev" @click="chooseApplicant(applicant.id)">Elegir Developer</pv-button>
+          <pv-button class="choose-dev" @click="chooseApplicant(applicant.id)">{{ $t('projects-panel-enterprise-part3') }}</pv-button>
         </div>
       </template>
     </pv-dialog>
