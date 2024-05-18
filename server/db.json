@@ -9,10 +9,10 @@
     },
     {
       "id": 2,
-      "username": "desarrollador1",
-      "password": "desarrollador1",
-      "email": "desarrollador1@upc",
-      "accountType": 1
+      "username": "empresa2",
+      "password": "empresa2",
+      "email": "empresa2@upc",
+      "accountType": 0
     }
   ],
   "enterprises": [
