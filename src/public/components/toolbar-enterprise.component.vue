@@ -13,7 +13,7 @@ export default {
   },
   computed: {
     showSidebar() {
-      return this.screenWidth <= 768;
+      return this.screenWidth <= 856;
     }
   },
   mounted() {
@@ -25,7 +25,7 @@ export default {
   methods: {
     handleResize() {
       this.screenWidth = window.innerWidth;
-      if (this.screenWidth > 768) {
+      if (this.screenWidth > 856) {
         this.visibleRight = false;
       }
     }
@@ -37,7 +37,6 @@ export default {
 <template>
   <!--Toolbar-->
   <div class="flex flex-wrap justify-content-center" v-if="!showSidebar">
-    <pv-select-button v-model="$i18n.locale" :options="languages" class="uppercase my-6 mr-6"></pv-select-button>
     <pv-toolbar style=" border-radius: 4rem; " class="bg-white my-4">
       <template #start>
         <router-link to="/search-developer">
@@ -61,15 +60,13 @@ export default {
         </router-link>
       </template>
     </pv-toolbar>
+    <pv-select-button v-model="$i18n.locale" :options="languages" class="uppercase my-6 ml-6"></pv-select-button>
   </div>
   <!--Toolbar con Sidebar-->
   <div v-else class="flex flex-wrap justify-content-center">
     <pv-toolbar class="bg-white my-4 w-full">
       <template #start>
         <img src="https://imgur.com/8o8Veec.jpg" alt="logo de la app">
-      </template>
-      <template #center>
-        <pv-select-button v-model="$i18n.locale" :options="languages" class="uppercase my-6 mr-6"></pv-select-button>
       </template>
       <template #end>
         <div class="card">
@@ -104,6 +101,7 @@ export default {
                 <h3>{{$t('toolbar-enterprise-option4')}}</h3>
               </pv-button>
             </router-link>
+            <pv-select-button v-model="$i18n.locale" :options="languages" class="uppercase my-6 mr-6"></pv-select-button>
           </pv-sidebar>
         </div>
       </template>
