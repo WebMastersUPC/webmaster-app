@@ -3,34 +3,34 @@
 
     <div class="box2 flex flex-column w-10 gap-3">
       <div class="p-field pv-fluid">
-        <pv-inputText class="p-inputtext" id="recipient" v-model="form.recipient" placeholder="Destinatario" aria-label="Recipient" />
+        <pv-inputText class="p-inputtext" id="recipient" v-model="form.recipient" :placeholder="$t('message-part1')" aria-label="Recipient" />
       </div>
       <div class="p-field ">
-        <pv-inputText class="p-inputtext" id="title" v-model="form.title" placeholder="Título del mensaje" aria-label="Message Title" />
+        <pv-inputText class="p-inputtext" id="title" v-model="form.title" :placeholder="$t('message-part2')" aria-label="Message Title" />
       </div>
       <div class="p-field ">
-        <pv-inputText class="p-inputtext" id="subject" v-model="form.subject" placeholder="Asunto" aria-label="Subject" />
+        <pv-inputText class="p-inputtext" id="subject" v-model="form.subject" :placeholder="$t('message-part3')" aria-label="Subject" />
       </div>
       <div class="p-field ">
-        <pv-textarea class="p-textarea" id="message" v-model="form.message" placeholder="Mensaje" aria-label="Message" />
+        <pv-textarea class="p-textarea" id="message" v-model="form.message" :placeholder="$t('message-part4')" aria-label="Message" />
       </div>
       <div>
         <div class="p-inputtext pt-3">
-          <label for="file" aria-label="File Attachment Label">Adjuntar archivos</label>
+          <label for="file" aria-label="File Attachment Label">{{$t('message-part5')}}</label>
           <pv-scrollpanel ref="scrollPanel" class="pv-scrollpanel" style="width: 100%; height: 400px" aria-label="File Upload Scroll Panel">
             <pv-file-upload class="large-fileupload" name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" :maxFileSize="1000000" accept=".pdf,.doc,.docx" aria-label="File Upload">
               <template #empty>
                 <div v-for="(image, index) in uploadedImages" :key="index">
                   <p>{{ image.name }}</p>
                 </div>
-                <p aria-label="File Upload Instructions">Drag and drop files to here to upload.</p>
+                <p aria-label="File Upload Instructions">{{$t('message-part6')}}</p>
               </template>
             </pv-file-upload>
           </pv-scrollpanel>
         </div>
       </div>
       <div class="flex justify-content-center">
-        <pv-button class="p-button" label="Enviar" @click="submitForm" aria-label="Submit Form Button" style="width:30%"/>
+        <pv-button class="p-button" :label="$t('message-part7')" @click="submitForm" aria-label="Submit Form Button" style="width:30%"/>
       </div>
     </div>
 

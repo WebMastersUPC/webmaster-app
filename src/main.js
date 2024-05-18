@@ -3,7 +3,8 @@ import './style.css'
 import App from './App.vue'
 //prime
 import PrimeVue from "primevue/config";
-
+// Add i18n support
+import i18n from "./i18n.js";
 //Import styled mode for PrimeVue
 import 'primevue/resources/themes/aura-light-green/theme.css'
 import 'primeflex/primeflex.css'
@@ -35,6 +36,7 @@ import ConfirmDialog from 'primevue/confirmdialog';
 import Toast from 'primevue/toast';
 import Password from 'primevue/password';
 import Sidebar from 'primevue/sidebar';
+import SelectButton from 'primevue/selectbutton';
 //Import Router
 import router from "./router/index.js";
 
@@ -43,6 +45,7 @@ createApp(App)
     .use(ConfirmationService)
     .use(ToastService)
     .use(router)
+    .use(i18n)
     .component('pv-password', Password)
     .component('pv-dropDown',Dropdown)
     .component('pv-modal',Dialog)
@@ -65,4 +68,5 @@ createApp(App)
     .component('pv-confirm-dialog', ConfirmDialog, )
     .component('pv-toast', Toast)
     .component('pv-sidebar', Sidebar)
+    .component('pv-select-button', SelectButton)
     .mount('#app')

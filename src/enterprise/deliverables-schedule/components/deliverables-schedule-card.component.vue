@@ -47,7 +47,7 @@ export default{
 
     <template #title>
       <p class="-mb-1" aria-label="Description Label">
-        Descripción
+        {{$t('deliverables-schedule-card-part1')}}
         <pv-button @click="EditingDescription" icon="pi pi-pencil" class="icons" v-if="!isEditingDescription" aria-label="Edit Description Button"></pv-button>
         <pv-button @click="EditingDescription" icon="pi pi-check" class="icons" v-else aria-label="Save Description Button"></pv-button>
       </p>
@@ -66,7 +66,7 @@ export default{
               <span class="pi pi-stopwatch" style="font-size: 2rem"></span>
             </div>
             <div class="flex flex-column align-items-center -mt-3 ml-5">
-              <p class="">Fecha límite</p>
+              <p class="">{{$t('deliverables-schedule-card-part2')}}</p>
             </div>
           </div>
 
@@ -75,7 +75,7 @@ export default{
               <span class="pi pi-times-circle" style="font-size: 2rem"></span>
             </div>
             <div class="flex flex-column align-items-center -mt-3 ml-5">
-              <p class="">Estado</p>
+              <p class="">{{$t('deliverables-schedule-card-part3')}}</p>
             </div>
           </div>
         </div>

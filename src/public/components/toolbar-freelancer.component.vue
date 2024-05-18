@@ -6,12 +6,14 @@ export default {
       id: localStorage.getItem('user id'),
       type: localStorage.getItem('user type'),
       visibleRight: false,
-      screenWidth: window.innerWidth
+      screenWidth: window.innerWidth,
+      languages: ['en', 'es'],
+      language: 'en'
     }
   },
   computed: {
     showSidebar() {
-      return this.screenWidth <= 768;
+      return this.screenWidth <= 856;
     }
   },
   mounted() {
@@ -23,7 +25,7 @@ export default {
   methods: {
     handleResize() {
       this.screenWidth = window.innerWidth;
-      if (this.screenWidth > 768) {
+      if (this.screenWidth > 856) {
         this.visibleRight = false;
       }
     }
@@ -37,24 +39,25 @@ export default {
     <pv-toolbar style=" border-radius: 4rem; " class="bg-white my-4">
       <template #start>
         <router-link to="">
-          <pv-button label="Inicio" text plain class="responsive-button justify-content-center"/>
+          <pv-button :label="$t('toolbar-freelancer-option1')" text plain class="responsive-button justify-content-center"/>
         </router-link>
         <router-link to="">
-          <pv-button label="Mensajes" text plain class="responsive-button justify-content-center"/>
+          <pv-button :label="$t('toolbar-freelancer-option2')" text plain class="responsive-button justify-content-center"/>
         </router-link>
           <div  class="responsive-button flex flex-wrap justify-content-center">
             <img src="https://imgur.com/yeuv7Nq.jpg" alt="logo" class="imgsize">
           </div>
         <router-link to="">
-          <pv-button label="Explorar Proyecto" text plain class="responsive-button justify-content-center"/>
+          <pv-button :label="$t('toolbar-freelancer-option3')" text plain class="responsive-button justify-content-center"/>
         </router-link>
         <router-link to="">
           <pv-button label="" text plain class="responsive-button justify-content-center">
-            <i class="pi pi-sign-out" style="font-size: 1.4rem"> <br> salir</i>
+            <i class="pi pi-sign-out" style="font-size: 1.4rem"> <br> {{$t('toolbar-freelancer-option4')}}</i>
           </pv-button>
         </router-link>
       </template>
     </pv-toolbar>
+    <pv-select-button v-model="$i18n.locale" :options="languages" class="uppercase my-6 ml-6"></pv-select-button>
   </div>
   <!--Toolbar con Sidebar-->
   <div v-else class="flex flex-wrap justify-content-center">
@@ -72,24 +75,25 @@ export default {
           <pv-sidebar v-model:visible="visibleRight" header="Options" position="right" class="flex flex-column gap-5">
             <router-link to="" class="p-mb-2">
               <pv-button text plain class="w-full">
-                <h3>Inicio</h3>
+                <h3>{{$t('toolbar-freelancer-option1')}}</h3>
               </pv-button>
             </router-link>
             <router-link to="" class="p-mb-2">
               <pv-button text plain class="w-full">
-                <h3>Mensajes</h3>
+                <h3>{{$t('toolbar-freelancer-option2')}}</h3>
               </pv-button>
             </router-link>
             <router-link to="" class="p-mb-2">
               <pv-button text plain class="w-full">
-                <h3>Explorar Proyecto</h3>
+                <h3>{{$t('toolbar-freelancer-option3')}}</h3>
               </pv-button>
             </router-link>
             <router-link to="" class="p-mb-2">
               <pv-button text plain class="w-full">
-                <h3>Salir</h3>
+                <h3>{{$t('toolbar-freelancer-option4')}}</h3>
               </pv-button>
             </router-link>
+            <pv-select-button v-model="$i18n.locale" :options="languages" class="uppercase my-6 ml-6"></pv-select-button>
           </pv-sidebar>
         </div>
       </template>

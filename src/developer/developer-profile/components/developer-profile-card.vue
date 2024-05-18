@@ -5,7 +5,7 @@ export default {
   name: "developer-profile-card",
   data() {
     return {
-      categories: ['País', 'Teléfono', 'Correo', 'Proyectos Realizados', 'Especialidades'],
+      categories: ['categories.country', 'categories.phone', 'categories.email', 'categories.projectsFinished', 'categories.specialties'],
       categoryTexts: [],
     }
   },
@@ -57,7 +57,7 @@ export default {
 
     <template #content>
       <hr aria-label="Separator Line">
-      <div class="subtitle" aria-label="Summary Title">Resumen</div>
+      <div class="subtitle" aria-label="Summary Title">{{$t('developer-profile-card-part1')}}</div>
       <div class="editable-container" aria-label="Developer Description">
         <p>{{developer.description}}</p>
       </div>
@@ -65,7 +65,7 @@ export default {
       <template v-for="(category, index) in categories" :key="index">
         <hr aria-label="Separator Line" />
         <div class="editable-container secondary" aria-label="Category Information">
-          <div class="subtitle">{{ category }}</div>
+          <div class="subtitle">{{ $t(category) }}</div>
           <span class="editable-text">{{ categoryTexts[index] }}</span>
         </div>
       </template>

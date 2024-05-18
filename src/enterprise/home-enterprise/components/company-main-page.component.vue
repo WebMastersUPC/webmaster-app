@@ -9,7 +9,7 @@ export default {
       mainText: '',
       isEditingCategories: [false, false, false, false, false, false],
       categoryTexts: [],
-      categories: ['País', 'RUC', 'Teléfono', 'Correo', 'Página web', 'Sector'],
+      categories: ['categories.country', 'categories.ruc', 'categories.phone', 'categories.email', 'categories.website', 'categories.sector']
     };
   },
   methods: {
@@ -55,7 +55,7 @@ export default {
 
     <template #content>
       <hr aria-label="Separator Line">
-      <div class="subtitle" aria-label="Summary">Resumen</div>
+      <div class="subtitle" aria-label="Summary">{{ $t('company-main-page-part1') }}</div>
       <div class="editable-container" aria-label="Main Text Container">
         <span v-if="!isEditingMain" class="editable-text" aria-label="Main Text">{{mainText}}</span>
         <pv-textarea v-else v-model="mainText" type="text" class="editable-input" autoResize aria-label="Main Text Input"/>
@@ -66,7 +66,7 @@ export default {
       <template v-for="(category, index) in categories" :key="index">
         <hr aria-label="Separator Line" v-if="index !== 0">
         <div class="editable-container secondary" aria-label="Category Container">
-          <div class="subtitle" aria-label="Category Title">{{ category }}</div>
+          <div class="subtitle" aria-label="Category Title">{{ $t(category) }}</div>
           <span v-if="!isEditingCategories[index]" class="editable-text" aria-label="Category Text">{{ categoryTexts[index] }}</span>
           <input v-else v-model="categoryTexts[index]" type="text" class="editable-input" aria-label="Category Text Input"/>
           <pv-button @click="toggleEditingCategory(index)" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingCategories[index]" aria-label="Edit Category Button"/>

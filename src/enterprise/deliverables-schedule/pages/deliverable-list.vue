@@ -60,8 +60,8 @@ export default {
 
 <template>
   <div class="text-white-alpha-90 flex flex-column align-items-center justify-content-center" >
-    <p class="text-4xl text-center font-bold">Cronograma de entregables</p>
-    <p class="text-3xl -mt-4 text-center">Plataforma de Comercio Electrónico Geekit</p>
+    <p class="text-4xl text-center font-bold">{{$t('deliverable-list-part1')}}</p>
+    <p class="text-3xl -mt-4 text-center">{{$t('deliverable-list-part2')}}</p>
     <p class="text-2xl -mt-4 text-center">Geekit.pe</p>
   </div>
 
@@ -72,14 +72,14 @@ export default {
 
 
   <!--style="width: 70%;-->
-  <pv-modal v-model:visible="visible" modal header="Agregar entregable" :breakpoints="{ '1199px': '50%', '575px': '90vw', '700px':'50%','1900px': '50%'}" aria-label="Add Deliverable Modal">
+  <pv-modal v-model:visible="visible" modal :header="$t('deliverable-list-part3')" :breakpoints="{ '1199px': '50%', '575px': '90vw', '700px':'50%','1900px': '50%'}" aria-label="Add Deliverable Modal">
 
     <div class="flex flex-column align-content-center justify-content-center" aria-label="Modal Content">
 
       <div class="flex flex-row align-items-center justify-content-center flex-wrap" aria-label="Input Fields">
         <div class="flex flex-column w-10" aria-label="Deliverable Name and Description">
-          <pv-textarea type="text" v-model="newDeliverable.name" placeholder="Nombre" class="mb-3 pr-5" maxlength="50" aria-label="Name Textarea"></pv-textarea>
-          <pv-textarea v-model="newDeliverable.description" placeholder="Descripción" class="mb-3" aria-label="Description Textarea"></pv-textarea>
+          <pv-textarea type="text" v-model="newDeliverable.name" :placeholder="$t('deliverable-list-part4')" class="mb-3 pr-5" maxlength="50" aria-label="Name Textarea"></pv-textarea>
+          <pv-textarea v-model="newDeliverable.description" :placeholder="$t('deliverable-list-part5')" class="mb-3" aria-label="Description Textarea"></pv-textarea>
         </div>
 
         <div class="flex flex-row align-content-center" aria-label="Additional Information">
@@ -89,8 +89,8 @@ export default {
                 <span class="pi pi-stopwatch" style="font-size: 2rem"></span>
               </div>
               <div class="flex flex-column align-items-center">
-                <p class="">Fecha</p>
-                <p class="-mt-3">límite</p>
+                <p class="">{{$t('deliverable-list-part6')}}</p>
+                <p class="-mt-3">{{$t('deliverable-list-part7')}}</p>
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@ export default {
       </div>
 
       <div class="flex flex-column align-items-center justify-content-center" aria-label="Confirmation Button">
-        <pv-button @click="saveDeliverable" class="bg-white text-black-alpha-90 border-black-alpha-90 border-round-3xl text-xl" aria-label="Confirm Button">Confirmar</pv-button>
+        <pv-button @click="saveDeliverable" class="bg-white text-black-alpha-90 border-black-alpha-90 border-round-3xl text-xl" aria-label="Confirm Button">{{$t('deliverable-list-part8')}}</pv-button>
       </div>
 
     </div>
