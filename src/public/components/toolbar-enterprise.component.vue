@@ -42,7 +42,7 @@ export default {
         <router-link to="/search-developer">
           <pv-button :label="$t('toolbar-enterprise-option1')" text plain class="responsive-button justify-content-center"/>
         </router-link>
-        <router-link to="/message-page">
+        <router-link to="/message">
           <pv-button :label="$t('toolbar-enterprise-option2')" text plain class="responsive-button justify-content-center"/>
         </router-link>
         <router-link :to="`/main/${type}/${id}`">

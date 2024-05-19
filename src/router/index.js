@@ -9,7 +9,7 @@ import SearchDeveloperList from "../enterprise/search-developer/pages/search-dev
 import ToolbarEnterpriseComponent from "../public/components/toolbar-enterprise.component.vue";
 import FooterWebstormComponent from "../public/components/footer-webstorm.component.vue";
 import HomePage from "../enterprise/home-enterprise/pages/home-page.component.vue";
-import MessagePage from "../shared/components/message-page.component.vue";
+import MessagePage from "../shared/components/message-form.component.vue";
 import DeliverableList from "../enterprise/deliverables-schedule/pages/deliverable-list.vue";
 import LoginComponent from "../authentication/pages/login.component.vue";
 import DeveloperProfilePage from "../developer/developer-profile/pages/developer-profile-page.vue";
@@ -20,6 +20,8 @@ import SearchProjectList from "../developer/search-project/pages/search-project-
 import DeliverableListDeveloper from "../developer/deliverables-schedule/pages/deliverable-list.vue";
 import EnterpriseProfilePage from "../enterprise/enterprise-profile/pages/enterprise-profile-page.vue";
 import PostulateProject from "../developer/postulate-project/pages/postulate-project-page.component.vue";
+
+import SupportPage from "../shared/pages/support-page.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -65,7 +67,7 @@ const router = createRouter({
                     component: SearchDeveloperList
                 },
                 {
-                    path: '/message-page',
+                    path: '/message',
                     name: 'message-page',
                     component: MessagePage
                 },
@@ -98,6 +100,11 @@ const router = createRouter({
                     path: '/postulate-project',
                     name: 'postulate-project',
                     component: PostulateProject
+                },
+                {
+                    path: '/support',
+                    name: 'support',
+                    component: SupportPage
                 }
             ]
         },

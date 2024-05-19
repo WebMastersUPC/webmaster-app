@@ -49,7 +49,7 @@ export default {
           <p>{{developer.name}}</p>
           <pv-rating v-model="developer.rating" readonly :cancel="false" aria-label="Developer Rating" />
         </div>
-        <router-link to="/message-page" aria-label="Send Message Link">
+        <router-link to="/message" aria-label="Send Message Link">
           <i class="pi pi-send text-xl text-purple-500" aria-label="Send Message Icon"></i>
         </router-link>
       </div>

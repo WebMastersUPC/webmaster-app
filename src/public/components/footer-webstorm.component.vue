@@ -17,7 +17,9 @@ export default {
     <template #center>
       <div class="flex flex-column align-items-center justify-content-center gap-2">
         <h1 class="text-white text-center">{{$t('footer-part2')}}</h1>
-        <pv-button class="bg-white text-black-alpha-90 text-4xl">{{$t('footer-part3')}}</pv-button>
+        <router-link to="/support">
+          <pv-button class="bg-white text-black-alpha-90 text-4xl">{{$t('footer-part3')}}</pv-button>
+        </router-link>
       </div>
     </template>
     <template #end>

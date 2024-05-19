@@ -41,7 +41,7 @@ export default {
         <router-link :to="`/main/${type}/${id}`">
           <pv-button label="Inicio" text plain class="responsive-button justify-content-center m-3"/>
         </router-link>
-        <router-link to="/message-page">
+        <router-link to="/message">
           <pv-button label="Mensajes" text plain class="responsive-button justify-content-center"/>
         </router-link>
         <router-link :to="`/main/${type}/${id}`">
