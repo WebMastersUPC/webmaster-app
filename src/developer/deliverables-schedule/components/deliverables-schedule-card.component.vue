@@ -8,19 +8,11 @@ export default{
   components: {},
   data() {
     return {
-      isEditingTitle: false,
-      isEditingDescription:false
+
     };
   },
   methods: {
 
-    EditingDescription() {
-      this.isEditingDescription = !this.isEditingDescription;
-    },
-
-    EditingTitle() {
-      this.isEditingTitle = !this.isEditingTitle;
-    },
   },
   props: {
     deliverable: {
@@ -38,26 +30,20 @@ export default{
   <pv-card class="w-8 border-round-3xl shadow-4" aria-label="Deliverable Card">
     <template #header>
       <div class="flex flex-row justify-content-center mt-4 -mb-4 gap-5 mx-4 overflow-hidden" aria-label="Deliverable Header">
-        <h2 v-if="!isEditingTitle">{{ deliverable.name }}</h2>
-        <pv-textarea style="width: 70%; height: 70%;" v-else v-model="deliverable.name" autoResize aria-label="Title Textarea"></pv-textarea>
-        <pv-button @click="EditingTitle" icon="pi pi-pencil" class="icons" v-if="!isEditingTitle" aria-label="Edit Title Button"></pv-button>
-        <pv-button @click="EditingTitle" icon="pi pi-check" class="icons" v-else aria-label="Save Title Button"></pv-button>
+        <h2>{{ deliverable.name }}</h2>
       </div>
     </template>
 
     <template #title>
       <p class="-mb-1" aria-label="Description Label">
         Descripción
-        <pv-button @click="EditingDescription" icon="pi pi-pencil" class="icons" v-if="!isEditingDescription" aria-label="Edit Description Button"></pv-button>
-        <pv-button @click="EditingDescription" icon="pi pi-check" class="icons" v-else aria-label="Save Description Button"></pv-button>
       </p>
     </template>
 
     <template #content>
       <div class="flex flex-row justify-content-between" aria-label="Deliverable Content">
         <div class="text-container overflow-hidden flex flex-column w-10 h-5" aria-label="Description Content">
-          <p v-if="!isEditingDescription">{{deliverable.description}}</p>
-          <pv-textarea style="width: 100%; height: 100%;" v-else v-model="deliverable.description" aria-label="Description Textarea"></pv-textarea>
+          <p >{{deliverable.description}}</p>
         </div>
 
         <div class='flex flex-column mr-5 -mt-6' aria-label="Additional Information">

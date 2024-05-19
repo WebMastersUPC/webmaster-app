@@ -1,36 +1,32 @@
 <script>
-import DevMainPageComponent from "../components/dev-main-page.component.vue";
-import {DeveloperEntity} from "../../../shared/models/developer.model.js";
+import DevDataComponent from "../../../developer/home-developer/pages/dev-data.component.vue";
+import ProjectsDataComponent from "./projects-data.component.vue";
 
 export default {
-  name: "dev-data",
-  components:{DevMainPageComponent},
-  data(){
-    return{
-      myDev:null
-    }
+  name: "home-page",
+  components: { DevDataComponent, ProjectsDataComponent},
+  data() {
+    return {
+    };
   },
-  created(){
-    this.myDev=new DeveloperEntity(1,'Jair',
-        'https://raw.githubusercontent.com/WebMastersUPC/FromZero-LandingPage/main/src/assets/images/Jair.png',
-        4,
-        'Hola esto es un texto por defecto, no hay ningun tipo de informacion relevante aca. Para que sigues leyendo, ya te dije que no hay nada. Para de leer, porfavor te lo estoy pidiendo amablemente. Felicidades pertiste tu tiempo leyendo este texto inutil',
-        'Peru',
-        99999999,
-        'example@mail.com',
-        3,
-        'CSS, Javascript, HTML5, C++, Python, Vue, Angular, MOO, Binario'
-    );
-  }
-}
+  methods: {
+
+  },
+};
 </script>
 
 <template>
-  <div >
-    <DevMainPageComponent :developer="myDev"></DevMainPageComponent>
+  <div class="main-container">
+    <dev-data-component/>
+    <projects-data-component/>
   </div>
 </template>
 
 <style scoped>
-
+.main-container{
+  display:flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-bottom: 6rem;
+}
 </style>

@@ -1,33 +1,33 @@
 export class DeveloperEntity{
     id;
     name;
-    img;
+    profileImage;
     rating;
     description;
     country;
-    phone;
+    cellphone;
     email;
-    projectsFinished;
-    specialties;
+    completedProjects;
+    skills;
     projects= [];
-    constructor(id,name, img, rating,
+    constructor(id,name, profileImage, rating,
                 description,
                 country,
-                phone,
+                cellphone,
                 email,
-                projectsFinished,
-                specialties,
+                completedProjects,
+                skills,
                 projects= []){
         this.id=id;
         this.name = name;
-        this.img = img;
+        this.profileImage = profileImage;
         this.rating = rating;
         this.description = description;
         this.country = country;
-        this.phone = phone;
+        this.cellphone = cellphone;
         this.email = email;
-        this.projectsFinished = projectsFinished;
-        this.specialties = specialties;
+        this.completedProjects = completedProjects;
+        this.skills = skills;
         this.projects = projects;
     }
 }

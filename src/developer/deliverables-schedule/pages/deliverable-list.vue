@@ -8,30 +8,11 @@ export default {
   data() {
     return {
       deliverables: [],
-      newDeliverable: { name: '', description: '' }, // Nueva tarjeta
-      visible: false // Estado del modal
+
     };
   },
   methods: {
-    openModal() {
-      this.visible = true;
-    },
-    closeModal() {
-      this.visible = false;
-    },
-    addDeliverable() {
-      this.openModal();
-    },
 
-    // Agregar nueva tarjeta al arreglo
-    saveDeliverable() {
-      this.deliverables.push({
-        name: this.newDeliverable.name,
-        description: this.newDeliverable.description
-      });
-      this.newDeliverable = { name: '', description: '' };
-      this.closeModal();
-    },
 
   },
 
@@ -69,49 +50,6 @@ export default {
     <deliverable-card v-for="deliverable in deliverables"
                       :deliverable="deliverable"/>
   </div>
-
-
-  <!--style="width: 70%;-->
-  <pv-modal v-model:visible="visible" modal header="Agregar entregable" :breakpoints="{ '1199px': '50%', '575px': '90vw', '700px':'50%','1900px': '50%'}" aria-label="Add Deliverable Modal">
-
-    <div class="flex flex-column align-content-center justify-content-center" aria-label="Modal Content">
-
-      <div class="flex flex-row align-items-center justify-content-center flex-wrap" aria-label="Input Fields">
-        <div class="flex flex-column w-10" aria-label="Deliverable Name and Description">
-          <pv-textarea type="text" v-model="newDeliverable.name" placeholder="Nombre" class="mb-3 pr-5" maxlength="50" aria-label="Name Textarea"></pv-textarea>
-          <pv-textarea v-model="newDeliverable.description" placeholder="Descripción" class="mb-3" aria-label="Description Textarea"></pv-textarea>
-        </div>
-
-        <div class="flex flex-row align-content-center" aria-label="Additional Information">
-          <div aria-label="Delivery Date Information">
-            <div class="m-4">
-              <div class="flex flex-column align-items-center relative-container">
-                <span class="pi pi-stopwatch" style="font-size: 2rem"></span>
-              </div>
-              <div class="flex flex-column align-items-center">
-                <p class="">Fecha</p>
-                <p class="-mt-3">límite</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex flex-column align-items-center justify-content-center" aria-label="Confirmation Button">
-        <pv-button @click="saveDeliverable" class="bg-white text-black-alpha-90 border-black-alpha-90 border-round-3xl text-xl" aria-label="Confirm Button">Confirmar</pv-button>
-      </div>
-
-    </div>
-
-  </pv-modal>
-
-
-
-
-  <div class="flex flex-column flex align-items-center mb-5">
-    <span class="pi pi-plus-circle cursor-pointer" style="font-size: 3rem; color:white;" @click="addDeliverable"></span>
-  </div>
-
 
 
 </template>
