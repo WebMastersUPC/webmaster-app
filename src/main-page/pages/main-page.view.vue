@@ -3,10 +3,11 @@
 import ToolbarEnterprise from "../../public/components/toolbar-enterprise.component.vue";
 import FooterWebmaster from "../../public/components/footer-webstorm.component.vue";
 import HomePage from "../../enterprise/home-enterprise/pages/home-page.component.vue";
+import ToolbarFreelancer from "../../public/components/toolbar-freelancer.component.vue";
 
 export default {
   name: "main-page-view",
-  components: {ToolbarEnterprise, FooterWebmaster, HomePage},
+  components: {ToolbarFreelancer, ToolbarEnterprise, FooterWebmaster, HomePage},
   data() {
     return {};
   }
@@ -17,7 +18,7 @@ export default {
 
   <div class="flex flex-column justify-content-between">
     <div>
-      <toolbar-enterprise></toolbar-enterprise>
+      <toolbar-freelancer/>
       <div class="p-container-fluid px-0">
           <div class="mt-3 w-full mt-3 mb-3">
             <router-view></router-view>

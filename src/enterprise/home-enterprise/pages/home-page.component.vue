@@ -1,5 +1,5 @@
 <script>
-import DevDataComponent from "../../../developer/home-developer/pages/dev-data.component.vue";
+import DevDataComponent from "../../../developer/home-developer/pages/home-page.component.vue";
 import CompanyDataComponent from "./company-data.component.vue"
 import ProjectsDataComponent from "./projects-data.component.vue";
 

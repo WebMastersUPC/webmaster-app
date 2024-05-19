@@ -42,7 +42,7 @@
 import { ref } from "vue";
 
 export default {
-  name: "message-page",
+  name: "message-form",
   setup() {
     const form = ref({
       username: '',

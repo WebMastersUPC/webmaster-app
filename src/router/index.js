@@ -9,12 +9,19 @@ import SearchDeveloperList from "../enterprise/search-developer/pages/search-dev
 import ToolbarEnterpriseComponent from "../public/components/toolbar-enterprise.component.vue";
 import FooterWebstormComponent from "../public/components/footer-webstorm.component.vue";
 import HomePage from "../enterprise/home-enterprise/pages/home-page.component.vue";
-import MessagePage from "../shared/components/message-page.component.vue";
-
+import MessagePage from "../shared/components/message-form.component.vue";
 import DeliverableList from "../enterprise/deliverables-schedule/pages/deliverable-list.vue";
 import LoginComponent from "../authentication/pages/login.component.vue";
 import DeveloperProfilePage from "../developer/developer-profile/pages/developer-profile-page.vue";
 import CreateProject from "../enterprise/create-project/pages/create-project-page.component.vue";
+
+import HomePageDeveloper from "../developer/home-developer/pages/home-page.component.vue";
+import SearchProjectList from "../developer/search-project/pages/search-project-list.component.vue";
+import DeliverableListDeveloper from "../developer/deliverables-schedule/pages/deliverable-list.vue";
+import EnterpriseProfilePage from "../enterprise/enterprise-profile/pages/enterprise-profile-page.vue";
+import PostulateProject from "../developer/postulate-project/pages/postulate-project-page.component.vue";
+
+import SupportPage from "../shared/pages/support-page.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -45,8 +52,14 @@ const router = createRouter({
             children: [
                 {
                   path: '/main/:type/:id',
-                  component: HomePage,
+                    component:HomePageDeveloper,
+                  //component: HomePage,
                   name: 'main'
+                },
+                {
+                    path: '/search-project',
+                    name: 'search-project',
+                    component: SearchProjectList
                 },
                 {
                     path: '/search-developer',
@@ -54,7 +67,7 @@ const router = createRouter({
                     component: SearchDeveloperList
                 },
                 {
-                    path: '/message-page',
+                    path: '/message',
                     name: 'message-page',
                     component: MessagePage
                 },
@@ -69,9 +82,29 @@ const router = createRouter({
                     component: DeliverableList
                 },
                 {
+                    path: '/deliverables-list-developer',
+                    name: 'deliverable-list-developer',
+                    component: DeliverableListDeveloper
+                },
+                {
+                    path: '/enterprise-profile/:id',
+                    name: 'enterprise-profile',
+                    component: EnterpriseProfilePage
+                },
+                {
                     path: '/developer-profile/:id',
                     name: 'developer-profile',
                     component: DeveloperProfilePage
+                },
+                {
+                    path: '/postulate-project',
+                    name: 'postulate-project',
+                    component: PostulateProject
+                },
+                {
+                    path: '/support',
+                    name: 'support',
+                    component: SupportPage
                 }
             ]
         },

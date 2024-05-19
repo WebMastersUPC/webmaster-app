@@ -38,21 +38,23 @@ export default {
   <div class="flex flex-wrap justify-content-center" v-if="!showSidebar">
     <pv-toolbar style=" border-radius: 4rem; " class="bg-white my-4">
       <template #start>
-        <router-link to="">
-          <pv-button :label="$t('toolbar-freelancer-option1')" text plain class="responsive-button justify-content-center"/>
+        <router-link :to="`/main/${type}/${id}`">
+          <pv-button label="Inicio" text plain class="responsive-button justify-content-center m-3"/>
         </router-link>
-        <router-link to="">
-          <pv-button :label="$t('toolbar-freelancer-option2')" text plain class="responsive-button justify-content-center"/>
+        <router-link to="/message">
+          <pv-button label="Mensajes" text plain class="responsive-button justify-content-center"/>
         </router-link>
-          <div  class="responsive-button flex flex-wrap justify-content-center">
-            <img src="https://imgur.com/yeuv7Nq.jpg" alt="logo" class="imgsize">
-          </div>
-        <router-link to="">
-          <pv-button :label="$t('toolbar-freelancer-option3')" text plain class="responsive-button justify-content-center"/>
-        </router-link>
-        <router-link to="">
+        <router-link :to="`/main/${type}/${id}`">
           <pv-button label="" text plain class="responsive-button justify-content-center">
-            <i class="pi pi-sign-out" style="font-size: 1.4rem"> <br> {{$t('toolbar-freelancer-option4')}}</i>
+            <img src="https://imgur.com/8o8Veec.jpg" alt="" class="imgsize">
+          </pv-button>
+        </router-link>
+        <router-link to="/search-project">
+          <pv-button label="Explorar Proyecto" text plain class="responsive-button justify-content-center"/>
+        </router-link>
+        <router-link to="/login">
+          <pv-button label="" text plain class="responsive-button justify-content-center">
+            <i class="pi pi-sign-out" style="font-size: 1.4rem"> <br> <span class="sal">salir</span> </i>
           </pv-button>
         </router-link>
       </template>
@@ -69,7 +71,7 @@ export default {
         <div class="card">
           <div class="flex gap-2 justify-content-center pr-2">
             <pv-button  @click="visibleRight = true" class="bg-blue-600 ">
-              <i class="pi-align-justify" style="font-size: 2rem"></i>
+              <i class="pi pi-bars" style="font-size: 2rem"></i>
             </pv-button>
           </div>
           <pv-sidebar v-model:visible="visibleRight" header="Options" position="right" class="flex flex-column gap-5">
@@ -102,6 +104,11 @@ export default {
 </template>
 
 <style scoped>
+
+.sal{
+  font-family:sans-serif;
+}
+
 .responsive-button {
   font-size: 1rem;
 }

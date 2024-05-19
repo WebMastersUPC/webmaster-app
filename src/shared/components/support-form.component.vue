@@ -1,6 +1,7 @@
 <script>
 
 export default {
+  name: "support-form",
   data() {
     return {
       selectedProblem: null,
@@ -25,13 +26,15 @@ export default {
 </script>
 
 <template>
-  <div class="support-details" aria-label="Support Details">
+
+
+  <div class="support-details " aria-label="Support Details">
     <pv-floatlabel aria-label="Floatlabel for Title">
-      <pv-inputtext id="username" v-model="value" aria-label="Title of the problem" />
+      <pv-inputText id="username" v-model="value" aria-label="Title of the problem" />
       <label for="username">Titulo del problema</label>
     </pv-floatlabel>
     <div class="card flex" aria-label="Dropdown for Problem Type">
-      <pv-dropdown v-model="selectedProblem" :options="problems" optionLabel="name" placeholder="Tipo de problema" class="w-full md:w-14rem" />
+      <pv-dropDown v-model="selectedProblem" :options="problems" optionLabel="name" placeholder="Tipo de problema" class="w-full md:w-14rem" />
     </div>
     <pv-floatlabel aria-label="Floatlabel for Description">
       <pv-textarea v-model="value" rows="5" cols="30" aria-label="Description of the problem" />
@@ -55,20 +58,7 @@ export default {
 
 </template>
 
-<style>
-body{
-  background: #262626 !important;
-}
-.triangle {
-  width: 0px;
-  height: 0px;
-  background: conic-gradient(from -13.54deg at 68.36% 69.69%, #B864F3 -42.53deg, #0072FF 62.28deg, #002149 124.67deg, #002149 237.72deg, #D599FF 310.56deg, #B864F3 317.47deg, #0072FF 422.28deg);
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: -1;
-  clip-path: polygon(100% 0, 100% 100%, 0 0);
-}
+<style scoped>
 
 .p-float-label{
   width: 100%;
@@ -77,6 +67,11 @@ body{
 .p-inputtext{
   width:100%;
 }
+
+.support-details{
+  padding-bottom:11rem;
+}
+
 div.support-details{
   margin:0 20%;
 }
