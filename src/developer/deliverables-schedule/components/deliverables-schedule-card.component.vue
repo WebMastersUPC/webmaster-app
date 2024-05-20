@@ -1,19 +1,9 @@
 <script >
-
-
 import {DeliverableEntity} from "../models/deliverable.entity.js";
 
 export default{
   name: "deliverables-schedule-card",
   components: {},
-  data() {
-    return {
-
-    };
-  },
-  methods: {
-
-  },
   props: {
     deliverable: {
       type: DeliverableEntity,
@@ -26,24 +16,23 @@ export default{
 </script>
 
 <template>
-
   <pv-card class="w-8 border-round-3xl shadow-4" aria-label="Deliverable Card">
     <template #header>
       <div class="flex flex-row justify-content-center mt-4 -mb-4 gap-5 mx-4 overflow-hidden" aria-label="Deliverable Header">
-        <h2>{{ deliverable.name }}</h2>
+        <h2>{{ deliverable.title }}</h2>
       </div>
     </template>
 
     <template #title>
       <p class="-mb-1" aria-label="Description Label">
-        Descripción
+        {{$t('deliverables-schedule-card-part1')}}
       </p>
     </template>
 
     <template #content>
       <div class="flex flex-row justify-content-between" aria-label="Deliverable Content">
         <div class="text-container overflow-hidden flex flex-column w-10 h-5" aria-label="Description Content">
-          <p >{{deliverable.description}}</p>
+          <p>{{ deliverable.description }}</p>
         </div>
 
         <div class='flex flex-column mr-5 -mt-6' aria-label="Additional Information">
@@ -52,28 +41,40 @@ export default{
               <span class="pi pi-stopwatch" style="font-size: 2rem"></span>
             </div>
             <div class="flex flex-column align-items-center -mt-3 ml-5">
-              <p class="">Fecha límite</p>
+              <p class="">{{ deliverable.deadLine }}</p>
             </div>
           </div>
 
           <div aria-label="Status Information" class='flex flex-column'>
             <div class="flex flex-column align-items-center ml-5">
-              <span class="pi pi-times-circle" style="font-size: 2rem"></span>
+              <span
+                  :class="{
+                  'pi pi-check-circle green-icon': deliverable.status === 2,
+                  'pi pi-times-circle red-icon': deliverable.status === 1,
+                  'pi pi-clock': deliverable.status === 0
+                }"
+                  style="font-size: 2rem">
+              </span>
             </div>
             <div class="flex flex-column align-items-center -mt-3 ml-5">
-              <p class="">Estado</p>
+              <p class="">{{$t('deliverables-schedule-card-part3')}}</p>
             </div>
           </div>
         </div>
       </div>
     </template>
   </pv-card>
-
-
-
 </template>
 
 <style scoped>
+
+.green-icon {
+  color: #049804;
+}
+
+.red-icon {
+  color: red;
+}
 
 .icons{
   color: rgba(184, 100, 243, 0.54);

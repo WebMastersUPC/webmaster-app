@@ -43,18 +43,15 @@ export default {
   },
 
   created(){
-
     let id = localStorage.getItem('user id');
     this.authService.getEnterpriseInfoByID(id).then((response) => {
       this.company = response.data;
       this.projects = response.data.projects;
 
-      // Suponiendo que el primer proyecto es el deseado
+      //para mostrar el primer proyecto
       if (this.projects.length > 0) {
         this.projectName = this.projects[0].name;
       }
-
-      // Asignar el nombre de la compañía
       this.companyName = this.company.username;
 
       this.deliverables = this.projects.flatMap(project => project.deliverables || []);
