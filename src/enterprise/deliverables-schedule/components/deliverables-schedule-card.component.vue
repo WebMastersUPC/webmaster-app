@@ -1,6 +1,5 @@
 <script >
 
-
 import {DeliverableEntity} from "../models/deliverable.entity.js";
 
 export default{
@@ -12,6 +11,7 @@ export default{
       isEditingDescription:false
     };
   },
+
   methods: {
 
     EditingDescription() {
@@ -38,8 +38,8 @@ export default{
   <pv-card class="w-8 border-round-3xl shadow-4" aria-label="Deliverable Card">
     <template #header>
       <div class="flex flex-row justify-content-center mt-4 -mb-4 gap-5 mx-4 overflow-hidden" aria-label="Deliverable Header">
-        <h2 v-if="!isEditingTitle">{{ deliverable.name }}</h2>
-        <pv-textarea style="width: 70%; height: 70%;" v-else v-model="deliverable.name" autoResize aria-label="Title Textarea"></pv-textarea>
+        <h2 v-if="!isEditingTitle">{{ deliverable.title }}</h2>
+        <pv-textarea style="width: 70%; height: 70%;" v-else v-model="deliverable.title" autoResize aria-label="Title Textarea"></pv-textarea>
         <pv-button @click="EditingTitle" icon="pi pi-pencil" class="icons" v-if="!isEditingTitle" aria-label="Edit Title Button"></pv-button>
         <pv-button @click="EditingTitle" icon="pi pi-check" class="icons" v-else aria-label="Save Title Button"></pv-button>
       </div>
@@ -66,7 +66,7 @@ export default{
               <span class="pi pi-stopwatch" style="font-size: 2rem"></span>
             </div>
             <div class="flex flex-column align-items-center -mt-3 ml-5">
-              <p class="">{{$t('deliverables-schedule-card-part2')}}</p>
+              <p class="">{{deliverable.deadLine}}</p>
             </div>
           </div>
 
