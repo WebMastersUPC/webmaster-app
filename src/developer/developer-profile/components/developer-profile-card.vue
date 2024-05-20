@@ -1,5 +1,7 @@
 <script>
-import {DeveloperProfileEntity} from "../models/developer-profile.js";
+
+
+import {DeveloperEntity} from "../../../shared/models/developer.model.js";
 
 export default {
   name: "developer-profile-card",
@@ -11,7 +13,7 @@ export default {
   },
   props: {
     developer: {
-      type: DeveloperProfileEntity,
+      type: DeveloperEntity,
       required: true
     }
   },

@@ -1,13 +1,14 @@
 <script>
-import {DeveloperProfileEntity} from "../../../developer/developer-profile/models/developer-profile.js";
+
 import {CompanyEntity} from "../../../shared/models/company.model.js";
+import {DeveloperEntity} from "../../../shared/models/developer.model.js";
 
 export default {
   name: "project-card",
   components: {},
   props: {
     projects: {
-      type: DeveloperProfileEntity,
+      type: DeveloperEntity,
       required: true
     },
     company: {

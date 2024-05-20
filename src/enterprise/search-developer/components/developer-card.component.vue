@@ -1,12 +1,13 @@
 <script>
-import {DeveloperProfileEntity} from "../../../developer/developer-profile/models/developer-profile.js";
+
+import {DeveloperEntity} from "../../../shared/models/developer.model.js";
 
 export default {
   name: "developer-card",
   components: {},
   props: {
     developer: {
-      type: DeveloperProfileEntity,
+      type: DeveloperEntity,
       required: true
     }
   },

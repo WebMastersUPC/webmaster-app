@@ -1,5 +1,7 @@
 <script >
-import {DeliverableEntity} from "../models/deliverable.entity.js";
+
+
+import {DeliverableEntity} from "../../../shared/models/deliverable.model.js";
 
 export default{
   name: "deliverables-schedule-card",
