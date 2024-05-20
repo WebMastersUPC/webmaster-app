@@ -37,11 +37,12 @@ export default{
 
         <div class='flex flex-column mr-5 -mt-6' aria-label="Additional Information">
           <div aria-label="Delivery Date Information">
-            <div class="flex flex-column align-items-center relative-container ml-5">
+            <div class="flex flex-column align-items-center relative-container ml-5 ">
               <span class="pi pi-stopwatch" style="font-size: 2rem"></span>
             </div>
-            <div class="flex flex-column align-items-center -mt-3 ml-5">
-              <p class="">{{ deliverable.deadLine }}</p>
+            <div class="flex flex-column align-items-center -mt-3 ml-5 ">
+              <p class="">{{ deliverable.deadLineDate }}</p>
+              <p class="-mt-3">{{ deliverable.deadLineHour }}</p>
             </div>
           </div>
 
