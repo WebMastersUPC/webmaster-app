@@ -3,14 +3,14 @@ export default {
   name:'LoginCard',
   data() {
     return {
-      user: '',
-      password: ''
+      Mail: '',
+      Password: ''
     };
   },
   methods: {
     login() {
       // Le devuelve los datos al login.component
-      this.$emit('login', { user: this.user, password: this.password });
+      this.$emit('login', { Mail: this.Mail, Password: this.Password });
     }
   }
 };
@@ -35,8 +35,8 @@ export default {
         <template #content>
           <div class=" flex flex-column gap-3 align-items-center">
             <div class="flex flex-column gap-4 ">
-              <pv-inputText aria-label="User input field" type="text" v-model="user" placeholder="Usuario" class="border-round-3xl"/>
-              <pv-password aria-label="Password input field" v-model="password" :feedback="false" placeholder="Contraseña" class="border-round-3xl"/>
+              <pv-inputText aria-label="User input field" type="text" v-model="Mail" placeholder="Usuario" class="border-round-3xl"/>
+              <pv-password aria-label="Password input field" v-model="Password" :feedback="false" placeholder="Contraseña" class="border-round-3xl"/>
             </div>
 
             <pv-button aria-label="Login button" label="Iniciar sesion" class="border-round-xl w-10rem bg-blue-600 text-lg" @click="login()"/>
