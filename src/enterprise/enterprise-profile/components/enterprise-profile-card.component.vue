@@ -10,7 +10,7 @@ export default {
     }
   },
   props: {
-    developer: {
+    enterprise: {
       type: CompanyEntity,
       required: true
     }
@@ -23,17 +23,17 @@ export default {
   },
   methods: {
     updateCategoryTexts() {
-      if(this.developer){
+      if(this.enterprise){
         this.categoryTexts = [
-          this.developer.country,
-          this.developer.socialRazon,
-          this.developer.cellphone,
-          this.developer.email,
-          this.developer.website,
-          this.developer.sector
+          this.enterprise.country,
+          this.enterprise.RUC,
+          this.enterprise.phone,
+          this.enterprise.User.email,
+          this.enterprise.website,
+          this.enterprise.sector
         ];
         console.log(this.categoryTexts);
-        console.log(this.developer);
+        console.log(this.enterprise);
       }
     }
   }
@@ -45,9 +45,9 @@ export default {
   <pv-card aria-label="Developer Card">
     <template #title>
       <div class="flex align-items-center gap-4" aria-label="Developer Information">
-        <pv-avatar :image="developer.imageProfile" class="mr-2" size="xlarge" shape="circle" aria-label="Developer Avatar" />
+        <pv-avatar :image="enterprise.profile_img_url" class="mr-2" size="xlarge" shape="circle" aria-label="Developer Avatar" />
         <div aria-label="Developer Name and Rating">
-          <p>{{developer.username}}</p>
+          <p>{{enterprise.enterprise_name}}</p>
         </div>
         <router-link to="/message" aria-label="Send Message Link">
           <i class="pi pi-send text-xl text-purple-500" aria-label="Send Message Icon"></i>
@@ -59,7 +59,7 @@ export default {
       <hr aria-label="Separator Line">
       <div class="subtitle" aria-label="Summary Title">Resumen</div>
       <div class="editable-container" aria-label="Developer Description">
-        <p>{{developer.summary}}</p>
+        <p>{{enterprise.description}}</p>
       </div>
 
       <template v-for="(category, index) in categories" :key="index">

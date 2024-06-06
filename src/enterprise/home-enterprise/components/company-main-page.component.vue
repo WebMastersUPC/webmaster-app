@@ -29,13 +29,13 @@ export default {
     }
   },
   created() {
-    //console.log(this.company);
+    console.log("hola2 " + this.company.country);
     this.categoryTexts = [
       this.company.country,
       this.company.RUC,
       this.company.phone,
-      this.company.email,
-      this.company.webpage,
+      this.company.User.mail,
+      this.company.website,
       this.company.sector,
     ];
     this.mainText = this.company.description
@@ -47,9 +47,9 @@ export default {
 <template>
   <pv-card aria-label="Company Information">
     <template #title>
-      <pv-avatar :image='company.img' class="mr-2" size="xlarge" shape="circle" />
+      <pv-avatar :image='company.profile_img_url' class="mr-2" size="xlarge" shape="circle" />
       <div aria-label="Company Name">
-        <p>{{company.name}}</p>
+        <p>{{company.enterprise_name}}</p>
       </div>
     </template>
 

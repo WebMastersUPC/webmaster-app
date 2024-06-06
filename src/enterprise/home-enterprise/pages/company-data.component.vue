@@ -18,21 +18,24 @@ export default {
     let id = localStorage.getItem('user id')
      this.authService.getEnterpriseInfoByID(id).then((response) => {
      this.enterprise = response.data;
-       //console.log('a',this.enterprise);
+       console.log('a',this.enterprise);
        this.createUser()
+       console.log("a2", this.myCom)
     });
   },
   methods:{
     createUser(){
-      return this.myCom = new CompanyEntity(this.enterprise.username,
-          this.enterprise.imageProfile,
-          this.enterprise.summary,
+      return this.myCom = new CompanyEntity(
+          this.enterprise.enterprise_name,
+          this.enterprise.profile_img_url,
+          this.enterprise.description,
           this.enterprise.country,
-          this.enterprise.socialRazon,
-          this.enterprise.cellphone,
-          this.enterprise.email,
+          this.enterprise.ruc,
+          this.enterprise.phone,
           this.enterprise.website,
-          this.enterprise.sector);
+          this.enterprise.sector,
+          this.enterprise.user
+      )
     }
   }
 }

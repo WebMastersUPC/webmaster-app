@@ -9,18 +9,18 @@ export class AuthService{
     //     return http.get('/users')
     // }
     //
-    // getEnterpriseInfoByID(id){
-    //     return http.get(`/enterprises/${id}`)
-    // }
+     getEnterpriseInfoByID(id){
+         return http.get(`Profile/Enterprises/${id}`)
+     }
     //
     //
     // getDeveloperList() {
     //     return http.get('/developers');
     // }
     //
-    // getDevInfoByID(id){
-    //     return http.get(`/developers/${id}`)
-    // }
+     getDevInfoByID(id){
+         return http.get(`Profile/Developers/${id}`)
+    }
 
     async authenticate(Mail, Password) {
         const response = await http.get(`/Auth/sign-in/${Mail}&${Password}`);

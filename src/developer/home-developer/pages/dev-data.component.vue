@@ -17,24 +17,24 @@ export default {
     let id=localStorage.getItem('user id');
     this.authService.getDevInfoByID(id).then((response) => {
       this.developer = response.data;
-      console.log('a',this.developer);
+      console.log('a2 ',this.developer);
       this.createUser()
     });
 
   },
   methods:{
     createUser(){
-      return this.myDev = new DeveloperEntity(this.developer.id,
-          this.developer.name,
-          this.developer.profileImage,
-          this.developer.rating,
+      return this.myDev = new DeveloperEntity(
+          this.developer.id,
+          this.developer.firstName,
+          this.developer.lastName,
           this.developer.description,
           this.developer.country,
-          this.developer.cellphone,
-          this.developer.email,
-          this.developer.completedProjects,
-          this.developer.skills,
-          this.developer.projects
+          this.developer.phone,
+          this.developer.completed_projects,
+          this.developer.specialties,
+          this.developer.profile_img_url,
+          this.developer.user
       );
     }
   }

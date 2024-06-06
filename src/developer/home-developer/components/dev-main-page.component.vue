@@ -30,15 +30,15 @@ export default {
     }
   },
   created() {
-    //console.log(this.developer);
+    console.log("hola", this.developer);
     this.categoryTexts = [
       this.developer.country,
-      this.developer.cellphone,
-      this.developer.email,
-      this.developer.completedProjects,
-      this.developer.skills
+      this.developer.phone,
+      this.developer.user.mail,
+      this.developer.completed_projects,
+      this.developer.specialties
     ];
-    this.value = this.developer.rating
+    //this.value = this.developer.rating
     this.mainText = this.developer.description
   }
 }
@@ -48,11 +48,11 @@ export default {
 <template>
   <pv-card aria-label="Developer Information">
     <template #title>
-      <pv-avatar :image="developer.profileImage" class="mr-2" size="xlarge" shape="circle"
+      <pv-avatar :image="developer.profile_img_url" class="mr-2" size="xlarge" shape="circle"
                  aria-label="Developer Avatar"/>
       <div aria-label="Developer Details">
         <p>{{ developer.name }}</p>
-        <pv-rating v-model="value" readonly :cancel="false" aria-label="Developer Rating"/>
+        <!--<pv-rating v-model="value" readonly :cancel="false" aria-label="Developer Rating"/>-->
       </div>
     </template>
 

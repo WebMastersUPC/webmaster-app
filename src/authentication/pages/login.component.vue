@@ -14,6 +14,9 @@ export default {
     }
   },
   created() {
+    // localStorage.removeItem('user id');
+    // localStorage.removeItem('user type');
+    // localStorage.removeItem('token');
     // this.authService.getUsers().then((response) => {
     //   this.users = response.data;
     //   console.log(this.users);
@@ -46,10 +49,10 @@ export default {
     navigateToHome() {
       //elimina datos del array pq ya no se van a usar
       this.users=[]
-      if (this.userType === 0) {
+      if (this.userType === 'E') {
         this.userType = 'enterprises'
       }else{
-        this.userType = 'developers'
+        this.userType = 'enterprises'
       }
       this.saveUserToLocalStorage(this.loggedId,this.userType);
       this.$router.push(`/main/${this.userType}/${this.loggedId}`);
@@ -64,7 +67,7 @@ export default {
       localStorage.setItem('token', tokenJSON);
     },
     async handleLogin(userData) {
-      console.log(userData)
+      console.log("hola"+ userData)
       // userData contendrá user y password enviados desde el componente LoginCard
       this.user = userData.Mail;
       this.password = userData.Password;
@@ -73,7 +76,7 @@ export default {
         const response = await this.authService.authenticate(this.user, this.password);
         console.log(response);
         this.loggedId = response.user_id;
-        this.userType = response.accountType;
+        this.userType = response.userType;
         this.token = response.token;
         this.saveUserToLocalStorage(this.loggedId, this.userType, this.token);
         this.navigateToHome();

@@ -1,25 +1,22 @@
 export class CompanyEntity{
-    username;
-    imageProfile;
-    summary;
+    enterprise_name;
+    profile_img_url;
+    description;
     country;
-    socialRazon;
-    cellphone;
-    email;
+    RUC;
+    phone;
     website;
     sector;
-    projects= [];
-    constructor(username, imageProfile, summary, country, socialRazon, cellphone, email, website, sector, projects= []){
-        this.username = username;
-        this.imageProfile = imageProfile;
-        this.summary = summary;
+    User;
+    constructor(enterprise_name, profile_img_url, description, country, RUC, phone, website, sector, User=Object){
+        this.enterprise_name = enterprise_name;
+        this.profile_img_url = profile_img_url;
+        this.description = description;
         this.country = country;
-        this.socialRazon = socialRazon;
-        this.cellphone=cellphone;
-        this.email = email;
+        this.RUC = RUC;
+        this.phone=phone;
         this.website = website;
         this.sector = sector;
-        this.projects = projects;
-
+        this.User = User;
     };
 }

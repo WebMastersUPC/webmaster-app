@@ -53,7 +53,7 @@ const router = createRouter({
                 {
                   path: '/main/:type/:id',
                     component:HomePageDeveloper,
-                  //component: HomePage,
+                    //component: HomePage,
                   name: 'main'
                 },
                 {

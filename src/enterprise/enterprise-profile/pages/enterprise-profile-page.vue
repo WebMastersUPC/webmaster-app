@@ -9,7 +9,7 @@ export default {
   components: {EnterpriseProfileCard, EnterpriseProjectCard},
   data() {
     return {
-      developerProfile: null,
+      enterpriseProfile: null,
       developerRepository: null,
       authService: new AuthService(),
     }
@@ -28,19 +28,17 @@ export default {
 
 
     this.authService.getEnterpriseInfoByID(id).then((response)=> {
-      this.developerProfile = new CompanyEntity(
-          response.data.username,
-          response.data.imageProfile,
-          response.data.summary,
+      this.enterpriseProfile = new CompanyEntity(
+          response.data.enterprise_name,
+          response.data.profile_img_url,
+          response.data.description,
           response.data.country,
-          response.data.socialRazon,
-          response.data.cellphone,
-          response.data.email,
+          response.data.RUC,
+          response.data.phone,
           response.data.website,
           response.data.sector,
-          response.data.projects
+          response.data.User
       );
-      this.developerRepository = response.data.projects;
     }).catch((error) => {
       console.error("Error en la solicitud:", error);
     });
@@ -53,8 +51,8 @@ export default {
 
 <template>
   <div class="flex justify-content-evenly flex-wrap mb-5" v-if="developerRepository ">
-    <enterprise-profile-card :developer="developerProfile"/>
-    <enterprise-project-card :projects="developerRepository"/>
+    <enterprise-profile-card :enterprise="enterpriseProfile"/>
+    <!--<enterprise-project-card :projects="developerRepository"/>-->
   </div>
 </template>
 
