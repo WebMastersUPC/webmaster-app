@@ -55,7 +55,7 @@ export default {
       this.$router.push(`/main/${this.userType}/${this.loggedId}`);
     },
     saveUserToLocalStorage(id, type) {
-      const idJSON = JSON.stringify(id);
+      const idJSON = id;
       const typJSON =(type);
 
       localStorage.setItem('user id', idJSON);

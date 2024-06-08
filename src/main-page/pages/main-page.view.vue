@@ -9,8 +9,14 @@ export default {
   name: "main-page-view",
   components: {ToolbarFreelancer, ToolbarEnterprise, FooterWebmaster, HomePage},
   data() {
-    return {};
-  }
+    return {
+      usertype: '',
+    };
+  },
+  created(){
+    this.usertype = localStorage.getItem('user type');
+  },
+
 }
 </script>
 
@@ -18,7 +24,12 @@ export default {
 
   <div class="flex flex-column justify-content-between">
     <div>
-      <toolbar-freelancer/>
+      <div v-if="usertype === 'enterprises'">
+        <toolbar-enterprise></toolbar-enterprise>
+      </div>
+      <div v-else>
+        <toolbar-freelancer></toolbar-freelancer>
+      </div>
       <div class="p-container-fluid px-0">
           <div class="mt-3 w-full mt-3 mb-3">
             <router-view></router-view>

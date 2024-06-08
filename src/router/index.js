@@ -52,8 +52,8 @@ const router = createRouter({
             children: [
                 {
                   path: '/main/:type/:id',
-                    component:HomePageDeveloper,
-                  //component: HomePage,
+                 //   component:HomePageDeveloper,
+                  component: HomePage,
                   name: 'main'
                 },
                 {
