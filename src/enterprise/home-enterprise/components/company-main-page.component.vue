@@ -29,7 +29,6 @@ export default {
     }
   },
   created() {
-    console.log("hola2 " + this.company.country);
     this.categoryTexts = [
       this.company.country,
       this.company.RUC,

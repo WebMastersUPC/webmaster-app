@@ -47,12 +47,12 @@ export default {
     //   console.log("Usuario no encontrado");
     // },
     navigateToHome() {
-      //elimina datos del array pq ya no se van a usar
-      this.users=[]
-      if (this.userType === 'E') {
+
+      if (this.userType === "E") {
         this.userType = 'enterprises'
-      }else{
-        this.userType = 'enterprises'
+      }
+      else if(this.userType === "D"){
+        this.userType = 'developers'
       }
       this.saveUserToLocalStorage(this.loggedId,this.userType);
       this.$router.push(`/main/${this.userType}/${this.loggedId}`);
@@ -76,7 +76,7 @@ export default {
         const response = await this.authService.authenticate(this.user, this.password);
         console.log(response);
         this.loggedId = response.user_id;
-        this.userType = response.userType;
+        this.userType = response.user_type;
         this.token = response.token;
         this.saveUserToLocalStorage(this.loggedId, this.userType, this.token);
         this.navigateToHome();

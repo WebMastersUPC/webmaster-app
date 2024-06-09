@@ -51,10 +51,14 @@ const router = createRouter({
             component:  MainPage ,
             children: [
                 {
-                  path: '/main/:type/:id',
+                  path: '/main/developers/:id',
                     component:HomePageDeveloper,
-                    //component: HomePage,
-                  name: 'main'
+                  name: 'main-developer'
+                },
+                {
+                    path: '/main/enterprises/:id',
+                    component: HomePage,
+                    name: 'main-enterprise'
                 },
                 {
                     path: '/search-project',
