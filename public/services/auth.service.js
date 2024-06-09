@@ -26,4 +26,15 @@ export class AuthService{
         const response = await http.get(`/Auth/sign-in/${Mail}&${Password}`);
         return response.data;
     }
+
+    async registerDeveloper(Developer) {
+        const response = await http.post('/Auth/register-developer', Developer);
+        return response.data;
+    }
+
+    async registerEnterprise(Enterprise) {
+        const response = await http.post('/Auth/register-enterprise', Enterprise);
+        return response.data;
+    }
+
 }
