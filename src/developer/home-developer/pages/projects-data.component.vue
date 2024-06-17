@@ -2,6 +2,7 @@
 import {DeveloperEntity} from "../../../shared/models/developer.model.js";
 import ProjectsPanelComponent from "../components/projects-panel.component.vue";
 import {AuthService} from "../../../../public/services/auth.service.js";
+import {HomeService} from "../../../../public/services/home.service.js";
 
 export default {
   components: {
@@ -9,7 +10,7 @@ export default {
   },
   data() {
     return {
-      authService: new AuthService(),
+      homeService: new HomeService(),
       proyectsData:[],
       applicantsData:[],
       myProjects:[]
@@ -17,7 +18,7 @@ export default {
   },
   created(){
     let id = localStorage.getItem('user id')
-    this.authService.getEnterpriseInfoByID(id).then((response) => {
+    this.homeService.getEnterpriseInfoByID(id).then((response) => {
       this.proyectsData = response.data.projects;
       this.createProject()
     });

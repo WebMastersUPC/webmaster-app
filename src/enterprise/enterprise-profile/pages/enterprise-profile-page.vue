@@ -3,6 +3,7 @@ import {AuthService} from "../../../../public/services/auth.service.js";
 import {CompanyEntity} from "../models/company.model.js";
 import EnterpriseProjectCard from "../components/enterprise-project-card.component.vue";
 import EnterpriseProfileCard from "../components/enterprise-profile-card.component.vue";
+import {HomeService} from "../../../../public/services/home.service.js";
 
 export default {
   name: "enterprise-profile-page",
@@ -11,7 +12,7 @@ export default {
     return {
       enterpriseProfile: null,
       developerRepository: null,
-      authService: new AuthService(),
+      homeService: new HomeService(),
     }
   },
   created(){
@@ -27,7 +28,7 @@ export default {
     console.log("URL", url);
 
 
-    this.authService.getEnterpriseInfoByID(id).then((response)=> {
+    this.homeService.getEnterpriseInfoByID(id).then((response)=> {
       this.enterpriseProfile = new CompanyEntity(
           response.data.enterprise_name,
           response.data.profile_img_url,

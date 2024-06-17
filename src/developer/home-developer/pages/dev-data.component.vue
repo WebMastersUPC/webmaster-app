@@ -2,20 +2,21 @@
 import DevMainPageComponent from "../components/dev-main-page.component.vue";
 import {DeveloperEntity} from "../../../shared/models/developer.model.js";
 import {AuthService} from "../../../../public/services/auth.service.js";
+import {HomeService} from "../../../../public/services/home.service.js";
 
 export default {
   name: "developer-data-component",
   components:{DevMainPageComponent},
   data(){
     return{
-      authService : new AuthService(),
+      homeService : new HomeService(),
       myDev:null,
       developer:null
     }
   },
   created(){
     let id=localStorage.getItem('user id');
-    this.authService.getDevInfoByID(id).then((response) => {
+    this.homeService.getDevInfoByID(id).then((response) => {
       this.developer = response.data;
       console.log('a2 ',this.developer);
       this.createUser()

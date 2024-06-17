@@ -2,6 +2,7 @@
 import CompanyMainPageComponent from "../components/company-main-page.component.vue";
 import {CompanyEntity} from "../../../shared/models/company.model.js";
 import {AuthService} from "../../../../public/services/auth.service.js";
+import {HomeService} from "../../../../public/services/home.service.js";
 
 
 export default {
@@ -9,14 +10,14 @@ export default {
   components:{CompanyMainPageComponent},
   data(){
     return{
-      authService: new AuthService(),
+      homeService: new HomeService(),
       myCom:null,
       enterprise:null
     }
   },
   created(){
     let id = localStorage.getItem('user id')
-     this.authService.getEnterpriseInfoByID(id).then((response) => {
+     this.homeService.getEnterpriseInfoByID(id).then((response) => {
      this.enterprise = response.data;
        console.log(this.enterprise);
        this.createUser()

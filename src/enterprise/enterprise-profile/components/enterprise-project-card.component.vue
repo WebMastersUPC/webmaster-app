@@ -1,13 +1,14 @@
 <script>
 import { useRouter } from 'vue-router';
 import {AuthService} from "../../../../public/services/auth.service.js";
+import {HomeService} from "../../../../public/services/home.service.js";
 
 export default {
   name: "enterprise-project-card",
   components: {},
   data() {
     return {
-      authService: new AuthService(),
+      homeService: new HomeService(),
       position: 'center',
       visible: false,
       applicantsList: []
@@ -21,7 +22,7 @@ export default {
         //console.log(candidates)
 
         for(let candidate of candidates){
-          this.authService.getDevInfoByID(candidate).then((response) => {
+          this.homeService.getDevInfoByID(candidate).then((response) => {
             this.applicantsList.push(response.data)
           });
         }
