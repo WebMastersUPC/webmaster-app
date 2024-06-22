@@ -11,6 +11,10 @@ export class ProjectService {
         const response = await http.get(`/Project/${id}`);
         return response.data;
     }
+    async getAvailableProjects(){
+        const response = await http.get('/Project/available-projects')
+        return response.data;
+    }
     async createProject(Project){
         const response = await http.post(`/Project`, Project);
         return response.data;
