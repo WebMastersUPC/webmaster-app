@@ -15,6 +15,14 @@ export class ProjectService {
         const response = await http.get('/Project/available-projects')
         return response.data;
     }
+    async getProjectByDeveloper(developerId){
+        const response = await http.get(`/Project/by-enterprise/${developerId}`)
+        return response.data;
+    }
+    async getProjectByEnterprise(enterpriseId){
+        const response = await  http.get(`/Project/by-developer/${enterpriseId}`)
+        return response.data;
+    }
     async createProject(Project){
         const response = await http.post(`/Project`, Project);
         return response.data;
