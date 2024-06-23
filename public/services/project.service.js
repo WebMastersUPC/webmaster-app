@@ -16,11 +16,11 @@ export class ProjectService {
         return response.data;
     }
     async getProjectByDeveloper(developerId){
-        const response = await http.get(`/Project/by-enterprise/${developerId}`)
+        const response = await http.get(`/Project/by-developer/${developerId}`)
         return response.data;
     }
     async getProjectByEnterprise(enterpriseId){
-        const response = await  http.get(`/Project/by-developer/${enterpriseId}`)
+        const response = await  http.get(`/Project/by-enterprise/${enterpriseId}`)
         return response.data;
     }
     async createProject(Project){
@@ -36,7 +36,7 @@ export class ProjectService {
         return response.data;
     }
     async assignDeveloper(id, Project){
-        const response = await http.put(`/Developer/${id}`, Project);
+        const response = await http.post(`/Project/assign-developer/${id}`, Project);
         return response.data;
     }
     async addApplicant(id, Project){

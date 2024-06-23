@@ -30,6 +30,7 @@ export default {
   methods:{
     createProject(){
       this.myProjects = this.projectsData.map(project => new ProjectEntity(
+          project.project_ID,
           project.nameProject,
           project.type,
           project.descriptionProject,
@@ -43,6 +44,11 @@ export default {
           project.progress,
           project.started
       ));
+    },
+    applicantHandler(data){
+      let entity = { developer_id: data.numberApplicant };
+      this.projectService.assignDeveloper(data.numberProjectId, entity)
+      console.log(entity)
     }
   }
 };
@@ -50,7 +56,7 @@ export default {
 
 <template>
   <div v-if="myProjects">
-    <ProjectsPanelComponent :projects="myProjects"/>
+    <ProjectsPanelComponent :projects="myProjects" @chooseDeveloper="applicantHandler"/>
   </div>
 </template>
 

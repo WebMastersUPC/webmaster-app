@@ -27,5 +27,8 @@ export class HomeService{
     getDevInfoByID(id){
         return http.get(`Profile/Developers/${id}`)
     }
+    getApplicantInfoById(developer_id){
+        return http.get(`Profile/Developers/${developer_id}`)
+    }
 
 }

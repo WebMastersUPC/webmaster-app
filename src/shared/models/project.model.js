@@ -1,4 +1,5 @@
 export class ProjectEntity{
+    project_ID;
     nameProject;
     type;
     descriptionProject;
@@ -11,8 +12,9 @@ export class ProjectEntity{
     developer_id;
     progress;
     started;
-    constructor(name, type, description, languages, frameworks, budget, methodologies, enterprise_id,
+    constructor(project_ID, name, type, description, languages, frameworks, budget, methodologies, enterprise_id,
                 applicants, developer_id, progress, started,){
+        this.project_ID = project_ID;
         this.nameProject = name;
         this.type = type;
         this.descriptionProject = description;
