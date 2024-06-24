@@ -1,38 +1,37 @@
 ﻿import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 const http = axios.create({
     baseURL: 'http://localhost:5127/api/v1',
-   /* headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-    }
-
-    */
 });
 
 export default {
     async createSupportRequest(supportRequest) {
         try {
-            console.log(supportRequest); // Imprime los datos de la solicitud
+            const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error('Token not found');
+            }
+
+            const decodedToken = jwtDecode(token);
+            const userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid'];
+            if (!userId) {
+                throw new Error('User ID not found in token');
+            }
+
+            supportRequest.append('userId', userId);
+
             const response = await http.post('/SupportRequest', supportRequest, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`
                 }
             });
             return response.data;
         } catch (error) {
             console.error('Error creating support request:', error);
-            console.log(error.response); // Imprime la respuesta de error para obtener más detalles
-            throw error; // Propaga el error para que pueda ser manejado en el componente Vue
+            console.log(error.response);
+            throw error;
         }
     },
-
-    async updateSupportRequest(id, supportRequest) {
-        const response = await http.put(`/SupportRequest/${id}`, supportRequest);
-        return response.data;
-    },
-
-    async deleteSupportRequest(id) {
-        const response = await http.delete(`/SupportRequest/${id}`);
-        return response.data;
-    }
 };

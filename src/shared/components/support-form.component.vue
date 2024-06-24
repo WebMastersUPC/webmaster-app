@@ -1,17 +1,12 @@
 <template>
   <div class="support-details">
     <pv-floatlabel>
-      <pv-inputText id="userId" v-model="userId" />
-      <label for="userId">User ID</label>
+      <pv-inputText id="title" v-model="title" />
+      <label for="title">Title</label>
     </pv-floatlabel>
     <div class="card flex" aria-label="Dropdown for Problem Type">
       <pv-dropDown v-model="selectedProblem" :options="problems" optionLabel="name" placeholder="Type of problem" class="w-full md:w-14rem" />
     </div>
-    <pv-floatlabel>
-      <pv-inputText id="title" v-model="title" />
-      <label for="title">Title</label>
-    </pv-floatlabel>
-
     <pv-floatlabel>
       <pv-textarea v-model="description" rows="5" />
       <label for="description">Description</label>
@@ -41,18 +36,17 @@ export default {
   name: "support-form",
   data() {
     return {
-      userId: '',
       selectedProblem: null,
       problems: [
-        { name: 'Not Found', code: '404' },     
-        { name: 'Unauthorized', code: '401' },        
-        { name: 'Forbidden', code: '403' },           
-        { name: 'Bad Request', code: '400' },        
-        { name: 'Internal Server Error', code: '500' }, 
-        { name: 'Service Unavailable', code: '503' }, 
-        { name: 'Gateway Timeout', code: '504' },   
-        { name: 'Conflict', code: '409' },            
-        { name: 'Unsupported Media Type', code: '415' }, 
+        { name: 'Not Found', code: '404' },
+        { name: 'Unauthorized', code: '401' },
+        { name: 'Forbidden', code: '403' },
+        { name: 'Bad Request', code: '400' },
+        { name: 'Internal Server Error', code: '500' },
+        { name: 'Service Unavailable', code: '503' },
+        { name: 'Gateway Timeout', code: '504' },
+        { name: 'Conflict', code: '409' },
+        { name: 'Unsupported Media Type', code: '415' },
       ],
       title: '',
       description: '',
@@ -67,7 +61,6 @@ export default {
     async submitForm() {
       try {
         const formData = new FormData();
-        formData.append('userId', this.userId);
         formData.append('title', this.title);
         formData.append('description', this.description);
         formData.append('status', this.status);
@@ -80,18 +73,17 @@ export default {
         console.log('Support request created successfully:', response);
 
         // Reset form
-        this.userId = '';
         this.title = '';
+        this.selectedProblem = null;
         this.description = '';
         this.status = 'open';
         this.files = [];
 
-        alert('Support request submitted successfully!'); // Mensaje de éxito
-
+        alert('Support request submitted successfully!');
       } catch (error) {
         console.error('Error creating support request:', error);
         console.log('Error response:', error.response);
-        alert('Error submitting support request. Please try again.'); // Manejo básico de errores
+        alert('Error submitting support request. Please try again.');
       }
     }
   }
