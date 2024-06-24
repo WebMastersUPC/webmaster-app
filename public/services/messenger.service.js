@@ -1,42 +1,37 @@
-﻿import axios from "axios";
+﻿import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 const http = axios.create({
-    baseURL: "http://localhost:5127/api/v1",
+    baseURL: 'http://localhost:5127/api/v1',
 });
 
-export class MessageService {
-    async getAllMessages() {
-        const response = await http.get('/messages');
-        return response.data;
-    }
+export default {
+    async createMessage(message) {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error('Token not found');
+            }
 
-    async getMessageById(id) {
-        const response = await http.get(`/messages/${id}`);
-        return response.data;
-    }
+            const decodedToken = jwtDecode(token);
+            const senderId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid'];
+            if (!senderId) {
+                throw new Error('Sender ID not found in token');
+            }
 
-    async sendMessage(message) {
-        const response = await http.post('/messages', message);
-        return response.data;
-    }
+            message.append('senderId', senderId);
 
-    async updateMessage(id, message) {
-        const response = await http.put(`/messages/${id}`, message);
-        return response.data;
-    }
-
-    async deleteMessage(id) {
-        const response = await http.delete(`/messages/${id}`);
-        return response.data;
-    }
-
-    async getMessagesByReceiverId(receiverId) {
-        const response = await http.get(`/messages/receiver/${receiverId}`);
-        return response.data;
-    }
-
-    async getMessagesBySenderId(senderId) {
-        const response = await http.get(`/messages/sender/${senderId}`);
-        return response.data;
-    }
-}
+            const response = await http.post('/Messages', message, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error creating message:', error);
+            console.log(error.response);
+            throw error;
+        }
+    },
+};
