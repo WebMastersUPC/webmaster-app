@@ -11,13 +11,16 @@ export default {
     return{
       homeService : new HomeService(),
       myDev:null,
-      developer:null
+      developer:null,
+      developerId: null
     }
   },
   created(){
     let id=localStorage.getItem('user id');
     this.homeService.getDevInfoByID(id).then((response) => {
       this.developer = response.data;
+      this.developerId = response.data.developer_id;
+      localStorage.setItem("developer id", this.developerId);
       console.log('a2 ',this.developer);
       this.createUser()
     });

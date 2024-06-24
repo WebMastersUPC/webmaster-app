@@ -15,37 +15,14 @@ export default {
     };
   },
   methods: {
-    async openPosition(position, started, candidates) {
-      if (!started) {
-        this.position = position;
-        this.visible = true;
-
-        for (let candidate of candidates) {
-          this.homeService.getDevInfoByID(candidate).then((response) => {
-            this.applicantsList.push(response.data);
-          });
-        }
-      } else {
-        this.$router.push('/deliverables-list-developer');
+    async openPosition(project_ID) {
+        this.$router.push(`/${project_ID}/deliverables-list-developer`);
       }
-    },
-
-    chooseApplicant(applicant) {
-      console.log(applicant);
-    },
-
-    goToDevProfile(applicant) {
-      console.log(`go to dev profile, id: ${applicant}`);
-    }
   },
   props: {
     projects: {
       type: Array,
       required: true
-    },
-    applicants: {
-      type: Array,
-      required: false
     }
   },
   created() {
@@ -61,15 +38,12 @@ export default {
     </template>
     <template #content>
       <hr>
-      <div class="project-list" v-if="projects.length > 0">
-        <div class="project" @click="openPosition('center', projects[0].started, projects[0].candidates)">
-          <h4>{{ projects[0].name }}</h4>
-          <p class="subtitle tipo-proyecto">{{ projects[0].type }}</p>
-          <pv-progressbar :value="projects[0].progress"></pv-progressbar>
+      <div class="project-list" v-for="project in projects">
+        <div class="project" @click="openPosition(project.project_ID)">
+          <h4>{{ project.nameProject }}</h4>
+          <p class="subtitle tipo-proyecto">{{ project.type }}</p>
+          <pv-progressbar :value="project.progress"></pv-progressbar>
         </div>
-      </div>
-      <div v-else>
-        <p>No hay proyectos disponibles.</p>
       </div>
     </template>
   </pv-card>

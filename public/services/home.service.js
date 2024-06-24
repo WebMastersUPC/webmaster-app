@@ -30,5 +30,8 @@ export class HomeService{
     getApplicantInfoById(developer_id){
         return http.get(`Profile/Developers/${developer_id}`)
     }
+    getEnterpriseInfoByEnterpriseId(enterprise_id){
+        return http.get(`Profile/Profile/Enterprises/${enterprise_id}`)
+    }
 
 }

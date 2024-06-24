@@ -1,29 +1,29 @@
-export class ProjectEntity{
-    project_ID;
-    nameProject;
-    type;
-    descriptionProject;
-    languages = [];
-    frameworks = [];
-    budget;
-    methodologies = [];
-    enterprise_id;
-    applicants_id = [];
-    developer_id;
-    progress;
-    started;
-    constructor(project_ID, name, type, description, languages, frameworks, budget, methodologies, enterprise_id,
-                applicants, developer_id, progress, started,){
+export class ProjectEntity {
+    constructor({
+                    project_ID,
+                    nameProject,
+                    type = '',
+                    descriptionProject,
+                    languages = [],
+                    frameworks = [],
+                    budget = 0,
+                    methodologies = [],
+                    enterprise_id,
+                    applicants_id = [],
+                    developer_id = null,
+                    progress = 0,
+                    started = false
+                } = {}) {
         this.project_ID = project_ID;
-        this.nameProject = name;
+        this.nameProject = nameProject;
         this.type = type;
-        this.descriptionProject = description;
+        this.descriptionProject = descriptionProject;
         this.languages = languages;
         this.frameworks = frameworks;
         this.budget = budget;
         this.methodologies = methodologies;
         this.enterprise_id = enterprise_id;
-        this.applicants_id = applicants;
+        this.applicants_id = applicants_id;
         this.developer_id = developer_id;
         this.progress = progress;
         this.started = started;

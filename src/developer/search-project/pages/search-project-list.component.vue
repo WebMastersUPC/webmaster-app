@@ -2,6 +2,10 @@
 import Paginator from "primevue/paginator";
 import {AuthService} from "../../../../public/services/auth.service.js";
 import ProjectCard from "../components/project-card.component.vue";
+import {ProjectService} from "../../../../public/services/project.service.js";
+import {ProjectEntity} from "../../../shared/models/project.model.js";
+import {HomeService} from "../../../../public/services/home.service.js";
+import {CompanyExplorerEntity} from "../../../shared/models/companyExplorer.model.js";
 
 export default{
   name: "search-project-list",
@@ -13,10 +17,13 @@ export default{
   data() {
     return {
       projects: [],
+      companyIds: [],
       company: [],
       first: 0,
       itemsPerPage: 5,
-      authService: new AuthService()
+      authService: new AuthService(),
+      projectService: new ProjectService(),
+      homeService: new HomeService()
     }
   },
   computed: {
@@ -26,10 +33,27 @@ export default{
   },
   created(){
     let id = localStorage.getItem('user id')
-    this.authService.getEnterpriseInfoByID(id).then((response) => {
-      this.projects = response.data.projects;
-      this.company = response.data;
-      console.log('Array:',this.projects);
+    this.projectService.getAvailableProjects().then((response) => {
+      this.projects = response.map(project => new ProjectEntity({
+        project_ID: project.project_ID,
+        nameProject: project.nameProject,
+        descriptionProject: project.descriptionProject,
+        enterprise_id: project.enterprise_id
+      }));
+      this.companyIds = response.map(project => project.enterprise_id);
+      this.companyIds.forEach(companyId => {
+        this.homeService.getEnterpriseInfoByEnterpriseId(companyId).then( (response) =>{
+          console.log(response)
+          this.company.push(new CompanyExplorerEntity(
+              response.data.enterprise_id,
+              response.data.enterprise_name,
+              response.data.profile_img_url,
+              response.data.user_id
+          ))
+        })
+      })
+      console.log('Array:', this.company);
+      console.log('Company:', this.companyIds);
     });
   },
   methods: {
@@ -44,10 +68,10 @@ export default{
 
 <template>
   <div class="grid col-fixed justify-content-center gap-5 mt-8 mb-4">
-    <project-card v-for="projects in paginatedDevelopers"
-                    :key="projects.name"
+    <project-card v-for="(projects, index) in paginatedDevelopers"
+                    :key="projects.project_ID"
                     :projects="projects"
-                    :company="company"></project-card>
+                    :company="company[index]"></project-card>
   </div>
   <pv-paginator :first="first" :rows="itemsPerPage" :totalRecords="projects.length"
                 :rowsPerPageOptions="[5,10,20]" @page="onPageChange"></pv-paginator>
