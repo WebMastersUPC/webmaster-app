@@ -9,7 +9,7 @@ export default {
   name: "project-card",
   components: {},
   props: {
-    projects: {
+    project: {
       type: ProjectEntity,
       required: true
     },
@@ -25,8 +25,8 @@ export default {
     },
 
     redirectToPostulate(){
-      localStorage.setItem('developer id', this.projects.project_ID)
-      this.$router.push({name: 'postulate-project', params: {id: this.projects.project_ID}})
+      localStorage.setItem('developer id', this.project.project_ID)
+      this.$router.push({name: 'postulate-project', params: {id: this.project.project_ID}})
     }
   }
 }
@@ -46,7 +46,7 @@ export default {
         </div>
 
         <div class=" flex justify-content-center align-items-center w-6 overflow-hidden titulo">
-          <h3 @click="redirectToPostulate">{{projects.nameProject}}</h3>
+          <h3 @click="redirectToPostulate">{{project.nameProject}}</h3>
         </div>
 
 
@@ -54,7 +54,7 @@ export default {
     </template>
     <template #title aria-label="Card Title">Description</template>
     <template #content aria-label="Card Content" >
-      <p class="m-0">{{projects.descriptionProject}}</p>
+      <p class="m-0">{{project.descriptionProject}}</p>
     </template>
   </pv-card>
 

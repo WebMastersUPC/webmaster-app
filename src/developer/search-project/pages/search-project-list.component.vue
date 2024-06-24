@@ -20,7 +20,7 @@ export default{
       companyIds: [],
       company: [],
       first: 0,
-      itemsPerPage: 5,
+      itemsPerPage: 3,
       authService: new AuthService(),
       projectService: new ProjectService(),
       homeService: new HomeService()
@@ -67,10 +67,11 @@ export default{
 </script>
 
 <template>
-  <div class="grid col-fixed justify-content-center gap-5 mt-8 mb-4">
-    <project-card v-for="(projects, index) in paginatedDevelopers"
-                    :key="projects.project_ID"
-                    :projects="projects"
+  <div v-if="company.length === projects.length" class="grid col-fixed justify-content-center gap-5 mt-8 mb-4">
+    <project-card v-for="(project,index) in projects"
+                    v-if="company"
+                    :key="project.project_ID"
+                    :project="project"
                     :company="company[index]"></project-card>
   </div>
   <pv-paginator :first="first" :rows="itemsPerPage" :totalRecords="projects.length"
