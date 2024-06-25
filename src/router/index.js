@@ -22,6 +22,7 @@ import EnterpriseProfilePage from "../enterprise/enterprise-profile/pages/enterp
 import PostulateProject from "../developer/postulate-project/pages/postulate-project-page.component.vue";
 
 import SupportPage from "../shared/pages/support-page.vue";
+import DeliverablesDetailsCard from "../enterprise/deliverables-edit/components/deliverables-edit-card.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -84,6 +85,11 @@ const router = createRouter({
                     path: '/Projects/:projectId/Deliverables',
                     name: 'deliverable-list',
                     component: DeliverableList
+                },
+                {
+                  path:'/Projects/:projectId/Deliverables/:deliverableId',
+                  name: 'deliverable-edit',
+                  component:DeliverablesDetailsCard
                 },
                 {
                     path: '/deliverables-list-developer',

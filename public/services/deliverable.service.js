@@ -11,13 +11,18 @@ export class DeliverableService{
         return response.data;
     }
 
+    async getDeliverableById(projectId, deliverableId) {
+        const response = await http.get(`/Projects/${projectId}/Deliverables/${deliverableId}`);
+        return response.data;
+    }
+
     async createDeliverable(projectId, deliverable) {
         const response = await http.post(`/Projects/${projectId}/Deliverables`, deliverable);
         return response.data;
     }
 
-    async updateDeliverable(projectId, orderNumber, deliverable) {
-        const response = await http.put(`/Projects/${projectId}/Deliverables/${orderNumber}`, deliverable);
+    async updateDeliverable(projectId, deliverableId, deliverable) {
+        const response = await http.put(`/Projects/${projectId}/Deliverables/${deliverableId}`, deliverable);
         return response.data;
     }
 
