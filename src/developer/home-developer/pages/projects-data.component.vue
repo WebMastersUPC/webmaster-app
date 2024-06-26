@@ -45,7 +45,7 @@ export default {
 
 <template>
   <div v-if="myProjects">
-    <ProjectsPanelComponent :projects="myProjects"/>
+    <ProjectsPanelComponent v-if="myProjects" :projects="myProjects"/>
   </div>
 </template>
 

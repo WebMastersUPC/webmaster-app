@@ -101,7 +101,7 @@ const router = createRouter({
                     component: DeveloperProfilePage
                 },
                 {
-                    path: '/postulate-project',
+                    path: '/postulate-project/:project_id',
                     name: 'postulate-project',
                     component: PostulateProject
                 },

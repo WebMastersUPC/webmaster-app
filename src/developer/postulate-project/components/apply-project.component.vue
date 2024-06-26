@@ -1,11 +1,20 @@
 <script>
+import {ProjectService} from "../../../../public/services/project.service.js";
+import {ProjectEntity} from "../../../shared/models/project.model.js";
+
 export default {
   name: "apply-project",
   data() {
     return {
       showButtons: false,
-      showBlurEffect: false
+      showBlurEffect: false,
     };
+  },
+  props:{
+    project:{
+      type: ProjectEntity,
+      required: true
+    }
   },
   methods: {
     showTemplate() {
@@ -44,7 +53,7 @@ export default {
     <pv-splitter style="height: auto" layout="vertical">
       <pv-splitter-panel class="flex align-items-center justify-content-center" style="flex-grow: 1" aria-label="Header Panel">
         <img src="https://imgur.com/23QQKri.jpg" alt="" class="mr-8" aria-hidden="true">
-        <h2>Plataforma de Comercio Electrónico Geekit</h2>
+        <h2>{{project.nameProject}}</h2>
         <pv-button label="" text plain class="p-d-none p-d-lg-flex p-jc-center p-ai-center ml-5 justify-content-center" v-if="showButtons" aria-label="Show Buttons">
           <img src="https://imgur.com/yclQG0L.jpg" alt="" aria-hidden="true">
         </pv-button>
@@ -56,11 +65,7 @@ export default {
         <div class="description p-d-flex p-flex-column p-align-center" aria-label="Description">
           <h3 class="p-mb-0 pl-3">{{$t('apply-project-part2')}}</h3>
           <p class="p-text-center px-5">
-            La Plataforma de Comercio Electrónico Geekit es un proyecto destinado a crear una experiencia de
-            compra en línea excepcional para nuestra marca de ropa y accesorios para jóvenes apasionados por
-            la cultura geek. La plataforma debe ofrecer una navegación intuitiva, una interfaz atractiva y
-            funcionalidades que mejoren la experiencia del usuario, desde la búsqueda de productos
-            hasta el proceso de compra y seguimiento de pedidos
+            {{project.descriptionProject}}
           </p>
         </div>
       </pv-splitter-panel>
@@ -77,25 +82,21 @@ export default {
               <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center;">
                 <h3 class="text-center">{{$t('apply-project-part4')}}</h3>
                 <ul class="p-d-flex p-flex-column p-p-0 p-mb-0">
-                  <li class="p-mb-2">HTML5</li>
-                  <li class="p-mb-2">CSS3</li>
-                  <li class="p-mb-2">JavaScript</li>
+                  <li v-for="(language, index) in project.languages" :key="index" class="p-mb-2">{{ language }}</li>
                 </ul>
               </div>
               <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center;">
                 <h3 class="text-center">Frameworks</h3>
                 <ul class="p-d-flex p-flex-column p-p-0" style="list-style-position: inside; padding-left: 0;">
-                  <li class="p-mb-4">React.js (Frontend)</li>
-                  <li class="p-mb-4">Node.js (Backend)</li>
-                  <li class="p-mb-4">Express.js (Backend)</li>
+                  <li v-for="(framework, index) in project.frameworks" :key="index" class="p-mb-4">{{ framework }}</li>
                 </ul>
               </div>
             </div>
           </pv-splitter-panel>
           <pv-splitter-panel style="flex-grow: 1" aria-label="Budget Panel">
-            <h2 style="text-align: center;">{{$t('apply-project-part5')}}: $50,000</h2>
+            <h2 style="text-align: center;">{{$t('apply-project-part5')}}: S/{{project.budget}}</h2>
             <p class="px-5">
-              El presupuesto asignado para este proyecto es de $50,000 USD, incluyendo el
+              El presupuesto asignado para este proyecto esta incluyendo el
               costo de desarrollo, pruebas, implementación y mantenimiento inicial durante los
               primeros seis meses.
             </p>
@@ -125,9 +126,7 @@ export default {
           <pv-splitter-panel style="flex-grow: 1" aria-label="Processes Panel">
             <h2 class="text-center">{{$t('apply-project-part7')}}</h2>
             <ol aria-label="Development Processes List">
-              <li>Recolección de Requisitos: Definición de requisitos del proyecto en una reunión inicial.</li>
-              <li>Desarrollo Iterativo: Metodología ágil con entregas incrementales para retroalimentación temprana.</li>
-              <!-- Agregar más elementos de proceso aquí -->
+              <li v-for="(methodologies, index) in project.methodologies" :key="index">{{ methodologies }}</li>
             </ol>
           </pv-splitter-panel>
         </pv-splitter>

@@ -56,7 +56,7 @@ export default {
 
 <template>
   <div v-if="myProjects">
-    <ProjectsPanelComponent :projects="myProjects" @chooseDeveloper="applicantHandler"/>
+    <ProjectsPanelComponent v-if="myProjects" :projects="myProjects" @chooseDeveloper="applicantHandler"/>
   </div>
 </template>
 
