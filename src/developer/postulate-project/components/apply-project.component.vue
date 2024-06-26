@@ -8,6 +8,7 @@ export default {
     return {
       showButtons: false,
       showBlurEffect: false,
+      projectService : new ProjectService()
     };
   },
   props:{
@@ -17,6 +18,12 @@ export default {
     }
   },
   methods: {
+    sendApplicant(){
+      let developer_Id = localStorage.getItem('developer id')
+      let project_Id = localStorage.getItem('project id')
+      let entity = { developer_id: developer_Id };
+      this.projectService.addApplicant(project_Id, entity)
+    },
     showTemplate() {
       this.showBlurEffect = true;
       this.$confirm.require({
@@ -30,7 +37,8 @@ export default {
         acceptClass: 'p-button-sm',
         rejectLabel: 'Rechazar',
         acceptLabel: 'Aceptar',
-        accept: () => {
+        accept: () =>{
+          this.sendApplicant();
           this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
           this.showBlurEffect = false
           this.showButtons = true
