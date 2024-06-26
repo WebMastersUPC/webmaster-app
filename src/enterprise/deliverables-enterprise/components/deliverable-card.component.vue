@@ -1,5 +1,3 @@
-// deliverable-card.vue
-
 <script>
 import { DeliverableEntity } from "../../../shared/models/deliverable.model.js";
 import { formatDate } from "../../../utils/formatDate.js";

@@ -28,6 +28,9 @@ import RejectedDeliverable from "../enterprise/deliverables-states/pages/rejecte
 import DeliverablesListDeveloper from '../developer/deliverables-schedule/pages/deliverable-list-developer.vue';
 import DeliverableList from "../enterprise/deliverables-schedule/pages/deliverable-list.vue";
 
+import CreateDeliverable from "../developer/deliverables-developer/pages/create-deliverable.component.vue";
+import SendedDeliverable from "../developer/deliverable-send/pages/deliverable-send.component.vue"
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -115,6 +118,16 @@ const router = createRouter({
                     path: '/Projects/:projectId/Deliverables',
                     name: 'deliverables-list-developer',
                     component: DeliverablesListDeveloper
+                },
+                {
+                    path:'/Projects/:projectId/Deliverables/:deliverableId/Create',
+                    name:'create-deliverable',
+                    component:CreateDeliverable
+                },
+                {
+                    path:'/Projects/:projectId/Deliverables/:deliverableId/Upload',
+                    name:'deliverable-send',
+                    component:SendedDeliverable
                 },
                 {
                     path: '/enterprise-profile/:id',

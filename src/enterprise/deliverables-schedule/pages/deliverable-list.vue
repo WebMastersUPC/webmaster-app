@@ -11,7 +11,7 @@ export default {
     return {
       deliverables: [],
       //projectId: this.$route.params.projectId,
-      projectId: 2,
+      projectId: 3,
       deliverableService: new DeliverableService(),
       visible: false,
       editableDeliverable: { title: '', description: '', deadline: '' },

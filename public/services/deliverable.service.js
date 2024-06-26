@@ -31,8 +31,8 @@ export class DeliverableService{
         return response.data;
     }
 
-    async uploadDeliverableFile(projectId, orderNumber) {
-        const response = await http.put(`/Projects/${projectId}/Deliverables/${orderNumber}/Upload`);
+    async uploadDeliverableFile(projectId, deliverableId, uploadFile) {
+        const response = await http.put(`/Projects/${projectId}/Deliverables/${deliverableId}/Upload`, uploadFile);
         return response.data;
     }
 
