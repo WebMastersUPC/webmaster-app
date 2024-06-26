@@ -42,7 +42,8 @@ export default {
       <div v-if="deliverable" class="flex flex-column">
         <pv-textarea v-model="deliverable.title" :placeholder="$t('deliverable-title-placeholder')" class="mb-3 pr-5" maxlength="50" aria-label="Title Textarea"></pv-textarea>
         <pv-textarea v-model="deliverable.description" :placeholder="$t('deliverable-description-placeholder')" class="mb-3" aria-label="Description Textarea"></pv-textarea>
-        <pv-textarea type="datetime-local" v-model="deliverable.deadline" :placeholder="$t('deliverable-deadline-placeholder')" class="mb-3" aria-label="Deadline Input"></pv-textarea>
+        <pv-textarea type="datetime-local" v-model="deliverable.deadlineDateValue" :placeholder="$t('deliverable-deadline-placeholder')" class="mb-3" aria-label="Deadline Input"></pv-textarea>
+        <pv-textarea type="datetime-local" v-model="deliverable.deadlineTime" :placeholder="$t('deliverable-deadline-placeholder')" class="mb-3" aria-label="Deadline Input"></pv-textarea>
 
         <div class="flex justify-content-center">
           <pv-button @click="updateDeliverable" class="bg-white text-black-alpha-90 border-black-alpha-90 border-round-3xl text-xl" aria-label="Save Button">{{ $t('Guardar') }}</pv-button>

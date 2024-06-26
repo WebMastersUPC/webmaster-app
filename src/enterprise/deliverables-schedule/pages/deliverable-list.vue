@@ -1,6 +1,7 @@
 <script>
 import DeliverablesScheduleCard from "../components/deliverables-schedule-card.component.vue";
 import { DeliverableService } from "../../../../public/services/deliverable.service.js";
+import {DeliverableEntity} from "../../../shared/models/deliverable.model.js";
 
 export default {
   name: "deliverables-list",
@@ -11,10 +12,15 @@ export default {
     return {
       deliverables: [],
       //projectId: this.$route.params.projectId,
-      projectId: 3,
+      projectId: 1,
       deliverableService: new DeliverableService(),
       visible: false,
-      editableDeliverable: { title: '', description: '', deadline: '' },
+      editableDeliverable: {
+        title: '',
+        description: '',
+        deadlineDateValue: '',
+        deadlineTime: ''
+      },
       isEditing: false
     };
   },
@@ -22,18 +28,21 @@ export default {
     async fetchDeliverables() {
       try {
         const deliverables = await this.deliverableService.getAllDeliverables(this.projectId);
-        this.deliverables = deliverables.map(deliverableData => ({
-          deliverable_id: deliverableData.deliverable_id,
-          title: deliverableData.title,
-          description: deliverableData.description,
-          developerDescription: deliverableData.developerDescription,
-          state: deliverableData.state,
-          file: deliverableData.file,
-          deadline: new Date(deliverableData.deadline),
-          orderNumber: deliverableData.orderNumber,
-          projectID: deliverableData.projectID,
-          developer_id: deliverableData.developer_id
-        }));
+        this.deliverables = deliverables.map(deliverableData => {
+          return new DeliverableEntity(
+              deliverableData.deliverable_id,
+              deliverableData.title,
+              deliverableData.description,
+              deliverableData.developerDescription,
+              deliverableData.state,
+              deliverableData.file,
+              deliverableData.deadlineDateValue,
+              deliverableData.deadlineTime,
+              deliverableData.orderNumber,
+              deliverableData.projectID,
+              deliverableData.developer_id
+          );
+        });
         console.log('Array of deliverables:', this.deliverables);
       } catch (error) {
         console.error('Error fetching deliverables:', error);
@@ -53,8 +62,8 @@ export default {
     },
     async saveDeliverable() {
       try {
-        if (this.editableDeliverable.deadline) {
-          this.editableDeliverable.deadline = new Date(this.editableDeliverable.deadline).toISOString();
+        if (this.editableDeliverable.deadlineDateValue && this.editableDeliverable.deadlineTime) {
+          this.editableDeliverable.deadline = `${this.editableDeliverable.deadlineDateValue}T${this.editableDeliverable.deadlineTime}`;
         }
         if (this.isEditing) {
           await this.updateDeliverable(this.editableDeliverable);
@@ -109,7 +118,8 @@ export default {
         <div class="flex flex-column w-10" aria-label="Deliverable Name and Description">
           <pv-textarea type="text" v-model="editableDeliverable.title" :placeholder="$t('deliverable-list-part4')" class="mb-3 pr-5" maxlength="50" aria-label="Title Textarea"></pv-textarea>
           <pv-textarea v-model="editableDeliverable.description" :placeholder="$t('deliverable-list-part5')" class="mb-3" aria-label="Description Textarea"></pv-textarea>
-          <pv-textarea type="datetime-local" v-model="editableDeliverable.deadline" :placeholder="$t('deliverable-list-part6')" class="mb-3" aria-label="Deadline Input"></pv-textarea>
+          <pv-textarea type="date" v-model="editableDeliverable.deadlineDateValue" :placeholder="$t('deliverable-list-part9')" class="mb-3" aria-label="Deadline Date Input"></pv-textarea>
+          <pv-textarea type="time" v-model="editableDeliverable.deadlineTime" :placeholder="$t('deliverable-list-part10')" class="mb-3" aria-label="Deadline Time Input"></pv-textarea>
         </div>
       </div>
       <div class="flex flex-column align-items-center justify-content-center" aria-label="Confirmation Button">

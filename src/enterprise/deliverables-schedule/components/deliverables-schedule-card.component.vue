@@ -15,8 +15,6 @@ export default {
         day: '2-digit',
         month: '2-digit',
         year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
       });
     },
     openEditModal() {
@@ -63,7 +61,8 @@ export default {
               <span class="pi pi-stopwatch" style="font-size: 2rem"></span>
             </div>
             <div class="flex flex-column align-items-center -mt-3 ml-5">
-              <p>{{ formatDate(deliverable.deadline) }}</p>
+              <p>{{ formatDate(deliverable.deadlineDateValue) }}</p>
+              <p>{{ (deliverable.deadlineTime) }}</p>
             </div>
           </div>
 

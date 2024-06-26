@@ -1,6 +1,7 @@
 <script>
 import DeliverablesScheduleCard from "../components/deliverables-schedule-card.component.vue";
 import { DeliverableService } from "../../../../public/services/deliverable.service.js";
+import {DeliverableEntity} from "../../../shared/models/deliverable.model.js";
 
 export default {
   name: "deliverables-list",
@@ -11,32 +12,42 @@ export default {
     return {
       deliverables: [],
       //projectId: this.$route.params.projectId,
-      projectId: 3,
+      projectId: 1,
       deliverableService: new DeliverableService(),
-
+      visible: false,
+      editableDeliverable: {
+        title: '',
+        description: '',
+        deadlineDateValue: '',
+        deadlineTime: ''
+      },
+      isEditing: false
     };
   },
   methods: {
     async fetchDeliverables() {
       try {
         const deliverables = await this.deliverableService.getAllDeliverables(this.projectId);
-        this.deliverables = deliverables.map(deliverableData => ({
-          deliverable_id: deliverableData.deliverable_id,
-          title: deliverableData.title,
-          description: deliverableData.description,
-          developerDescription: deliverableData.developerDescription,
-          state: deliverableData.state,
-          file: deliverableData.file,
-          deadline: new Date(deliverableData.deadline),
-          orderNumber: deliverableData.orderNumber,
-          projectID: deliverableData.projectID,
-          developer_id: deliverableData.developer_id
-        }));
+        this.deliverables = deliverables.map(deliverableData => {
+          return new DeliverableEntity(
+              deliverableData.deliverable_id,
+              deliverableData.title,
+              deliverableData.description,
+              deliverableData.developerDescription,
+              deliverableData.state,
+              deliverableData.file,
+              deliverableData.deadlineDateValue,
+              deliverableData.deadlineTime,
+              deliverableData.orderNumber,
+              deliverableData.projectID,
+              deliverableData.developer_id
+          );
+        });
         console.log('Array of deliverables:', this.deliverables);
       } catch (error) {
         console.error('Error fetching deliverables:', error);
       }
-    },
+    }
   },
   created() {
     this.fetchDeliverables();
