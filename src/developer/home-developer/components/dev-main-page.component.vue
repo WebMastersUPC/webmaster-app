@@ -1,5 +1,6 @@
 <script>
 import {DeveloperEntity} from "../../../shared/models/developer.model.js";
+import {HomeService} from "../../../../public/services/home.service.js";
 
 export default {
   name: "developer-page",
@@ -10,15 +11,39 @@ export default {
       isEditingCategories: [false, false, false, false, false, false],
       categoryTexts: [],
       categories: ['categories.country', 'categories.phone', 'categories.email', 'categories.projectsFinished', 'categories.specialties'],
-      value: 0
+      value: 0,
+      homeService: new HomeService()
     };
   },
   methods: {
     toggleEditingMain() {
+      if(this.isEditingMain){
+        console.log(this.developer.id)
+        let updatedInfo ={
+          description: this.mainText,
+          country: this.categoryTexts[0],
+          phone: this.categoryTexts[1],
+          specialties: this.categoryTexts[4],
+          profile_img_url: this.developer.profile_img_url
+        }
+        this.homeService.updateDevInfo(this.developer.id, updatedInfo)
+      }
       this.isEditingMain = !this.isEditingMain;
+
     },
 
     toggleEditingCategory(index) {
+      if(this.isEditingCategories[index]){
+        console.log(this.developer.phone)
+        let updatedInfo ={
+          description: this.mainText,
+          country: this.categoryTexts[0],
+          phone: this.categoryTexts[1],
+          specialties: this.categoryTexts[4],
+          profile_img_url: this.developer.profile_img_url
+        }
+        this.homeService.updateDevInfo(this.developer.id, updatedInfo)
+      }
       this.isEditingCategories[index] = !this.isEditingCategories[index];
     }
   },
@@ -78,10 +103,10 @@ export default {
           <input v-else v-model="categoryTexts[index]" type="text" class="editable-input"
                  aria-label="Category Text Input"/>
           <pv-button @click="toggleEditingCategory(index)" icon="pi pi-pencil"
-                     class="p-button-rounded p-button-text edit-button" v-if="!isEditingCategories[index]"
+                     class="p-button-rounded p-button-text edit-button" v-if="!isEditingCategories[index] && index !== 2 && index !== 3"
                      aria-label="Edit Category Button"/>
           <pv-button @click="toggleEditingCategory(index)" icon="pi pi-check"
-                     class="p-button-rounded p-button-text edit-button" v-else aria-label="Confirm Category Button"/>
+                     class="p-button-rounded p-button-text edit-button" v-else-if="index !== 2 && index !== 3" aria-label="Confirm Category Button"/>
         </div>
       </template>
 

@@ -1,5 +1,6 @@
 <script>
 import {CompanyEntity} from "../../../shared/models/company.model.js";
+import {HomeService} from "../../../../public/services/home.service.js";
 
 export default {
   name: "developer-page",
@@ -9,15 +10,40 @@ export default {
       mainText: '',
       isEditingCategories: [false, false, false, false, false, false],
       categoryTexts: [],
-      categories: ['categories.country', 'categories.ruc', 'categories.phone', 'categories.email', 'categories.website', 'categories.sector']
+      categories: ['categories.country', 'categories.ruc', 'categories.phone', 'categories.email', 'categories.website', 'categories.sector'],
+      homeService: new HomeService()
     };
   },
   methods: {
     toggleEditingMain() {
+      if(this.isEditingMain){
+        let updatedInfo ={
+          description: this.mainText,
+          country: this.categoryTexts[0],
+          ruc: this.categoryTexts[1],
+          phone: this.categoryTexts[2],
+          website: this.categoryTexts[4],
+          profile_img_url: this.company.profile_img_url,
+          sector: this.categoryTexts[5]
+        }
+        this.homeService.updateEnterpriseInfo(this.company.id, updatedInfo)
+      }
       this.isEditingMain = !this.isEditingMain;
     },
 
     toggleEditingCategory(index) {
+      if(this.isEditingCategories[index]){
+        let updatedInfo ={
+          description: this.mainText,
+          country: this.categoryTexts[0],
+          ruc: this.categoryTexts[1],
+          phone: this.categoryTexts[2],
+          website: this.categoryTexts[4],
+          profile_img_url: this.company.profile_img_url,
+          sector: this.categoryTexts[5]
+        }
+        this.homeService.updateEnterpriseInfo(this.company.id, updatedInfo)
+      }
       this.isEditingCategories[index] = !this.isEditingCategories[index];
     }
   },

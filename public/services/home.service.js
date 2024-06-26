@@ -28,4 +28,12 @@ export class HomeService{
         return http.get(`Profile/Developers/${id}`)
     }
 
+    updateDevInfo(id, data){
+        return http.put(`Profile/Developers/${id}`, data)
+    }
+
+    updateEnterpriseInfo(id, data){
+        return http.put(`Profile/Enterprises/${id}`, data)
+    }
+
 }
