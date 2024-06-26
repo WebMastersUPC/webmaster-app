@@ -10,14 +10,12 @@ import ToolbarEnterpriseComponent from "../public/components/toolbar-enterprise.
 import FooterWebstormComponent from "../public/components/footer-webstorm.component.vue";
 import HomePage from "../enterprise/home-enterprise/pages/home-page.component.vue";
 import MessagePage from "../shared/components/message-form.component.vue";
-import DeliverableList from "../enterprise/deliverables-schedule/pages/deliverable-list.vue";
 import LoginComponent from "../authentication/pages/login.component.vue";
 import DeveloperProfilePage from "../developer/developer-profile/pages/developer-profile-page.vue";
 import CreateProject from "../enterprise/create-project/pages/create-project-page.component.vue";
 
 import HomePageDeveloper from "../developer/home-developer/pages/home-page.component.vue";
 import SearchProjectList from "../developer/search-project/pages/search-project-list.component.vue";
-import DeliverableListDeveloper from "../developer/deliverables-schedule/pages/deliverable-list.vue";
 import EnterpriseProfilePage from "../enterprise/enterprise-profile/pages/enterprise-profile-page.vue";
 import PostulateProject from "../developer/postulate-project/pages/postulate-project-page.component.vue";
 
@@ -26,6 +24,9 @@ import DeliverablesDetailsCard from "../enterprise/deliverables-edit/components/
 import DeliverableReview from "../enterprise/deliverables-enterprise/pages/review-deliverable.component.vue";
 import ApprovedDeliverable from "../enterprise/deliverables-states/pages/approved-deliverable.vue";
 import RejectedDeliverable from "../enterprise/deliverables-states/pages/rejected-deliverable.vue";
+
+import DeliverablesListDeveloper from '../developer/deliverables-schedule/pages/deliverable-list-developer.vue';
+import DeliverableList from "../enterprise/deliverables-schedule/pages/deliverable-list.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -87,7 +88,8 @@ const router = createRouter({
                 {
                     path: '/Projects/:projectId/Deliverables',
                     name: 'deliverable-list',
-                    component: DeliverableList
+                    component:DeliverablesListDeveloper
+                    //component: DeliverableList
                 },
                 {
                   path:'/Projects/:projectId/Deliverables/:deliverableId',
@@ -110,9 +112,9 @@ const router = createRouter({
                     component: RejectedDeliverable
                 },
                 {
-                    path: '/deliverables-list-developer',
-                    name: 'deliverable-list-developer',
-                    component: DeliverableListDeveloper
+                    path: '/Projects/:projectId/Deliverables',
+                    name: 'deliverables-list-developer',
+                    component: DeliverablesListDeveloper
                 },
                 {
                     path: '/enterprise-profile/:id',

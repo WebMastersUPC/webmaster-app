@@ -1,33 +1,47 @@
-<script >
+<script>
+import { DeliverableEntity } from "../../../shared/models/deliverable.model.js";
 
-
-import {DeliverableEntity} from "../../../shared/models/deliverable.model.js";
-
-export default{
+export default {
   name: "deliverables-schedule-card",
-  components: {},
   props: {
     deliverable: {
       type: DeliverableEntity,
       required: true
     }
+  },
+  methods: {
+    formatDate(date) {
+      return new Date(date).toLocaleDateString('es-ES', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    },
+    openEditModal() {
+      this.$emit('edit-deliverable', this.deliverable);
+    },
+    goToReviewDeliverable() {
+      const projectId = this.deliverable.projectID;
+      const deliverableId = this.deliverable.deliverable_id;
+      this.$router.push(`/Projects/${projectId}/Deliverables/${deliverableId}/Review`);
+    }
   }
-
-}
-
+};
 </script>
 
 <template>
-  <pv-card class="w-8 border-round-3xl shadow-4" aria-label="Deliverable Card">
+  <pv-card class="w-8 border-round-3xl shadow-4 card" aria-label="Deliverable Card">
     <template #header>
-      <div class="flex flex-row justify-content-center mt-4 -mb-4 gap-5 mx-4 overflow-hidden" aria-label="Deliverable Header">
+      <div class="flex flex-row justify-content-center mt-4 -mb-4 ml-4 flex-wrap" aria-label="Deliverable Header">
         <h2>{{ deliverable.title }}</h2>
       </div>
     </template>
 
     <template #title>
       <p class="-mb-1" aria-label="Description Label">
-        {{$t('deliverables-schedule-card-part1')}}
+        {{ $t('deliverables-schedule-card-part1') }}
       </p>
     </template>
 
@@ -37,30 +51,22 @@ export default{
           <p>{{ deliverable.description }}</p>
         </div>
 
-        <div class='flex flex-column mr-5 -mt-6' aria-label="Additional Information">
+        <div class='flex flex-column ' aria-label="Additional Information">
           <div aria-label="Delivery Date Information">
-            <div class="flex flex-column align-items-center relative-container ml-5 ">
+            <div class="flex flex-column align-items-center relative-container ml-5">
               <span class="pi pi-stopwatch" style="font-size: 2rem"></span>
             </div>
-            <div class="flex flex-column align-items-center -mt-3 ml-5 ">
-              <p class="">{{ deliverable.deadLineDate }}</p>
-              <p class="-mt-3">{{ deliverable.deadLineHour }}</p>
+            <div class="flex flex-column align-items-center -mt-3 ml-5">
+              <p>{{ formatDate(deliverable.deadline) }}</p>
             </div>
           </div>
 
           <div aria-label="Status Information" class='flex flex-column'>
             <div class="flex flex-column align-items-center ml-5">
-              <span
-                  :class="{
-                  'pi pi-check-circle green-icon': deliverable.status === 2,
-                  'pi pi-times-circle red-icon': deliverable.status === 1,
-                  'pi pi-clock': deliverable.status === 0
-                }"
-                  style="font-size: 2rem">
-              </span>
+              <span class="pi pi-times-circle" style="font-size: 2rem"></span>
             </div>
             <div class="flex flex-column align-items-center -mt-3 ml-5">
-              <p class="">{{$t('deliverables-schedule-card-part3')}}</p>
+              <p>{{ deliverable.state }}</p>
             </div>
           </div>
         </div>
@@ -70,26 +76,13 @@ export default{
 </template>
 
 <style scoped>
-
-.green-icon {
-  color: #049804;
-}
-
-.red-icon {
-  color: red;
-}
-
-.icons{
+.icons {
   color: rgba(184, 100, 243, 0.54);
-  background-color:white;
-  border:none;
-}
-.box {
-  overflow-wrap: break-word;
+  background-color: white;
+  border: none;
 }
 
 textarea {
   resize: none;
 }
-
 </style>
