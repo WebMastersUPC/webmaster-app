@@ -36,13 +36,13 @@ export class DeliverableService{
         return response.data;
     }
 
-    async approveDeliverable(projectId, orderNumber) {
-        const response = await http.put(`/Projects/${projectId}/Deliverables/${orderNumber}/Approve`);
+    async approveDeliverable(projectId, deliverableId) {
+        const response = await http.put(`/Projects/${projectId}/Deliverables/${deliverableId}/Approve`);
         return response.data;
     }
 
-    async rejectDeliverable(projectId, orderNumber) {
-        const response = await http.put(`/Projects/${projectId}/Deliverables/${orderNumber}/Reject`);
+    async rejectDeliverable(projectId, deliverableId) {
+        const response = await http.put(`/Projects/${projectId}/Deliverables/${deliverableId}/Reject`);
         return response.data;
     }
 

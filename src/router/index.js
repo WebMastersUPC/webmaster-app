@@ -24,6 +24,8 @@ import PostulateProject from "../developer/postulate-project/pages/postulate-pro
 import SupportPage from "../shared/pages/support-page.vue";
 import DeliverablesDetailsCard from "../enterprise/deliverables-edit/components/deliverables-edit-card.vue";
 import DeliverableReview from "../enterprise/deliverables-enterprise/pages/review-deliverable.component.vue";
+import ApprovedDeliverable from "../enterprise/deliverables-states/pages/approved-deliverable.vue";
+import RejectedDeliverable from "../enterprise/deliverables-states/pages/rejected-deliverable.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -96,6 +98,16 @@ const router = createRouter({
                     path:'/Projects/:projectId/Deliverables/:deliverableId/review',
                     name:'review-deliverable',
                     component: DeliverableReview
+                },
+                {
+                    path:'/Projects/:projectId/Deliverables/:deliverableId/Approved',
+                    name:'approved-deliverable',
+                    component: ApprovedDeliverable
+                },
+                {
+                    path:'/Projects/:projectId/Deliverables/:deliverableId/Rejected',
+                    name:'rejected-deliverable',
+                    component: RejectedDeliverable
                 },
                 {
                     path: '/deliverables-list-developer',

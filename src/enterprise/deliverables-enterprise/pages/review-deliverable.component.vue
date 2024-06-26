@@ -12,7 +12,8 @@ export default {
     return {
       myDeliverable: null,
       showConfirmationDialog: false,
-      deliverableService: new DeliverableService()
+      deliverableService: new DeliverableService(),
+      action: null
     };
   },
   async created() {
@@ -27,6 +28,34 @@ export default {
       } catch (error) {
         console.error('Error fetching deliverable:', error);
       }
+    },
+    async approveDeliverable() {
+      const { projectId, deliverableId } = this.$route.params;
+      await this.deliverableService.approveDeliverable(projectId, deliverableId);
+      this.$router.push(`/Projects/${projectId}/Deliverables/${deliverableId}/Approved`);
+    },
+    async rejectDeliverable() {
+      const { projectId, deliverableId } = this.$route.params;
+      await this.deliverableService.rejectDeliverable(projectId, deliverableId);
+      this.$router.push(`/Projects/${projectId}/Deliverables/${deliverableId}/Rejected`);
+    },
+    handleApproval(action) {
+      console.log('handleApproval action:', action);
+      this.action = action;
+      this.showConfirmationDialog = true;
+    },
+    handleRejection(action) {
+      console.log('handleApproval action:', action);
+      this.action = action;
+      this.showConfirmationDialog = true;
+    },
+    async confirmAction() {
+      if (this.action === 'approve') {
+        await this.approveDeliverable();
+      } else if (this.action === 'reject') {
+        await this.rejectDeliverable();
+      }
+      this.showConfirmationDialog = false;
     }
   }
 };
@@ -34,10 +63,10 @@ export default {
 
 <template>
   <div :class="{ blur: showConfirmationDialog }">
-    <deliverable-card v-if="myDeliverable" :deliverable="myDeliverable" @approve-delivery="showConfirmationDialog = true"></deliverable-card>
+    <deliverable-card :deliverable="myDeliverable" @approve-deliverable="handleApproval" @reject-deliverable="handleRejection"></deliverable-card>
   </div>
   <div v-if="showConfirmationDialog" class="dialog-container">
-    <confirmation-dialog @cancel="showConfirmationDialog = false"></confirmation-dialog>
+    <confirmation-dialog :action="action" @confirm="confirmAction" @cancel="showConfirmationDialog = false"></confirmation-dialog>
   </div>
 </template>
 

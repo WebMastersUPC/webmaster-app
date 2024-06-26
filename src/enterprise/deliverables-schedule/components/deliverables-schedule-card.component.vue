@@ -34,10 +34,14 @@ export default {
 <template>
   <pv-card class="w-8 border-round-3xl shadow-4 card" aria-label="Deliverable Card">
     <template #header>
-      <div class="flex flex-row justify-content-center mt-4 -mb-4 gap-5 mx-4 overflow-hidden" aria-label="Deliverable Header">
+      <div class="flex flex-row justify-content-center mt-4 -mb-4 ml-4 flex-wrap" aria-label="Deliverable Header">
         <h2>{{ deliverable.title }}</h2>
-        <pv-button @click="openEditModal" icon="pi pi-pencil" class="icons" aria-label="Edit Button"></pv-button>
-        <pv-button @click="goToReviewDeliverable" icon="pi pi-eye" class="icons" aria-label="Review Button"></pv-button>
+
+        <div class="m-3 flex justify-content-between">
+          <pv-button @click="openEditModal" icon="pi pi-pencil" class="icons" aria-label="Edit Button"></pv-button>
+          <pv-button @click="goToReviewDeliverable" icon="pi pi-eye" class="icons" aria-label="Review Button"></pv-button>
+        </div>
+
       </div>
     </template>
 
