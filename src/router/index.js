@@ -91,8 +91,8 @@ const router = createRouter({
                 {
                     path: '/Projects/:projectId/Deliverables',
                     name: 'deliverable-list',
-                    component:DeliverablesListDeveloper
-                    //component: DeliverableList
+                    //component:DeliverablesListDeveloper
+                    component: DeliverableList
                 },
                 {
                   path:'/Projects/:projectId/Deliverables/:deliverableId',
