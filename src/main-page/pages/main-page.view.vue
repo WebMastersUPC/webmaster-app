@@ -9,7 +9,12 @@ export default {
   name: "main-page-view",
   components: {ToolbarFreelancer, ToolbarEnterprise, FooterWebmaster, HomePage},
   data() {
-    return {};
+    return {
+      user_type: null
+    };
+  },
+  created() {
+    this.user_type = localStorage.getItem('user type')
   }
 }
 </script>
@@ -18,7 +23,12 @@ export default {
 
   <div class="flex flex-column justify-content-between">
     <div>
-      <toolbar-freelancer/>
+      <div v-if="this.user_type ==='developers'">
+        <toolbar-freelancer/>
+      </div>
+      <div v-else>
+        <toolbar-enterprise/>
+      </div>
       <div class="p-container-fluid px-0">
           <div class="mt-3 w-full mt-3 mb-3">
             <router-view></router-view>
