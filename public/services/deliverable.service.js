@@ -46,8 +46,8 @@ export class DeliverableService{
         return response.data;
     }
 
-    async reviewDeliverable(projectId, orderNumber) {
-        const response = await http.get(`/Projects/${projectId}/Deliverables/${orderNumber}/Review`);
+    async reviewDeliverable(projectId, deliverableId) {
+        const response = await http.get(`/Projects/${projectId}/Deliverables/${deliverableId}/Review`);
         return response.data;
     }
 

@@ -21,17 +21,23 @@ export default {
     },
     openEditModal() {
       this.$emit('edit-deliverable', this.deliverable);
+    },
+    goToReviewDeliverable() {
+      const projectId = this.deliverable.projectID;
+      const deliverableId = this.deliverable.deliverable_id;
+      this.$router.push(`/Projects/${projectId}/Deliverables/${deliverableId}/Review`);
     }
   }
 };
 </script>
 
 <template>
-  <pv-card class="w-8 border-round-3xl shadow-4" aria-label="Deliverable Card">
+  <pv-card class="w-8 border-round-3xl shadow-4 card" aria-label="Deliverable Card">
     <template #header>
       <div class="flex flex-row justify-content-center mt-4 -mb-4 gap-5 mx-4 overflow-hidden" aria-label="Deliverable Header">
         <h2>{{ deliverable.title }}</h2>
         <pv-button @click="openEditModal" icon="pi pi-pencil" class="icons" aria-label="Edit Button"></pv-button>
+        <pv-button @click="goToReviewDeliverable" icon="pi pi-eye" class="icons" aria-label="Review Button"></pv-button>
       </div>
     </template>
 
@@ -52,7 +58,7 @@ export default {
             <div class="flex flex-column align-items-center relative-container ml-5">
               <span class="pi pi-stopwatch" style="font-size: 2rem"></span>
             </div>
-            <div class="flex flex-column align-items-center -mt-3 ml-5 ">
+            <div class="flex flex-column align-items-center -mt-3 ml-5">
               <p>{{ formatDate(deliverable.deadline) }}</p>
             </div>
           </div>
