@@ -27,7 +27,7 @@ export default {
     <template #header>
       <div class="flex flex-row justify-content-center mt-4 gap-5" aria-label="Header Section">
         <pv-avatar :image="developer.profileImage" class="mr-2 mt-2" size="xlarge" shape="circle" aria-label="Developer Avatar" />
-        <h3 @click="redirectToProfile" aria-label="Developer Name">{{developer.name}}</h3>
+        <h3 @click="redirectToProfile" aria-label="Developer Name">{{developer.firstName + " " + developer.lastName}} </h3>
       </div>
     </template>
     <template #title aria-label="Card Title">{{$t('developer-card-part1')}}</template>

@@ -20,10 +20,10 @@ export class HomeService{
     }
     //
     //
-    // getDeveloperList() {
-    //     return http.get('/developers');
-    // }
-    //
+   getDeveloperList() {
+       return http.get('/Profile/Developers');
+   }
+
     getDevInfoByID(id){
         return http.get(`Profile/Developers/${id}`)
     }
