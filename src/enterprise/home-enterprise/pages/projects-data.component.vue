@@ -28,22 +28,16 @@ export default {
 
   },
   methods:{
-    createProject(){
-      this.myProjects = this.projectsData.map(project => new ProjectEntity(
-          project.project_ID,
-          project.nameProject,
-          project.type,
-          project.descriptionProject,
-          project.languages,
-          project.frameworks,
-          project.budget,
-          project.methodologies,
-          project.enterprise_id,
-          project.applicants_id,
-          project.developer_id,
-          project.progress,
-          project.started
-      ));
+    createProject() {
+      this.myProjects = this.projectsData.map(project => new ProjectEntity({
+        project_ID: project.project_ID,
+        nameProject: project.nameProject,
+        enterprise_id: project.enterprise_id,
+        applicants_id: project.applicants_id,
+        developer_id: project.developer_id,
+        progress: project.progress,
+        started: project.started
+      }));
     },
     applicantHandler(data){
       let entity = { developer_id: data.numberApplicant };
