@@ -1,3 +1,126 @@
+<script>
+import {ProjectService} from "../../../../public/services/project.service.js";
+import {ProjectEntity} from "../../../shared/models/project.model.js";
+
+export default {
+  name:"create-project",
+  data() {
+    return {
+      uploadedImages: [],
+      showDialog: false,
+      isEditingTitle: false,
+      titleText: 'Plataforma de Comercio Electrónico Geekit',
+      isEditingDescription: false,
+      descriptionText: 'La Plataforma de Comercio Electrónico Geekit es un proyecto destinado a crear una experiencia de compra en línea excepcional para nuestra marca de ropa y accesorios para jóvenes apasionados por la cultura geek. La plataforma debe ofrecer una navegación intuitiva, una interfaz atractiva y funcionalidades que mejoren la experiencia del usuario, desde la búsqueda de productos hasta el proceso de compra y seguimiento de pedidos.',
+      isEditingBudget: false,
+      budgetText: 'El presupuesto asignado para este proyecto es de $50,000 USD, incluyendo el costo de desarrollo, pruebas, implementación y mantenimiento inicial durante los primeros seis meses.',
+      isEditingTechnologies: false,
+      editingLanguageIndex: null,
+      editingFrameworkIndex: null,
+      languages: ['HTML5', 'CSS3', 'JavaScript'],
+      newLanguage: '',
+      frameworks: ['React.js (Frontend)', 'Node.js (Backend)', 'Express.js (Backend)'],
+      newFramework: '',
+      isEditingMethodologies: false,
+      methodologies: [
+        'Recolección de Requisitos: Definición de requisitos del proyecto en una reunión inicial.',
+        'Desarrollo Iterativo: Metodología ágil con entregas incrementales para retroalimentación temprana.',
+        'Diseño de UI/UX: Creación de prototipos de interfaz centrados en usabilidad y estética.',
+        'Desarrollo Frontend y Backend: Implementación de frontend y backend con código limpio y modular.',
+        'Pruebas y Control de Calidad: Evaluación exhaustiva en todas las etapas para garantizar calidad.',
+        'Implementación y Despliegue: Lanzamiento en entorno de producción tras completar desarrollo y pruebas.',
+        'Mantenimiento y Soporte: Ofrecimiento de soporte continuo, actualizaciones y monitoreo post-lanzamiento.'
+      ],
+      newMethodology: '',
+      projectService: new ProjectService()
+    };
+  },
+  methods: {
+    onAdvancedUpload(event) {
+      this.$set(this.uploadedImages, this.uploadedImages.length, event.files[0]);
+      this.$nextTick(() => {
+        this.$refs.scrollPanel.refresh();
+      });
+    },
+    publishProject() {
+      let enterpriseId = localStorage.getItem('enterprise id')
+      try {
+        const projectData = new ProjectEntity({
+          nameProject: this.titleText,
+          descriptionProject: this.descriptionText,
+          languages: this.languages,
+          frameworks: this.frameworks,
+          budget: parseFloat(this.budgetText.replace(/[^0-9.-]+/g,"")), // Asegurarse de que el presupuesto sea un número
+          methodologies: this.methodologies,
+          enterprise_id: enterpriseId
+        });
+
+        this.projectService.createProject(projectData);
+        console.log('Proyecto publicado');
+        this.showDialog = false;
+      } catch (error) {
+        console.error('Error publicando el proyecto:', error);
+      }
+    },
+    toggleEditingTitle() {
+      this.isEditingTitle = !this.isEditingTitle;
+    },
+    toggleEditingDescription() {
+      this.isEditingDescription = !this.isEditingDescription;
+    },
+    toggleEditingBudget() {
+      this.isEditingBudget = !this.isEditingBudget;
+    },
+    toggleEditingTechnologies() {
+      this.isEditingTechnologies = !this.isEditingTechnologies;
+    },
+    addLanguage() {
+      if (this.newLanguage) {
+        this.languages.push(this.newLanguage);
+        this.newLanguage = '';
+      }
+    },
+    addFramework() {
+      if (this.newFramework) {
+        this.frameworks.push(this.newFramework);
+        this.newFramework = '';
+      }
+    },
+    startEditingLanguage(index) {
+      this.editingLanguageIndex = index;
+    },
+    finishEditingLanguage() {
+      if (this.languages[this.editingLanguageIndex].trim() === '') {
+        this.languages.splice(this.editingLanguageIndex, 1);
+      }
+      this.editingLanguageIndex = null;
+    },
+    startEditingFramework(index) {
+      this.editingFrameworkIndex = index;
+    },
+    finishEditingFramework() {
+      if (this.frameworks[this.editingFrameworkIndex].trim() === '') {
+        this.frameworks.splice(this.editingFrameworkIndex, 1);
+      }
+      this.editingFrameworkIndex = null;
+    },
+    toggleEditingMethodologies() {
+      this.isEditingMethodologies = !this.isEditingMethodologies;
+    },
+    addMethodology() {
+      if (this.newMethodology) {
+        this.methodologies.push(this.newMethodology);
+        this.newMethodology = '';
+      }
+    },
+    removeMethodology(index) {
+      this.methodologies.splice(index, 1);
+    },
+  },
+
+};
+</script>
+
 <template>
   <div class="p-grid p-justify-center p-align-center flex-container m-2" >
     <pv-card aria-label="Create Project Form" class="card-flex form-container">
@@ -160,112 +283,8 @@
 
 </template>
 
-<script>
-export default {
-  name:"create-project",
-  data() {
-    return {
-      uploadedImages: [],
-      showDialog: false,
-      isEditingTitle: false,
-      titleText: 'Plataforma de Comercio Electrónico Geekit',
-      isEditingDescription: false,
-      descriptionText: 'La Plataforma de Comercio Electrónico Geekit es un proyecto destinado a crear una experiencia de compra en línea excepcional para nuestra marca de ropa y accesorios para jóvenes apasionados por la cultura geek. La plataforma debe ofrecer una navegación intuitiva, una interfaz atractiva y funcionalidades que mejoren la experiencia del usuario, desde la búsqueda de productos hasta el proceso de compra y seguimiento de pedidos.',
-      isEditingBudget: false,
-      budgetText: 'El presupuesto asignado para este proyecto es de $50,000 USD, incluyendo el costo de desarrollo, pruebas, implementación y mantenimiento inicial durante los primeros seis meses.',
-      isEditingTechnologies: false,
-      editingLanguageIndex: null,
-      editingFrameworkIndex: null,
-      languages: ['HTML5', 'CSS3', 'JavaScript'],
-      newLanguage: '',
-      frameworks: ['React.js (Frontend)', 'Node.js (Backend)', 'Express.js (Backend)'],
-      newFramework: '',
-      isEditingMethodologies: false,
-      methodologies: [
-        'Recolección de Requisitos: Definición de requisitos del proyecto en una reunión inicial.',
-        'Desarrollo Iterativo: Metodología ágil con entregas incrementales para retroalimentación temprana.',
-        'Diseño de UI/UX: Creación de prototipos de interfaz centrados en usabilidad y estética.',
-        'Desarrollo Frontend y Backend: Implementación de frontend y backend con código limpio y modular.',
-        'Pruebas y Control de Calidad: Evaluación exhaustiva en todas las etapas para garantizar calidad.',
-        'Implementación y Despliegue: Lanzamiento en entorno de producción tras completar desarrollo y pruebas.',
-        'Mantenimiento y Soporte: Ofrecimiento de soporte continuo, actualizaciones y monitoreo post-lanzamiento.'
-      ],
-      newMethodology: '',
-    };
-  },
-  methods: {
-    onAdvancedUpload(event) {
-      this.$set(this.uploadedImages, this.uploadedImages.length, event.files[0]);
-      this.$nextTick(() => {
-        this.$refs.scrollPanel.refresh();
-      });
-    },
-    publishProject() {
-      console.log('Proyecto publicado');
-      this.showDialog = false;
-    },
-    toggleEditingTitle() {
-      this.isEditingTitle = !this.isEditingTitle;
-    },
-    toggleEditingDescription() {
-      this.isEditingDescription = !this.isEditingDescription;
-    },
-    toggleEditingBudget() {
-      this.isEditingBudget = !this.isEditingBudget;
-    },
-    toggleEditingTechnologies() {
-      this.isEditingTechnologies = !this.isEditingTechnologies;
-    },
-    addLanguage() {
-      if (this.newLanguage) {
-        this.languages.push(this.newLanguage);
-        this.newLanguage = '';
-      }
-    },
-    addFramework() {
-      if (this.newFramework) {
-        this.frameworks.push(this.newFramework);
-        this.newFramework = '';
-      }
-    },
-    startEditingLanguage(index) {
-      this.editingLanguageIndex = index;
-    },
-    finishEditingLanguage() {
-      if (this.languages[this.editingLanguageIndex].trim() === '') {
-        this.languages.splice(this.editingLanguageIndex, 1);
-      }
-      this.editingLanguageIndex = null;
-    },
-    startEditingFramework(index) {
-      this.editingFrameworkIndex = index;
-    },
-    finishEditingFramework() {
-      if (this.frameworks[this.editingFrameworkIndex].trim() === '') {
-        this.frameworks.splice(this.editingFrameworkIndex, 1);
-      }
-      this.editingFrameworkIndex = null;
-    },
-    toggleEditingMethodologies() {
-      this.isEditingMethodologies = !this.isEditingMethodologies;
-    },
-    addMethodology() {
-      if (this.newMethodology) {
-        this.methodologies.push(this.newMethodology);
-        this.newMethodology = '';
-      }
-    },
-    removeMethodology(index) {
-      this.methodologies.splice(index, 1);
-    },
-  },
-
-};
-</script>
 
 <style>
-
-
 .flex-container {
   display: flex;
   justify-content: center;
@@ -358,8 +377,4 @@ hr {
 .p-grid.p-justify-center.p-align-center {
   margin-bottom: 50px;
 }
-
-
-
-
 </style>
