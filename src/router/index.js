@@ -89,43 +89,42 @@ const router = createRouter({
                     component: CreateProject
                 },
                 {
-                    path: '/Projects/:projectId/Deliverables',
+                    path: '/projects/:projectId/Deliverables',
                     name: 'deliverable-list',
-                    //component:DeliverablesListDeveloper
                     component: DeliverableList
                 },
                 {
-                  path:'/Projects/:projectId/Deliverables/:deliverableId',
+                    path: '/projects/:projectId/Deliverables',
+                    name: 'deliverables-list-developer',
+                    component:DeliverablesListDeveloper
+                },
+                {
+                  path:'/projects/:projectId/Deliverables/:deliverableId',
                   name: 'deliverable-edit',
                   component:DeliverablesDetailsCard
                 },
                 {
-                    path:'/Projects/:projectId/Deliverables/:deliverableId/review',
+                    path:'/projects/:projectId/Deliverables/:deliverableId/review',
                     name:'review-deliverable',
                     component: DeliverableReview
                 },
                 {
-                    path:'/Projects/:projectId/Deliverables/:deliverableId/Approved',
+                    path:'/projects/:projectId/Deliverables/:deliverableId/Approved',
                     name:'approved-deliverable',
                     component: ApprovedDeliverable
                 },
                 {
-                    path:'/Projects/:projectId/Deliverables/:deliverableId/Rejected',
+                    path:'/projects/:projectId/Deliverables/:deliverableId/Rejected',
                     name:'rejected-deliverable',
                     component: RejectedDeliverable
                 },
                 {
-                    path: '/Projects/:projectId/Deliverables',
-                    name: 'deliverables-list-developer',
-                    component: DeliverablesListDeveloper
-                },
-                {
-                    path:'/Projects/:projectId/Deliverables/:deliverableId/Create',
+                    path:'/projects/:projectId/Deliverables/:deliverableId/Create',
                     name:'create-deliverable',
                     component:CreateDeliverable
                 },
                 {
-                    path:'/Projects/:projectId/Deliverables/:deliverableId/Upload',
+                    path:'/projects/:projectId/Deliverables/:deliverableId/Upload',
                     name:'deliverable-send',
                     component:SendedDeliverable
                 },

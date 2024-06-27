@@ -36,8 +36,8 @@ export default {
 </script>
 <template>
 
-  <div class="flex justify-content-center m-8">
-    <div class="card-style  p-6 ">
+  <div class="flex justify-content-center">
+    <div class="card-style p-6 mt-6 mb-6">
       <h1 class="flex align-items-center justify-content-center">{{ $t('Editar entregable') }}</h1>
       <div v-if="deliverable" class="flex flex-column">
         <pv-textarea v-model="deliverable.title" :placeholder="$t('deliverable-title-placeholder')" class="mb-3 pr-5" maxlength="50" aria-label="Title Textarea"></pv-textarea>
@@ -56,15 +56,12 @@ export default {
 </template>
 
 <style scoped>
-.box{
-  border:1px solid red;
-}
+
 .card-style {
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  padding: 20px;
-  width:70%;
+  width:60%;
 }
 
 textarea {

@@ -56,7 +56,7 @@ export default {
 </script>
 
 <template>
-  <div class="text-white-alpha-90 flex flex-column align-items-center justify-content-center">
+  <div class="text-white-alpha-90 flex flex-column">
     <p class="text-4xl text-center font-bold">{{ $t('deliverable-list-part1') }}</p>
     <div class="grid col-fixed justify-content-center gap-5 mt-4 mb-4">
       <deliverable-card v-for="deliverable in deliverables"

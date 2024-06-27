@@ -102,7 +102,7 @@ export default {
 </script>
 
 <template>
-  <div class="text-white-alpha-90 flex flex-column align-items-center justify-content-center">
+  <div class="text-white-alpha-90 flex flex-column">
     <p class="text-4xl text-center font-bold">{{ $t('deliverable-list-part1') }}</p>
     <div class="grid col-fixed justify-content-center gap-5 mt-4 mb-4">
       <deliverable-card v-for="deliverable in deliverables"
@@ -112,7 +112,7 @@ export default {
     </div>
   </div>
 
-  <pv-modal v-model:visible="visible" modal :header="isEditing ? $t('deliverable-list-part7') : $t('deliverable-list-part3')" :breakpoints="{ '1199px': '50%', '575px': '90vw', '700px':'50%','1900px': '50%'}" aria-label="Add/Edit Deliverable Modal">
+  <pv-modal v-model:visible="visible" modal :header="isEditing ? $t('deliverable-list-part7') : $t('deliverable-list-part3')" :breakpoints="{ '1199px': '50%', '500px': '50%', '700px':'50%','1900px': '50%'}" aria-label="Add/Edit Deliverable Modal">
     <div class="flex flex-column align-content-center justify-content-center" aria-label="Modal Content">
       <div class="flex flex-row align-items-center justify-content-center flex-wrap" aria-label="Input Fields">
         <div class="flex flex-column w-10" aria-label="Deliverable Name and Description">

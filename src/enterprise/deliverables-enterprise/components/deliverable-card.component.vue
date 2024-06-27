@@ -50,10 +50,9 @@ export default {
         <div class="flex flex-column gap-2 mb-4" aria-label="File Links">
           <a :href="deliverable.file" target="_blank">{{ $t('delivery-card-part5') }}</a>
         </div>
-
-        <div class="flex m-4">
-          <pv-button :label="$t('delivery-card-part7')" @click="rejectDeliverable" class=" text-black-alpha-90 border-black-alpha-90 border-round-3xl text-xl mr-8 bg-red-400" aria-label="Reject deliverable button" ></pv-button>
-          <pv-button :label="$t('delivery-card-part6')" @click="approveDeliverable" class="text-black-alpha-90 border-black-alpha-90 border-round-3xl text-xl ml-8 bg-primary-400" aria-label="Approve deliverable button"></pv-button>
+        <div class="flex flex-row justify-content-center gap-4" aria-label="Action Buttons">
+          <pv-button :label="$t('delivery-card-part7')" @click="rejectDeliverable" class=" text-black-alpha-90 border-black-alpha-90 border-round-3xl text-xl bg-red-400" aria-label="Reject deliverable button" ></pv-button>
+          <pv-button :label="$t('delivery-card-part6')" @click="approveDeliverable" class="text-black-alpha-90 border-black-alpha-90 border-round-3xl text-xl bg-primary-400" aria-label="Approve deliverable button"></pv-button>
         </div>
 
       </div>
@@ -63,8 +62,8 @@ export default {
 
 <style scoped>
 .card{
-  width: 100%;
+  width: 75%;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto 9rem;
 }
 </style>

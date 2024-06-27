@@ -27,6 +27,7 @@ export default {
 </script>
 
 <template>
+
   <pv-card class="w-8 border-round-3xl shadow-4 card" aria-label="Deliverable Card">
     <template #header>
       <div class="flex flex-row justify-content-center mt-4 -mb-4 ml-4 flex-wrap" aria-label="Deliverable Header">
@@ -41,7 +42,7 @@ export default {
     </template>
     <template #content>
       <div class="flex flex-row justify-content-between" aria-label="Deliverable Content">
-        <div class="text-container overflow-hidden flex flex-column w-10 h-5" aria-label="Description Content">
+        <div class="text-container flex flex-column w-10 h-5" aria-label="Description Content">
           <p>{{ deliverable.description }}</p>
         </div>
         <div class='flex flex-column ' aria-label="Additional Information">
@@ -49,16 +50,19 @@ export default {
             <div class="flex flex-column align-items-center relative-container ml-5">
               <span class="pi pi-stopwatch" style="font-size: 2rem"></span>
             </div>
-            <div class="flex flex-column align-items-center -mt-3 ml-5">
+            <div class="flex flex-column align-items-center -mt-3 ml-5 mb-2">
               <p>{{ formatDate(deliverable.deadlineDateValue) }}</p>
-              <p>{{ (deliverable.deadlineTime) }}</p>
+              <p class="-mt-3">{{ (deliverable.deadlineTime) }}</p>
             </div>
           </div>
-          <div aria-label="Status Information" class='flex flex-column'>
-            <div class="flex flex-column align-items-center ml-5">
-              <span class="pi pi-times-circle" style="font-size: 2rem"></span>
+          <div aria-label="Status Information" class='flex flex-column '>
+            <div class="flex flex-column align-items-center -mt-2 ml-5 ">
+              <span v-if="deliverable.state === 'Aprobado'" class="pi pi-check-circle" style="font-size: 2rem; color: green;"></span>
+              <span v-else-if="deliverable.state === 'En espera de revisión'" class="pi pi-info-circle" style="font-size: 2rem; color: purple;"></span>
+              <span v-else-if="deliverable.state === 'Rechazado'" class="pi pi-times-circle" style="font-size: 2rem; color: red;"></span>
+              <span v-else class="pi pi-chevron-circle-down" style="font-size: 2rem"></span>
             </div>
-            <div class="flex flex-column align-items-center -mt-3 ml-5">
+            <div class="flex flex-column align-items-center card text-center -mt-3 ml-5">
               <p>{{ deliverable.state }}</p>
             </div>
           </div>
@@ -78,4 +82,10 @@ export default {
 textarea {
   resize: none;
 }
+
+.text-container {
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
 </style>
