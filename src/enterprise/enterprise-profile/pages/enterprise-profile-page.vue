@@ -16,17 +16,7 @@ export default {
     }
   },
   created(){
-    let id = localStorage.getItem('enterprise id');
-
-    if (!id) {
-      id = '1';
-      localStorage.setItem('enterprise id', id);
-    }
-
-
-    const url = `http://localhost:3000/enterprises/${id}`;
-    console.log("URL", url);
-
+    let id = this.$route.params.id;
 
     this.homeService.getEnterpriseInfoByID(id).then((response)=> {
       this.enterpriseProfile = new CompanyEntity(
@@ -34,12 +24,13 @@ export default {
           response.data.profile_img_url,
           response.data.description,
           response.data.country,
-          response.data.RUC,
+          response.data.ruc,
           response.data.phone,
           response.data.website,
           response.data.sector,
           response.data.User
       );
+      console.log(this.enterpriseProfile);
     }).catch((error) => {
       console.error("Error en la solicitud:", error);
     });
@@ -51,7 +42,7 @@ export default {
 </script>
 
 <template>
-  <div class="flex justify-content-evenly flex-wrap mb-5" v-if="developerRepository ">
+  <div class="flex justify-content-evenly flex-wrap mb-5" v-if="enterpriseProfile ">
     <enterprise-profile-card :enterprise="enterpriseProfile"/>
     <!--<enterprise-project-card :projects="developerRepository"/>-->
   </div>
