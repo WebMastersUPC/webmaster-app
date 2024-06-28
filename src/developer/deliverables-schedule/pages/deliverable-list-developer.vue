@@ -5,14 +5,15 @@ import {DeliverableEntity} from "../../../shared/models/deliverable.model.js";
 
 export default {
   name: "deliverables-list",
+  props: ['projectId'],
   components: {
     'deliverable-card': DeliverablesScheduleCard
   },
   data() {
     return {
       deliverables: [],
-      //projectId: this.$route.params.projectId,
-      projectId: 1,
+      projectId: this.$route.params.projectId,
+      //projectId: 1,
       deliverableService: new DeliverableService(),
       visible: false,
       editableDeliverable: {
