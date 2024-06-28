@@ -58,7 +58,7 @@ export default {
           <pv-button label="Explorar Proyecto" text plain class="responsive-button justify-content-center"/>
         </router-link>
         <router-link to="/login">
-          <pv-button label="" text plain class="responsive-button justify-content-center" @click="logOut">
+          <pv-button label="" text plain class="responsive-button justify-content-center">
             <i class="pi pi-sign-out" style="font-size: 1.4rem"> <br> <span class="sal" >Salir</span> </i>
           </pv-button>
         </router-link>
@@ -80,17 +80,17 @@ export default {
             </pv-button>
           </div>
           <pv-sidebar v-model:visible="visibleRight" header="Options" position="right" class="flex flex-column gap-5">
-            <router-link to="" class="p-mb-2">
+            <router-link :to="`/main/${type}/${id}`" class="p-mb-2">
               <pv-button text plain class="w-full">
                 <h3>{{$t('toolbar-freelancer-option1')}}</h3>
               </pv-button>
             </router-link>
-            <router-link to="" class="p-mb-2">
+            <router-link to="/message" class="p-mb-2">
               <pv-button text plain class="w-full">
                 <h3>{{$t('toolbar-freelancer-option2')}}</h3>
               </pv-button>
             </router-link>
-            <router-link to="" class="p-mb-2">
+            <router-link to="/search-project" class="p-mb-2">
               <pv-button text plain class="w-full">
                 <h3>{{$t('toolbar-freelancer-option3')}}</h3>
               </pv-button>
