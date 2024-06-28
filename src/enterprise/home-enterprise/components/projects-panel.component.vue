@@ -169,6 +169,15 @@ span{
   height: auto;
   max-height: 680px;
 }
+
+:deep(div.p-card-content){
+  display: block;
+  justify-content: center;
+  overflow: auto;
+  height: auto;
+  max-height: 680px;
+}
+
 .project{
   background-color:#D9D9D9;
   border-radius: 15px;
