@@ -28,10 +28,10 @@ export default {
       if(this.developer){
         this.categoryTexts = [
           this.developer.country,
-          this.developer.cellphone,
-          this.developer.email,
-          this.developer.completedProjects,
-          this.developer.skills
+          this.developer.phone,
+          this.developer.user.email,
+          this.developer.completed_projects,
+          this.developer.specialties
         ];
         console.log(this.categoryTexts);
         console.log(this.developer);
@@ -46,9 +46,9 @@ export default {
   <pv-card aria-label="Developer Card">
     <template #title>
       <div class="flex align-items-center gap-4" aria-label="Developer Information">
-        <pv-avatar :image="developer.profileImage" class="mr-2" size="xlarge" shape="circle" aria-label="Developer Avatar" />
+        <pv-avatar :image="developer.profile_img_url" class="mr-2" size="xlarge" shape="circle" aria-label="Developer Avatar" />
         <div aria-label="Developer Name and Rating">
-          <p>{{developer.name}}</p>
+          <p>{{developer.firstName + developer.lastName}}</p>
           <pv-rating v-model="developer.rating" readonly :cancel="false" aria-label="Developer Rating" />
         </div>
         <router-link to="/message" aria-label="Send Message Link">

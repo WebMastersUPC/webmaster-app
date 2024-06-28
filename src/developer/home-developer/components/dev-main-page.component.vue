@@ -12,7 +12,9 @@ export default {
       categoryTexts: [],
       categories: ['categories.country', 'categories.phone', 'categories.email', 'categories.projectsFinished', 'categories.specialties'],
       value: 0,
-      homeService: new HomeService()
+      homeService: new HomeService(),
+      displayDialog: false,
+      newImgUrl: ''
     };
   },
   methods: {
@@ -39,12 +41,31 @@ export default {
           description: this.mainText,
           country: this.categoryTexts[0],
           phone: this.categoryTexts[1],
-          specialties: this.categoryTexts[4],
-          profile_img_url: this.developer.profile_img_url
+          specialties: this.categoryTexts[4]
         }
         this.homeService.updateDevInfo(this.developer.id, updatedInfo)
       }
       this.isEditingCategories[index] = !this.isEditingCategories[index];
+    },
+    updateImg(){
+      if(this.newImgUrl === ''){
+        return;
+      }
+      let img ={
+        profile_img_url: this.newImgUrl
+      }
+      this.newImgUrl = '';
+      this.homeService.updateDevProfileImg(this.developer.id, img)
+          .then(() => {
+            this.displayDialog = false;
+            window.location.reload();
+          });
+    },
+    openDialog(){
+      this.displayDialog = true;
+    },
+    closeDialog(){
+      this.displayDialog = false;
     }
   },
   components: {},
@@ -74,7 +95,7 @@ export default {
   <pv-card aria-label="Developer Information">
     <template #title>
       <pv-avatar :image="developer.profile_img_url" class="mr-2" size="xlarge" shape="circle"
-                 aria-label="Developer Avatar"/>
+                 aria-label="Developer Avatar" @click="openDialog"/>
       <div aria-label="Developer Details">
         <p>{{ developer.name }}</p>
         <!--<pv-rating v-model="value" readonly :cancel="false" aria-label="Developer Rating"/>-->
@@ -113,6 +134,12 @@ export default {
     </template>
   </pv-card>
 
+  <pv-modal  v-model:visible="this.displayDialog" modal header="Update Image URL" >
+    <p>Enter the new image URL:</p>
+    <input type="text" v-model="newImgUrl" />
+    <pv-button label="Accept" @click="updateImg" />
+    <pv-button label="Cancel" @click="closeDialog" />
+  </pv-modal>
 
 </template>
 

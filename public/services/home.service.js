@@ -36,4 +36,12 @@ export class HomeService{
         return http.put(`Profile/Enterprises/${id}`, data)
     }
 
+    updateDevProfileImg(id, data){
+        return http.put(`Profile/Developers/${id}/img`, data)
+    }
+
+    updateEnterpriseProfileImg(id, data){
+        return http.put(`Profile/Enterprises/${id}/img`, data)
+    }
+
 }
