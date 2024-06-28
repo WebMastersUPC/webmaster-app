@@ -1,10 +1,14 @@
 ﻿import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
-const http = axios.create({
-    baseURL: 'http://localhost:5127/api/v1',
-});
+const token = localStorage.getItem('token');
 
+const http = axios.create({
+    baseURL: 'https://webmasterapi.azurewebsites.net/api/v1',
+    headers: {
+        'Authorization': `Bearer ${token}`
+    }
+});
 export default {
     async createMessage(message) {
         try {
