@@ -15,9 +15,9 @@ export default {
     };
   },
   methods: {
-    async openPosition(project_ID) {
-        this.$router.push(`/${project_ID}/deliverables-list-developer`);
-      }
+    async goToDeliverablesList(projectId) {
+      this.$router.push(`/projects/developers/${projectId}/Deliverables`);
+    },
   },
   props: {
     projects: {
@@ -39,7 +39,7 @@ export default {
     <template #content>
       <hr>
       <div class="project-list" v-for="project in projects">
-        <div class="project" @click="openPosition(project.project_ID)">
+        <div class="project" @click="goToDeliverablesList(project.project_ID)">
           <h4>{{ project.nameProject }}</h4>
           <p class="subtitle tipo-proyecto">{{ project.type }}</p>
           <pv-progressbar :value="project.projectProgressBar"></pv-progressbar>

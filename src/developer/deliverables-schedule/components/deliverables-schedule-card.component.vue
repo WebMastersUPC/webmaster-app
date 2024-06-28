@@ -63,7 +63,20 @@ export default {
               <span v-else class="pi pi-chevron-circle-down" style="font-size: 2rem"></span>
             </div>
             <div class="flex flex-column align-items-center card text-center -mt-3 ml-5">
-              <p>{{ deliverable.state }}</p>
+              <span v-if="deliverable.state === 'Aprobado'" >
+                <br>
+                {{ $t('approved') }}
+              </span>
+              <span v-else-if="deliverable.state === 'En espera de revisión'" >
+                <br>{{ $t('pending') }}
+              </span>
+              <span v-else-if="deliverable.state === 'Rechazado'">
+                <br>{{ $t('rejected') }}
+              </span>
+              <span v-else>
+                <br>{{ $t('waiting') }}
+              </span>
+
             </div>
           </div>
         </div>

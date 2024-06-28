@@ -5,6 +5,7 @@ import {DeliverableEntity} from "../../../shared/models/deliverable.model.js";
 
 export default {
   name: "deliverables-list",
+  props: ['projectId'],
   components: {
     'deliverable-card': DeliverablesScheduleCard
   },

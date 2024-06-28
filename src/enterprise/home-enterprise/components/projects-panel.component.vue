@@ -49,6 +49,10 @@ export default {
       this.$emit("chooseDeveloper", {numberApplicant: applicant_id , numberProjectId: this.myProject})
     },
 
+    goToDeliverablesList(projectId) {
+      this.$router.push(`/projects/${projectId}/Deliverables`);
+    },
+
     goToDevProfile(applicant) {
       console.log(`go to dev profile, id: ${applicant}`);
     },
@@ -89,7 +93,7 @@ export default {
       <hr>
       <template class="project-list" v-for="project in projects">
         <div class="project">
-          <h4>{{project.nameProject}}</h4>
+          <h4 @click="goToDeliverablesList(project.project_ID)"> {{project.nameProject}}</h4>
           <p class="subtitle tipo-proyecto">{{project.stateProject}}</p>
           <p class="postulantes"  v-if="!project.started" @click="openPosition('center', project.started, project.applicants_id, project.project_ID)">{{ $t('projects-panel-enterprise-part2') }}: {{project.applicants_id.length}}</p>
           <pv-progressbar v-else :value="project.projectProgressBar"></pv-progressbar>

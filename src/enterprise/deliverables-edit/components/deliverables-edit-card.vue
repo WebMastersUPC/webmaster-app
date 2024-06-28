@@ -38,12 +38,12 @@ export default {
 
   <div class="flex justify-content-center">
     <div class="card-style p-6 mt-6 mb-6">
-      <h1 class="flex align-items-center justify-content-center">{{ $t('Editar entregable') }}</h1>
+      <h1 class="flex align-items-center justify-content-center">{{ $t('Edit deliverable') }}</h1>
       <div v-if="deliverable" class="flex flex-column">
-        <pv-textarea v-model="deliverable.title" :placeholder="$t('deliverable-title-placeholder')" class="mb-3 pr-5" maxlength="50" aria-label="Title Textarea"></pv-textarea>
-        <pv-textarea v-model="deliverable.description" :placeholder="$t('deliverable-description-placeholder')" class="mb-3" aria-label="Description Textarea"></pv-textarea>
-        <pv-textarea type="datetime-local" v-model="deliverable.deadlineDateValue" :placeholder="$t('deliverable-deadline-placeholder')" class="mb-3" aria-label="Deadline Input"></pv-textarea>
-        <pv-textarea type="datetime-local" v-model="deliverable.deadlineTime" :placeholder="$t('deliverable-deadline-placeholder')" class="mb-3" aria-label="Deadline Input"></pv-textarea>
+        <pv-textarea v-model="deliverable.title" :placeholder="$t('deliverable-list-part4')" class="mb-3 pr-5" maxlength="50" aria-label="Title Textarea"></pv-textarea>
+        <pv-textarea v-model="deliverable.description" :placeholder="$t('deliverable-list-part5')" class="mb-3" aria-label="Description Textarea"></pv-textarea>
+        <pv-textarea type="datetime-local" v-model="deliverable.deadlineDateValue" :placeholder="$t('deliverable-list-part9')" class="mb-3" aria-label="Deadline Input"></pv-textarea>
+        <pv-textarea type="datetime-local" v-model="deliverable.deadlineTime" :placeholder="$t('deliverable-list-part10')" class="mb-3" aria-label="Deadline Input"></pv-textarea>
 
         <div class="flex justify-content-center">
           <pv-button @click="updateDeliverable" class="bg-white text-black-alpha-90 border-black-alpha-90 border-round-3xl text-xl" aria-label="Save Button">{{ $t('Guardar') }}</pv-button>
