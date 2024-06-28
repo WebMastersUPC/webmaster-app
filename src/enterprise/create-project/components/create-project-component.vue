@@ -162,7 +162,7 @@ export default {
       this.descriptionText = this.initialProjectData.descriptionProject;
       this.languages = [...this.initialProjectData.languages];
       this.frameworks = [...this.initialProjectData.frameworks];
-      this.budgetAmount =[...this.initialProjectData.budget];
+      this.budgetAmount = this.initialProjectData.budget;
       this.budgetText = this.initialProjectData.budgetDescription;
       this.methodologies = [...this.initialProjectData.methodologies];
       this.isEditingProject = false;
