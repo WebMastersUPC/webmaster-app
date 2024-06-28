@@ -13,6 +13,13 @@
       "password": "empresa2",
       "email": "empresa2@upc",
       "accountType": 0
+    },
+    {
+      "id": 10,
+      "username": "dev1",
+      "password": "dev1",
+      "email": "dev1@upc",
+      "accountType": 1
     }
   ],
   "enterprises": [
@@ -91,7 +98,7 @@
   ],
   "developers": [
     {
-      "id": "1",
+      "id": "1c",
       "accountType": 1,
       "name": "Luisa Montes de Oca",
       "description": "Desarrolladora Front-end apasionada por la creación de interfaces de usuario intuitivas y atractivas. Especializada en HTML, CSS y JavaScript, se destaca en la implementación de diseños creativos y responsivos. Luisa siempre busca mejorar la experiencia del usuario y está al tanto de las últimas tendencias en diseño web.",

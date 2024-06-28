@@ -52,13 +52,17 @@ const router = createRouter({
             children: [
                 {
                   path: '/main/developers/:id',
-                    component:HomePageDeveloper,
+                  component:HomePageDeveloper,
                   name: 'main-developer'
                 },
                 {
                     path: '/main/enterprises/:id',
                     component: HomePage,
                     name: 'main-enterprise'
+                },
+                {
+                    path: '/main/developers/:id',
+                    component:HomePageDeveloper,
                 },
                 {
                     path: '/search-project',
