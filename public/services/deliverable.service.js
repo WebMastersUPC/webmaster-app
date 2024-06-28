@@ -3,7 +3,10 @@ import axios from 'axios';
 const token = localStorage.getItem('token');
 
 const http = axios.create({
-    baseURL: 'https://webmasterapi.azurewebsites.net/api/v1'
+    baseURL: 'https://webmasterapi.azurewebsites.net/api/v1',
+    headers: {
+        'Authorization': `Bearer ${token}`
+    }
 });
 export class DeliverableService{
 
