@@ -29,7 +29,7 @@ export default {
   methods:{
     createUser(){
       return this.myDev = new DeveloperEntity(
-          this.developer.id,
+          this.developer.user_id,
           this.developer.firstName,
           this.developer.lastName,
           this.developer.description,

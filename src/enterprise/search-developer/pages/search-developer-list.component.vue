@@ -1,7 +1,7 @@
 <script>
 import DeveloperCardComponent from "../components/developer-card.component.vue";
 import Paginator from "primevue/paginator";
-import {AuthService} from "../../../../public/services/auth.service.js";
+import {HomeService} from "../../../../public/services/home.service.js";
 
 export default{
   name: "search-developer-list",
@@ -14,7 +14,7 @@ export default{
       developers: [],
       first: 0,
       itemsPerPage: 5,
-      authService: new AuthService()
+      homeService: new HomeService()
     }
   },
   computed: {
@@ -75,9 +75,8 @@ export default{
       //     description: "Pedro es un desarrollador móvil con más de 6 años de experiencia en la creación de aplicaciones multiplataforma. Especializado en tecnologías como Xamarin, Flutter y Firebase, ha desarrollado aplicaciones para una variedad de industrias, desde la salud hasta la educación. Pedro se destaca por su capacidad para diseñar interfaces intuitivas y su enfoque en la entrega de experiencias de usuario de alta calidad. Además de su experiencia técnica, también es un solucionador de problemas creativo y un colaborador comprometido."
       //   }
       // ]
-    this.authService.getDeveloperList().then((response) => {
+    this.homeService.getDeveloperList().then((response) => {
       this.developers = response.data;
-      console.log('a',this.developers);
     });
   },
   methods: {

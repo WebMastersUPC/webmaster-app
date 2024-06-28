@@ -20,10 +20,10 @@ export class HomeService{
     }
     //
     //
-    // getDeveloperList() {
-    //     return http.get('/developers');
-    // }
-    //
+   getDeveloperList() {
+       return http.get('/Profile/Developers');
+   }
+
     getDevInfoByID(id){
         return http.get(`Profile/Developers/${id}`)
     }
@@ -32,6 +32,22 @@ export class HomeService{
     }
     getEnterpriseInfoByEnterpriseId(enterprise_id){
         return http.get(`Profile/Profile/Enterprises/${enterprise_id}`)
+    }
+
+    updateDevInfo(id, data){
+        return http.put(`Profile/Developers/${id}`, data)
+    }
+
+    updateEnterpriseInfo(id, data){
+        return http.put(`Profile/Enterprises/${id}`, data)
+    }
+
+    updateDevProfileImg(id, data){
+        return http.put(`Profile/Developers/${id}/img`, data)
+    }
+
+    updateEnterpriseProfileImg(id, data){
+        return http.put(`Profile/Enterprises/${id}/img`, data)
     }
 
 }

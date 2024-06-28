@@ -1,102 +1,127 @@
+<template>
+  <div class="support-details">
+    <pv-floatlabel>
+      <pv-inputText id="title" v-model="title" />
+      <label for="title">Title</label>
+    </pv-floatlabel>
+    <div class="card flex" aria-label="Dropdown for Problem Type">
+      <pv-dropDown v-model="selectedProblem" :options="problems" optionLabel="name" placeholder="Type of problem" class="w-full md:w-14rem" />
+    </div>
+    <pv-floatlabel>
+      <pv-textarea v-model="description" rows="5" />
+      <label for="description">Description</label>
+    </pv-floatlabel>
+
+    <div class="card" id="upload">
+      <label for="file-input" id="upload-button">
+        <i class="pi pi-file-plus"></i>
+        <span class="ml-2">Upload File</span>
+        <input type="file" id="file-input" @change="handleFileChange" style="display: none;" />
+      </label>
+      <hr>
+      <ul>
+        <li v-for="(file, index) in files" :key="index">
+          {{ file.name }} ({{ file.size }} bytes)
+        </li>
+      </ul>
+    </div>
+    <button @click="submitForm">Submit Request</button>
+  </div>
+</template>
+
 <script>
-import SupportService from "../../../public/services/support.service.js";
+import supportService from '../../../public/services/support.service';
+
 export default {
   name: "support-form",
   data() {
     return {
-      title: '',
-      description: '',
       selectedProblem: null,
       problems: [
-        { name: 'Error type1', code: '404' },
-        { name: 'Error type2', code: '404' },
-        { name: 'Error type3', code: '404' },
-        { name: 'Error type4', code: '404' },
-        { name: 'Error type5', code: '404' },
+        { name: 'Not Found', code: '404' },
+        { name: 'Unauthorized', code: '401' },
+        { name: 'Forbidden', code: '403' },
+        { name: 'Bad Request', code: '400' },
+        { name: 'Internal Server Error', code: '500' },
+        { name: 'Service Unavailable', code: '503' },
+        { name: 'Gateway Timeout', code: '504' },
+        { name: 'Conflict', code: '409' },
+        { name: 'Unsupported Media Type', code: '415' },
       ],
+      title: '',
+      description: '',
+      status: 'open',
       files: []
     };
   },
   methods: {
     handleFileChange(event) {
-      this.files = [...this.files, ...event.target.files];
-      console.log(this.files);
+      this.files = Array.from(event.target.files);
     },
-    async submitSupportRequest() {
-      const supportRequest = {
-        title: this.title,
-        description: this.description,
-        problemType: this.selectedProblem ? this.selectedProblem.code : '',
-        files: this.files
-      };
-
+    async submitForm() {
       try {
-        const response = await SupportService.createSupportRequest(supportRequest);
+        const formData = new FormData();
+        formData.append('title', this.title);
+        formData.append('description', this.description);
+        formData.append('status', this.status);
+
+        if (this.files.length > 0) {
+          formData.append('attachment', this.files[0]);
+        }
+
+        const response = await supportService.createSupportRequest(formData);
         console.log('Support request created successfully:', response);
+
+        // Reset form
+        this.title = '';
+        this.selectedProblem = null;
+        this.description = '';
+        this.status = 'open';
+        this.files = [];
+
+        alert('Support request submitted successfully!');
       } catch (error) {
         console.error('Error creating support request:', error);
+        console.log('Error response:', error.response);
+        alert('Error submitting support request. Please try again.');
       }
     }
   }
 };
 </script>
 
-<template>
-  <div class="support-details" aria-label="Support Details">
-    <pv-floatlabel aria-label="Floatlabel for Title">
-      <pv-inputText id="title" v-model="title" aria-label="Title of the problem" />
-      <label for="title">Título del problema</label>
-    </pv-floatlabel>
-    <div class="card flex" aria-label="Dropdown for Problem Type">
-      <pv-dropDown v-model="selectedProblem" :options="problems" optionLabel="name" placeholder="Tipo de problema" class="w-full md:w-14rem" />
-    </div>
-    <pv-floatlabel aria-label="Floatlabel for Description">
-      <pv-textarea v-model="description" rows="5" cols="30" aria-label="Description of the problem" />
-      <label class="area-label">Descripción del problema</label>
-    </pv-floatlabel>
-
-    <div class="card flex justify-content-center" id="upload" aria-label="File Upload Section">
-      <label for="file-input" class="flex align-items-center" id="upload-button" aria-label="Upload Button">
-        <i class="pi pi-file-plus"></i>
-        <span class="ml-2">Subir Archivo</span>
-        <input type="file" id="file-input" multiple @change="handleFileChange" style="display: none;" aria-label="File Input" />
-      </label>
-      <hr style="background-color:black; width: 100%" aria-hidden="true">
-      <ul aria-label="Uploaded Files List">
-        <li v-for="(file, index) in files" :key="index">
-          {{ file.name }} ({{ file.size }} bytes)
-        </li>
-      </ul>
-    </div>
-    <button @click="submitSupportRequest">Enviar Solicitud</button>
-  </div>
-</template>
-
 <style scoped>
 .p-float-label {
   width: 100%;
   max-width: 800px;
 }
+
 .p-inputtext {
   width: 100%;
 }
+
 .support-details {
   padding-bottom: 11rem;
 }
+
 div.support-details {
   margin: 0 20%;
 }
+
 div, .p-float-label {
   margin-top: 1.4rem;
 }
+
 #upload {
   background-color: white;
   flex-direction: column;
   align-items: center;
 }
+
 #upload-button {
   transition: transform 0.3s ease;
 }
+
 #upload-button:hover {
   transform: scale(1.1);
 }

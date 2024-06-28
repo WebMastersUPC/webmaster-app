@@ -30,6 +30,7 @@ export default {
   methods:{
     createUser(){
       return this.myCom = new CompanyEntity(
+          this.enterprise.user_id,
           this.enterprise.enterprise_name,
           this.enterprise.profile_img_url,
           this.enterprise.description,
