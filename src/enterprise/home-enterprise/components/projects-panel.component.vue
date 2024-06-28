@@ -88,10 +88,10 @@ export default {
     <template #content v-if="projects">
       <hr>
       <template class="project-list" v-for="project in projects">
-        <div class="project" @click="openPosition('center', project.started, project.applicants_id, project.project_ID)">
+        <div class="project">
           <h4>{{project.nameProject}}</h4>
           <p class="subtitle tipo-proyecto">{{project.stateProject}}</p>
-          <p class="postulantes"  v-if="!project.started">{{ $t('projects-panel-enterprise-part2') }}: {{project.applicants_id.length}}</p>
+          <p class="postulantes"  v-if="!project.started" @click="openPosition('center', project.started, project.applicants_id, project.project_ID)">{{ $t('projects-panel-enterprise-part2') }}: {{project.applicants_id.length}}</p>
           <pv-progressbar v-else :value="project.projectProgressBar"></pv-progressbar>
         </div>
       </template>
@@ -107,7 +107,7 @@ export default {
           <pv-avatar :image="applicant.profile_img_url" class="mr-2" size="xlarge" shape="circle" @click="goToDevProfile(applicant.developer_id)" />
           <pv-rating v-model="applicant.rating" readonly :cancel="false" />
           </div>
-          <span>{{ applicant.description.length > 150 ? `${applicant.description.slice(0, 150)}...` : applicant.description }}</span>
+          <span>{{ applicant.description }}</span>
           <pv-button class="choose-dev" @click="chooseApplicant(applicant)">{{ $t('projects-panel-enterprise-part3') }}</pv-button>
         </div>
       </template>
