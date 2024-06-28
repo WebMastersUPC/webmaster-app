@@ -10,18 +10,26 @@ import ToolbarEnterpriseComponent from "../public/components/toolbar-enterprise.
 import FooterWebstormComponent from "../public/components/footer-webstorm.component.vue";
 import HomePage from "../enterprise/home-enterprise/pages/home-page.component.vue";
 import MessagePage from "../shared/components/message-form.component.vue";
-import DeliverableList from "../enterprise/deliverables-schedule/pages/deliverable-list.vue";
 import LoginComponent from "../authentication/pages/login.component.vue";
 import DeveloperProfilePage from "../developer/developer-profile/pages/developer-profile-page.vue";
 import CreateProject from "../enterprise/create-project/pages/create-project-page.component.vue";
 
 import HomePageDeveloper from "../developer/home-developer/pages/home-page.component.vue";
 import SearchProjectList from "../developer/search-project/pages/search-project-list.component.vue";
-import DeliverableListDeveloper from "../developer/deliverables-schedule/pages/deliverable-list.vue";
 import EnterpriseProfilePage from "../enterprise/enterprise-profile/pages/enterprise-profile-page.vue";
 import PostulateProject from "../developer/postulate-project/pages/postulate-project-page.component.vue";
 
 import SupportPage from "../shared/pages/support-page.vue";
+import DeliverablesDetailsCard from "../enterprise/deliverables-edit/components/deliverables-edit-card.vue";
+import DeliverableReview from "../enterprise/deliverables-enterprise/pages/review-deliverable.component.vue";
+import ApprovedDeliverable from "../enterprise/deliverables-states/pages/approved-deliverable.vue";
+import RejectedDeliverable from "../enterprise/deliverables-states/pages/rejected-deliverable.vue";
+
+import DeliverablesListDeveloper from '../developer/deliverables-schedule/pages/deliverable-list-developer.vue';
+import DeliverableList from "../enterprise/deliverables-schedule/pages/deliverable-list.vue";
+
+import CreateDeliverable from "../developer/deliverables-developer/pages/create-deliverable.component.vue";
+import SendedDeliverable from "../developer/deliverable-send/pages/deliverable-send.component.vue"
 
 const router = createRouter({
     history: createWebHistory(),
@@ -85,14 +93,44 @@ const router = createRouter({
                     component: CreateProject
                 },
                 {
-                    path: '/deliverables-list',
+                    path: '/projects/enterprise/:projectId/Deliverables',
                     name: 'deliverable-list',
                     component: DeliverableList
                 },
                 {
-                    path: '/:project_id/deliverables-list-developer',
-                    name: 'deliverable-list-developer',
-                    component: DeliverableListDeveloper
+                    path: '/projects/developer/:projectId/Deliverables',
+                    name: 'deliverables-list-developer',
+                    component:DeliverablesListDeveloper
+                },
+                {
+                  path:'/projects/:projectId/Deliverables/:deliverableId',
+                  name: 'deliverable-edit',
+                  component:DeliverablesDetailsCard
+                },
+                {
+                    path:'/projects/:projectId/Deliverables/:deliverableId/review',
+                    name:'review-deliverable',
+                    component: DeliverableReview
+                },
+                {
+                    path:'/projects/:projectId/Deliverables/:deliverableId/Approved',
+                    name:'approved-deliverable',
+                    component: ApprovedDeliverable
+                },
+                {
+                    path:'/projects/:projectId/Deliverables/:deliverableId/Rejected',
+                    name:'rejected-deliverable',
+                    component: RejectedDeliverable
+                },
+                {
+                    path:'/projects/:projectId/Deliverables/:deliverableId/Create',
+                    name:'create-deliverable',
+                    component:CreateDeliverable
+                },
+                {
+                    path:'/projects/:projectId/Deliverables/:deliverableId/Upload',
+                    name:'deliverable-send',
+                    component:SendedDeliverable
                 },
                 {
                     path: '/enterprise-profile/:id',

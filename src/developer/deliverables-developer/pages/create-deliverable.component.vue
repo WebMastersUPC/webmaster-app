@@ -12,23 +12,27 @@ export default {
     return {
       showConfirmationDialog: false,
     }
+  },
+  methods: {
+    confirmUpload() {
+      this.$refs.createDeliverableCard.uploadFile();
+      this.showConfirmationDialog = false;
+    }
   }
 }
 </script>
 
 <template>
-
   <div :class="{ blur: showConfirmationDialog }">
-    <create-deliverable-card @approve-delivery="showConfirmationDialog = true"></create-deliverable-card>
+    <create-deliverable-card @approve-delivery="showConfirmationDialog = true" ref="createDeliverableCard"></create-deliverable-card>
   </div>
   <div v-if="showConfirmationDialog" class="dialog-container">
-    <confirmation-create-deliverable @cancel="showConfirmationDialog = false"></confirmation-create-deliverable>
+    <confirmation-create-deliverable @confirm="confirmUpload" @cancel="showConfirmationDialog = false"></confirmation-create-deliverable>
   </div>
-
 </template>
 
-<style scoped>
 
+<style scoped>
 .blur {
   filter: blur(2px);
 }
@@ -42,7 +46,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: This adds a semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.5);
 }
-
 </style>
