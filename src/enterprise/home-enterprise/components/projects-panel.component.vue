@@ -25,16 +25,17 @@ export default {
         this.visible = true;
 
         for (let candidate of candidates) {
-          const response = await this.homeService.getApplicantInfoById(candidate);
-          const applicantData = response.data;
-          const applicant = new ApplicantEntity(
-              applicantData.developer_id,
-              applicantData.firstName,
-              applicantData.lastName,
-              applicantData.description,
-              applicantData.profile_img_url
-          );
-          this.applicantsList.push(applicant);
+          this.homeService.getApplicantInfoById(candidate).then((response) => {
+            const applicantData = response.data;
+            const applicant = new ApplicantEntity(
+                applicantData.developer_id,
+                applicantData.firstName,
+                applicantData.lastName,
+                applicantData.description,
+                applicantData.profile_img_url
+            );
+            this.applicantsList.push(applicant);
+          });
         }
       } else {
         this.$router.push('/deliverables-list');
@@ -73,13 +74,11 @@ export default {
     projects: {
       type: Array,
       required: true
-    },
-    applicants: {
-      type: Array,
-      required: false
     }
   },
-  created() {}
+  created() {
+
+  }
 };
 </script>
 

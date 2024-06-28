@@ -15,10 +15,9 @@ export default {
     }
   },
   created(){
-    let id = localStorage.getItem('developer id');
+    let id = this.$route.params.id;
     this.homeService.getDevInfoByID(id).then((response)=> {
       this.developerProfile = response.data;
-      this.developerRepository = response.data.repository;
     })
   },
   methods(){
@@ -28,9 +27,9 @@ export default {
 </script>
 
 <template>
-  <div class="flex justify-content-evenly flex-wrap mb-5" v-if="developerRepository ">
+  <div class="flex justify-content-evenly flex-wrap mb-5" v-if="developerProfile ">
     <developer-profile-card :developer="developerProfile"/>
-    <developer-repository-card :projects="developerRepository"/>
+    <!--<developer-repository-card :projects="developerRepository"/>-->
   </div>
 </template>
 

@@ -1,6 +1,4 @@
 <script>
-
-
 import {DeveloperEntity} from "../../../shared/models/developer.model.js";
 
 export default {
@@ -13,7 +11,7 @@ export default {
   },
   props: {
     developer: {
-      type: DeveloperEntity,
+      type: Object,
       required: true
     }
   },
@@ -29,7 +27,7 @@ export default {
         this.categoryTexts = [
           this.developer.country,
           this.developer.phone,
-          this.developer.user.email,
+          this.developer.user.mail,
           this.developer.completed_projects,
           this.developer.specialties
         ];
