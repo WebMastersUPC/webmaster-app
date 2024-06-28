@@ -13,6 +13,8 @@ export default {
       isEditingDescription: false,
       descriptionText: 'La Plataforma de Comercio Electrónico Geekit es un proyecto destinado a crear una experiencia de compra en línea excepcional para nuestra marca de ropa y accesorios para jóvenes apasionados por la cultura geek.',
       isEditingBudget: false,
+      budgetAmount: 50000, // new data property
+      isEditingBudgetAmount: false, // new data property
       budgetText: 'El presupuesto asignado para este proyecto es de $50,000 USD, incluyendo el costo de desarrollo, pruebas, implementación y mantenimiento inicial durante los primeros seis meses.',
       isEditingTechnologies: false,
       editingLanguageIndex: null,
@@ -84,6 +86,9 @@ export default {
     },
     toggleEditingTechnologies() {
       this.isEditingTechnologies = !this.isEditingTechnologies;
+    },
+    toggleEditingBudgetAmount() {
+      this.isEditingBudgetAmount = !this.isEditingBudgetAmount;
     },
     addLanguage() {
       if (this.newLanguage) {
@@ -272,11 +277,17 @@ export default {
             </div>
           </div>
           <div class="seccion-derecha">
-            <h2 class="text-center">{{$t('create-project-part11')}}: $50,000</h2>
+            <h2 class="text-center">
+              {{$t('create-project-part11')}}:
+              <span v-if="!isEditingBudgetAmount">{{ budgetAmount }}</span>
+              <input aria-label="Budget Amount" v-else v-model="budgetAmount" type="number" class="editable-input" />
+            </h2>
             <p v-if="!isEditingBudget">{{ budgetText }}</p>
             <pv-inputText aria-label="Project Budget" v-else v-model="budgetText" type="text" class="editable-input" />
             <pv-button @click="toggleEditingBudget" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingBudget" />
             <pv-button @click="toggleEditingBudget" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
+            <pv-button @click="toggleEditingBudgetAmount" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingBudgetAmount" />
+            <pv-button @click="toggleEditingBudgetAmount" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else />
             <hr>
             <h2 class="text-center">{{$t('create-project-part12')}}</h2>
             <ol v-if="!isEditingMethodologies">
