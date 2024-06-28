@@ -35,7 +35,8 @@ export default {
         enterprise_id: project.enterprise_id,
         applicants_id: project.applicants_id,
         developer_id: project.developer_id,
-        progress: project.progress,
+        stateProject: project.stateProject,
+        projectProgressBar: project.projectProgressBar,
         started: project.started
       }));
     },

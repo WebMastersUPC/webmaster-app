@@ -32,11 +32,7 @@ export default {
       this.myProjects = this.projectsData.map(project => new ProjectEntity({
         project_ID: project.project_ID,
         nameProject: project.nameProject,
-        type: project.type,
-        applicants_id: project.applicants_id,
-        developer_id: project.developer_id,
-        progress: project.progress,
-        started: project.started
+        projectProgressBar: project.projectProgressBar,
       }));
     }
   }

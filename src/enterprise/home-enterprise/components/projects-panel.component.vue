@@ -91,9 +91,9 @@ export default {
       <template class="project-list" v-for="project in projects">
         <div class="project" @click="openPosition('center', project.started, project.applicants_id, project.project_ID)">
           <h4>{{project.nameProject}}</h4>
-          <p class="subtitle tipo-proyecto">{{project.type}}</p>
+          <p class="subtitle tipo-proyecto">{{project.stateProject}}</p>
           <p class="postulantes"  v-if="!project.started">{{ $t('projects-panel-enterprise-part2') }}: {{project.applicants_id.length}}</p>
-          <pv-progressbar v-else :value="project.progress"></pv-progressbar>
+          <pv-progressbar v-else :value="project.projectProgressBar"></pv-progressbar>
         </div>
       </template>
     </template>

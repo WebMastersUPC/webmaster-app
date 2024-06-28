@@ -42,7 +42,7 @@ export default {
         <div class="project" @click="openPosition(project.project_ID)">
           <h4>{{ project.nameProject }}</h4>
           <p class="subtitle tipo-proyecto">{{ project.type }}</p>
-          <pv-progressbar :value="project.progress"></pv-progressbar>
+          <pv-progressbar :value="project.projectProgressBar"></pv-progressbar>
         </div>
       </div>
     </template>

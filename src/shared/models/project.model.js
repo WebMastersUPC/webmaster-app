@@ -7,12 +7,14 @@ export class ProjectEntity {
                     languages = [],
                     frameworks = [],
                     budget = 0,
+                    budgetDescription,
                     methodologies = [],
                     enterprise_id,
                     applicants_id = [],
                     developer_id = null,
-                    progress = 0,
-                    started = false
+                    stateProject,
+                    projectProgressBar = 0,
+                    started
                 } = {}) {
         this.project_ID = project_ID;
         this.nameProject = nameProject;
@@ -21,11 +23,13 @@ export class ProjectEntity {
         this.languages = languages;
         this.frameworks = frameworks;
         this.budget = budget;
+        this.budgetDescription = budgetDescription;
         this.methodologies = methodologies;
         this.enterprise_id = enterprise_id;
         this.applicants_id = applicants_id;
         this.developer_id = developer_id;
-        this.progress = progress;
-        this.started = started;
+        this.stateProject = stateProject;
+        this.projectProgressBar = projectProgressBar;
+        this.started = started
     }
 }

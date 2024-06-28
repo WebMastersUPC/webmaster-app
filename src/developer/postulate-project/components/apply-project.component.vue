@@ -103,11 +103,7 @@ export default {
           </pv-splitter-panel>
           <pv-splitter-panel style="flex-grow: 1" aria-label="Budget Panel">
             <h2 style="text-align: center;">{{$t('apply-project-part5')}}: S/{{project.budget}}</h2>
-            <p class="px-5">
-              El presupuesto asignado para este proyecto esta incluyendo el
-              costo de desarrollo, pruebas, implementación y mantenimiento inicial durante los
-              primeros seis meses.
-            </p>
+            <p class="px-5">{{project.budgetDescription}}</p>
           </pv-splitter-panel>
         </pv-splitter>
       </pv-splitter-panel>

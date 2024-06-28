@@ -30,6 +30,7 @@ export default {
         languages: this.projectById.languages,
         frameworks: this.projectById.frameworks,
         budget: this.projectById.budget,
+        budgetDescription: this.projectById.budgetDescription,
         methodologies: this.projectById.methodologies
       });
     }
