@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const http = axios.create({
-    baseURL: 'http://localhost:5127/api/v1',
+    baseURL: 'https://webmasterapi.azurewebsites.net/api/v1',
 });
 
 export class DeliverableService{
