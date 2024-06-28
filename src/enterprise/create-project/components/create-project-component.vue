@@ -9,29 +9,23 @@ export default {
       uploadedImages: [],
       showDialog: false,
       isEditingTitle: false,
-      titleText: 'Plataforma de Comercio Electrónico Geekit',
+      titleText: 'Title Project',
       isEditingDescription: false,
-      descriptionText: 'La Plataforma de Comercio Electrónico Geekit es un proyecto destinado a crear una experiencia de compra en línea excepcional para nuestra marca de ropa y accesorios para jóvenes apasionados por la cultura geek.',
+      descriptionText: 'Description text',
       isEditingBudget: false,
-      budgetAmount: 50000, // new data property
+      budgetAmount: 0, // new data property
       isEditingBudgetAmount: false, // new data property
-      budgetText: 'El presupuesto asignado para este proyecto es de $50,000 USD, incluyendo el costo de desarrollo, pruebas, implementación y mantenimiento inicial durante los primeros seis meses.',
+      budgetText: 'Budget description.',
       isEditingTechnologies: false,
       editingLanguageIndex: null,
       editingFrameworkIndex: null,
-      languages: ['HTML5', 'CSS3', 'JavaScript'],
+      languages: ['languages'],
       newLanguage: '',
-      frameworks: ['React.js (Frontend)', 'Node.js (Backend)', 'Express.js (Backend)'],
+      frameworks: ['framework'],
       newFramework: '',
       isEditingMethodologies: false,
       methodologies: [
-        'Recolección de Requisitos: Definición de requisitos del proyecto en una reunión inicial.',
-        'Desarrollo Iterativo: Metodología ágil con entregas incrementales para retroalimentación temprana.',
-        'Diseño de UI/UX: Creación de prototipos de interfaz centrados en usabilidad y estética.',
-        'Desarrollo Frontend y Backend: Implementación de frontend y backend con código limpio y modular.',
-        'Pruebas y Control de Calidad: Evaluación exhaustiva en todas las etapas para garantizar calidad.',
-        'Implementación y Despliegue: Lanzamiento en entorno de producción tras completar desarrollo y pruebas.',
-        'Mantenimiento y Soporte: Ofrecimiento de soporte continuo, actualizaciones y monitoreo post-lanzamiento.'
+        'methodologies 1.'
       ],
       newMethodology: '',
       projectService: new ProjectService(),
@@ -56,7 +50,7 @@ export default {
           descriptionProject: this.descriptionText,
           languages: this.languages,
           frameworks: this.frameworks,
-          budget: parseFloat(this.budgetText.replace(/[^0-9.-]+/g, "")),
+          budget: this.budgetAmount,
           budgetDescription: this.budgetText,
           methodologies: this.methodologies,
           enterprise_id: enterpriseId
@@ -149,7 +143,7 @@ export default {
           descriptionProject: this.descriptionText || this.initialProjectData.descriptionProject,
           languages: this.languages.length ? this.languages : this.initialProjectData.languages,
           frameworks: this.frameworks.length ? this.frameworks : this.initialProjectData.frameworks,
-          budget: parseFloat(this.budgetText.replace(/[^0-9.-]+/g, "")) || this.initialProjectData.budget,
+          budget: this.budgetAmount || this.initialProjectData.budget,
           budgetDescription: this.budgetText || this.initialProjectData.budgetDescription,
           methodologies: this.methodologies.length ? this.methodologies : this.initialProjectData.methodologies
         });
@@ -168,6 +162,7 @@ export default {
       this.descriptionText = this.initialProjectData.descriptionProject;
       this.languages = [...this.initialProjectData.languages];
       this.frameworks = [...this.initialProjectData.frameworks];
+      this.budgetAmount =[...this.initialProjectData.budget];
       this.budgetText = this.initialProjectData.budgetDescription;
       this.methodologies = [...this.initialProjectData.methodologies];
       this.isEditingProject = false;
