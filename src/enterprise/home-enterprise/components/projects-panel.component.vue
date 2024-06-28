@@ -86,7 +86,7 @@ export default {
 <template>
   <pv-card>
     <template #title> <p  style="color: #3554BC">{{ $t('projects-panel-enterprise-part1') }}</p></template>
-    <template #content>
+    <template #content v-if="projects">
       <hr>
       <template class="project-list" v-for="project in projects">
         <div class="project" @click="openPosition('center', project.started, project.applicants_id, project.project_ID)">
@@ -98,7 +98,6 @@ export default {
       </template>
     </template>
   </pv-card>
-
 
   <div class="card">
     <pv-dialog v-model:visible="visible" :header="$t('projects-panel-enterprise-part3')" :style="{ width: '25rem', height: '100vh', display: 'block', overflow:'auto' }" :position="position" :modal="true" :draggable="false">

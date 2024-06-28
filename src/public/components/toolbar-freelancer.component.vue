@@ -1,4 +1,5 @@
 <script>
+
 export default {
   name: "toolbar-freelancer",
   data(){
@@ -28,6 +29,10 @@ export default {
       if (this.screenWidth > 856) {
         this.visibleRight = false;
       }
+    },
+    logOut(){
+      localStorage.clear();
+      router.push('/login');
     }
   }
 }
@@ -53,8 +58,8 @@ export default {
           <pv-button label="Explorar Proyecto" text plain class="responsive-button justify-content-center"/>
         </router-link>
         <router-link to="/login">
-          <pv-button label="" text plain class="responsive-button justify-content-center">
-            <i class="pi pi-sign-out" style="font-size: 1.4rem"> <br> <span class="sal">salir</span> </i>
+          <pv-button label="" text plain class="responsive-button justify-content-center" @click="logOut">
+            <i class="pi pi-sign-out" style="font-size: 1.4rem"> <br> <span class="sal" >Salir</span> </i>
           </pv-button>
         </router-link>
       </template>
@@ -90,8 +95,8 @@ export default {
                 <h3>{{$t('toolbar-freelancer-option3')}}</h3>
               </pv-button>
             </router-link>
-            <router-link to="" class="p-mb-2">
-              <pv-button text plain class="w-full">
+            <router-link to="/login" class="p-mb-2">
+              <pv-button text plain class="w-full" @click="logOut">
                 <h3>{{$t('toolbar-freelancer-option4')}}</h3>
               </pv-button>
             </router-link>
