@@ -2,6 +2,7 @@
 import DeveloperProfileCard from "../components/developer-profile-card.vue";
 import {AuthService} from "../../../../public/services/auth.service.js";
 import DeveloperRepositoryCard from "../components/developer-repository-card.vue";
+import {HomeService} from "../../../../public/services/home.service.js";
 
 export default {
   name: "developer-profile-page",
@@ -10,12 +11,12 @@ export default {
     return {
       developerProfile: null,
       developerRepository: null,
-      authService: new AuthService(),
+      homeService: new HomeService(),
     }
   },
   created(){
     let id = localStorage.getItem('developer id');
-    this.authService.getDevInfoByID(id).then((response)=> {
+    this.homeService.getDevInfoByID(id).then((response)=> {
       this.developerProfile = response.data;
       this.developerRepository = response.data.repository;
     })

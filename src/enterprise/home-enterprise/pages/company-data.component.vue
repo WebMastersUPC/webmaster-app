@@ -2,6 +2,7 @@
 import CompanyMainPageComponent from "../components/company-main-page.component.vue";
 import {CompanyEntity} from "../../../shared/models/company.model.js";
 import {AuthService} from "../../../../public/services/auth.service.js";
+import {HomeService} from "../../../../public/services/home.service.js";
 
 
 export default {
@@ -9,30 +10,37 @@ export default {
   components:{CompanyMainPageComponent},
   data(){
     return{
-      authService: new AuthService(),
+      homeService: new HomeService(),
       myCom:null,
-      enterprise:null
+      enterprise:null,
+      enterpriseId:null
     }
   },
   created(){
-    let id = localStorage.getItem('user id')
-     this.authService.getEnterpriseInfoByID(id).then((response) => {
-     this.enterprise = response.data;
-       //console.log('a',this.enterprise);
-       this.createUser()
+    let id = localStorage.getItem('user id');
+    this.homeService.getEnterpriseInfoByID(id).then((response) => {
+      this.enterprise = response.data;
+      this.enterpriseId = response.data.enterprise_id;
+      console.log(this.enterprise);
+      this.createUser();
+      localStorage.setItem("enterprise id", this.enterpriseId);
+      console.log(this.myCom);
     });
   },
   methods:{
     createUser(){
-      return this.myCom = new CompanyEntity(this.enterprise.username,
-          this.enterprise.imageProfile,
-          this.enterprise.summary,
+      return this.myCom = new CompanyEntity(
+          this.enterprise.user_id,
+          this.enterprise.enterprise_name,
+          this.enterprise.profile_img_url,
+          this.enterprise.description,
           this.enterprise.country,
-          this.enterprise.socialRazon,
-          this.enterprise.cellphone,
-          this.enterprise.email,
+          this.enterprise.ruc,
+          this.enterprise.phone,
           this.enterprise.website,
-          this.enterprise.sector);
+          this.enterprise.sector,
+          this.enterprise.user
+      )
     }
   }
 }

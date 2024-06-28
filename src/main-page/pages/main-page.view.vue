@@ -10,13 +10,12 @@ export default {
   components: {ToolbarFreelancer, ToolbarEnterprise, FooterWebmaster, HomePage},
   data() {
     return {
-      usertype: '',
+      user_type: null
     };
   },
-  created(){
-    this.usertype = localStorage.getItem('user type');
-  },
-
+  created() {
+    this.user_type = localStorage.getItem('user type')
+  }
 }
 </script>
 
@@ -24,11 +23,11 @@ export default {
 
   <div class="flex flex-column justify-content-between">
     <div>
-      <div v-if="usertype === 'enterprises'">
-        <toolbar-enterprise></toolbar-enterprise>
+      <div v-if="this.user_type ==='developers'">
+        <toolbar-freelancer/>
       </div>
       <div v-else>
-        <toolbar-freelancer></toolbar-freelancer>
+        <toolbar-enterprise/>
       </div>
       <div class="p-container-fluid px-0">
           <div class="mt-3 w-full mt-3 mb-3">

@@ -1,62 +1,86 @@
 <script>
 import { useRouter } from 'vue-router';
-import {AuthService} from "../../../../public/services/auth.service.js";
+import { AuthService } from "../../../../public/services/auth.service.js";
+import { HomeService } from "../../../../public/services/home.service.js";
+import { ApplicantEntity } from "../../../shared/models/applicant.model.js";
 
 export default {
   name: "projects-panel.component",
+  emits: ["chooseDeveloper"],
   components: {},
   data() {
     return {
-      authService: new AuthService(),
+      homeService: new HomeService(),
       position: 'center',
       visible: false,
-      applicantsList: []
+      applicantsList: [],
+      myProject: null
     };
   },
   methods: {
-    async openPosition(position, started, candidates) {
+    async openPosition(position, started, candidates, projectId) {
       if (!started) {
+        this.myProject = projectId;
         this.position = position;
         this.visible = true;
-        //console.log(candidates)
 
-        for(let candidate of candidates){
-          this.authService.getDevInfoByID(candidate).then((response) => {
-            this.applicantsList.push(response.data)
-          });
+        for (let candidate of candidates) {
+          const response = await this.homeService.getApplicantInfoById(candidate);
+          const applicantData = response.data;
+          const applicant = new ApplicantEntity(
+              applicantData.developer_id,
+              applicantData.firstName,
+              applicantData.lastName,
+              applicantData.description,
+              applicantData.profile_img_url
+          );
+          this.applicantsList.push(applicant);
         }
-      }
-      else{
+      } else {
         this.$router.push('/deliverables-list');
       }
-
     },
 
     chooseApplicant(applicant) {
+      let applicant_id = applicant.developer_id
       console.log(applicant);
+      this.visible = false;
+      this.$emit("chooseDeveloper", {numberApplicant: applicant_id , numberProjectId: this.myProject})
     },
 
-    goToDevProfile(applicant){
+    goToDevProfile(applicant) {
       console.log(`go to dev profile, id: ${applicant}`);
     },
-    // navigateToDeliverablesList() {
-    //   this.$router.push('/deliverables-list');
-    // },
+
+    // Método para verificar si `this.visible` es falso
+    isVisibleFalse() {
+      return !this.visible;
+    },
+
+    // Método para manejar los cambios en `visible`
+    handleVisibilityChange(newValue) {
+      if (!newValue) {
+        this.applicantsList = []; // Vacía el array cuando el diálogo no es visible
+      }
+    }
   },
-  props:{
-    projects:{
+  watch: {
+    visible(newValue) {
+      this.handleVisibilityChange(newValue);
+    }
+  },
+  props: {
+    projects: {
       type: Array,
       required: true
     },
-    applicants:{
+    applicants: {
       type: Array,
       required: false
     }
   },
-  created(){
-
-  }
-}
+  created() {}
+};
 </script>
 
 <template>
@@ -65,11 +89,11 @@ export default {
     <template #content>
       <hr>
       <template class="project-list" v-for="project in projects">
-        <div class="project" @click="openPosition('center', project.started, project.candidates)">
-          <h4>{{project.name}}</h4>
-          <p class="subtitle tipo-proyecto">{{project.type}}</p>
-          <p class="postulantes"  v-if="!project.started">{{ $t('projects-panel-enterprise-part2') }}: {{project.candidates.length}}</p>
-          <pv-progressbar v-else :value="project.progress"></pv-progressbar>
+        <div class="project" @click="openPosition('center', project.started, project.applicants_id, project.project_ID)">
+          <h4>{{project.nameProject}}</h4>
+          <p class="subtitle tipo-proyecto">{{project.stateProject}}</p>
+          <p class="postulantes"  v-if="!project.started">{{ $t('projects-panel-enterprise-part2') }}: {{project.applicants_id.length}}</p>
+          <pv-progressbar v-else :value="project.projectProgressBar"></pv-progressbar>
         </div>
       </template>
     </template>
@@ -80,13 +104,13 @@ export default {
     <pv-dialog v-model:visible="visible" :header="$t('projects-panel-enterprise-part3')" :style="{ width: '25rem', height: '100vh', display: 'block', overflow:'auto' }" :position="position" :modal="true" :draggable="false">
       <template class="applicants-list" v-for="(applicant) in this.applicantsList">
         <div class="project applicant">
-          <h4>{{applicant.name}}</h4>
+          <h4>{{applicant.firstName +" "+applicant.lastName}}</h4>
           <div class="p-card-title">
-          <pv-avatar :image="applicant.profileImage" class="mr-2" size="xlarge" shape="circle" @click="goToDevProfile(applicant.id)" />
+          <pv-avatar :image="applicant.profile_img_url" class="mr-2" size="xlarge" shape="circle" @click="goToDevProfile(applicant.developer_id)" />
           <pv-rating v-model="applicant.rating" readonly :cancel="false" />
           </div>
           <span>{{ applicant.description.length > 150 ? `${applicant.description.slice(0, 150)}...` : applicant.description }}</span>
-          <pv-button class="choose-dev" @click="chooseApplicant(applicant.id)">{{ $t('projects-panel-enterprise-part3') }}</pv-button>
+          <pv-button class="choose-dev" @click="chooseApplicant(applicant)">{{ $t('projects-panel-enterprise-part3') }}</pv-button>
         </div>
       </template>
     </pv-dialog>

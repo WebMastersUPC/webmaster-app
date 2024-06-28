@@ -1,5 +1,6 @@
 <script>
 import {CompanyEntity} from "../../../shared/models/company.model.js";
+import {HomeService} from "../../../../public/services/home.service.js";
 
 export default {
   name: "developer-page",
@@ -9,16 +10,63 @@ export default {
       mainText: '',
       isEditingCategories: [false, false, false, false, false, false],
       categoryTexts: [],
-      categories: ['categories.country', 'categories.ruc', 'categories.phone', 'categories.email', 'categories.website', 'categories.sector']
+      categories: ['categories.country', 'categories.ruc', 'categories.phone', 'categories.email', 'categories.website', 'categories.sector'],
+      homeService: new HomeService(),
+      displayDialog: false,
+      newImgUrl: ''
     };
   },
   methods: {
     toggleEditingMain() {
+      if(this.isEditingMain){
+        let updatedInfo ={
+          description: this.mainText,
+          country: this.categoryTexts[0],
+          ruc: this.categoryTexts[1],
+          phone: this.categoryTexts[2],
+          website: this.categoryTexts[4],
+          profile_img_url: this.company.profile_img_url,
+          sector: this.categoryTexts[5]
+        }
+        this.homeService.updateEnterpriseInfo(this.company.id, updatedInfo)
+      }
       this.isEditingMain = !this.isEditingMain;
     },
 
     toggleEditingCategory(index) {
+      if(this.isEditingCategories[index]){
+        let updatedInfo ={
+          description: this.mainText,
+          country: this.categoryTexts[0],
+          ruc: this.categoryTexts[1],
+          phone: this.categoryTexts[2],
+          website: this.categoryTexts[4],
+          profile_img_url: this.company.profile_img_url,
+          sector: this.categoryTexts[5]
+        }
+        this.homeService.updateEnterpriseInfo(this.company.id, updatedInfo)
+      }
       this.isEditingCategories[index] = !this.isEditingCategories[index];
+    },
+    updateImg(){
+      if(this.newImgUrl === ''){
+        return;
+      }
+      let img ={
+        profile_img_url: this.newImgUrl
+      }
+      this.newImgUrl = '';
+      this.homeService.updateEnterpriseProfileImg(this.company.id, img)
+          .then(() => {
+            this.displayDialog = false;
+            window.location.reload();
+          });
+    },
+    openDialog(){
+      this.displayDialog = true;
+    },
+    closeDialog(){
+      this.displayDialog = false;
     }
   },
   components: {},
@@ -29,13 +77,12 @@ export default {
     }
   },
   created() {
-    //console.log(this.company);
     this.categoryTexts = [
       this.company.country,
       this.company.RUC,
       this.company.phone,
-      this.company.email,
-      this.company.webpage,
+      this.company.User.mail,
+      this.company.website,
       this.company.sector,
     ];
     this.mainText = this.company.description
@@ -47,9 +94,9 @@ export default {
 <template>
   <pv-card aria-label="Company Information">
     <template #title>
-      <pv-avatar :image='company.img' class="mr-2" size="xlarge" shape="circle" />
+      <pv-avatar :image='company.profile_img_url' class="mr-2" size="xlarge" shape="circle" @click="openDialog"/>
       <div aria-label="Company Name">
-        <p>{{company.name}}</p>
+        <p>{{company.enterprise_name}}</p>
       </div>
     </template>
 
@@ -77,6 +124,12 @@ export default {
     </template>
   </pv-card>
 
+  <pv-modal  v-model:visible="this.displayDialog" modal header="Update Image URL" >
+    <p>Enter the new image URL:</p>
+    <input type="text" v-model="newImgUrl" />
+    <pv-button label="Accept" @click="updateImg" />
+    <pv-button label="Cancel" @click="closeDialog" />
+  </pv-modal>
 
 </template>
 

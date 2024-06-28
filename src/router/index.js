@@ -51,9 +51,14 @@ const router = createRouter({
             component:  MainPage ,
             children: [
                 {
-                  path: '/main/enterprises/:id',
-                  component: HomePage,
-                  name: 'main'
+                  path: '/main/developers/:id',
+                  component:HomePageDeveloper,
+                  name: 'main-developer'
+                },
+                {
+                    path: '/main/enterprises/:id',
+                    component: HomePage,
+                    name: 'main-enterprise'
                 },
                 {
                     path: '/main/developers/:id',
@@ -85,7 +90,7 @@ const router = createRouter({
                     component: DeliverableList
                 },
                 {
-                    path: '/deliverables-list-developer',
+                    path: '/:project_id/deliverables-list-developer',
                     name: 'deliverable-list-developer',
                     component: DeliverableListDeveloper
                 },
@@ -100,7 +105,7 @@ const router = createRouter({
                     component: DeveloperProfilePage
                 },
                 {
-                    path: '/postulate-project',
+                    path: '/postulate-project/:project_id',
                     name: 'postulate-project',
                     component: PostulateProject
                 },

@@ -14,41 +14,44 @@ export default {
     }
   },
   created() {
-    this.authService.getUsers().then((response) => {
-      this.users = response.data;
-      console.log(this.users);
-    });
+    // localStorage.removeItem('user id');
+    // localStorage.removeItem('user type');
+    // localStorage.removeItem('token');
+    // this.authService.getUsers().then((response) => {
+    //   this.users = response.data;
+    //   console.log(this.users);
+    // });
   },
   methods:{
-    handleLogin(userData) {
-      // userData contendrá user y password enviados desde el componente LoginCard
-      this.user = userData.user;
-      this.password = userData.password;
-
-      console.log('User:', this.user);
-      console.log('Password:', this.password);
-
-      // Iterar sobre los usuarios y comparar credenciales
-      for (let i = 0; i < this.users.length; i++) {
-        const currentUser = this.users[i];
-        if (currentUser.username === this.user && currentUser.password === this.password) {
-          console.log("Usuario encontrado");
-          this.loggedId = currentUser.id
-          this.userType = currentUser.accountType;
-          console.log(this.loggedId, this.userType);
-          this.navigateToHome();
-          return; // Salir del bucle si se encuentra el usuario
-        }
-      }
-      // Si el bucle termina y no se encuentra el usuario
-      console.log("Usuario no encontrado");
-    },
+    // handleLogin(userData) {
+    //   // userData contendrá user y password enviados desde el componente LoginCard
+    //   this.user = userData.user;
+    //   this.password = userData.password;
+    //
+    //   console.log('User:', this.user);
+    //   console.log('Password:', this.password);
+    //
+    //   // Iterar sobre los usuarios y comparar credenciales
+    //   for (let i = 0; i < this.users.length; i++) {
+    //     const currentUser = this.users[i];
+    //     if (currentUser.username === this.user && currentUser.password === this.password) {
+    //       console.log("Usuario encontrado");
+    //       this.loggedId = currentUser.id
+    //       this.userType = currentUser.accountType;
+    //       console.log(this.loggedId, this.userType);
+    //       this.navigateToHome();
+    //       return; // Salir del bucle si se encuentra el usuario
+    //     }
+    //   }
+    //   // Si el bucle termina y no se encuentra el usuario
+    //   console.log("Usuario no encontrado");
+    // },
     navigateToHome() {
-      //elimina datos del array pq ya no se van a usar
-      this.users=[]
-      if (this.userType === 0) {
+
+      if (this.userType === "E") {
         this.userType = 'enterprises'
-      }else{
+      }
+      else if(this.userType === "D"){
         this.userType = 'developers'
       }
       this.saveUserToLocalStorage(this.loggedId,this.userType);
@@ -57,10 +60,30 @@ export default {
     saveUserToLocalStorage(id, type) {
       const idJSON = id;
       const typJSON =(type);
+      const tokenJSON = this.token;
 
       localStorage.setItem('user id', idJSON);
-      localStorage.setItem('user type', typJSON)
-    }
+      localStorage.setItem('user type', typJSON);
+      localStorage.setItem('token', tokenJSON);
+    },
+    async handleLogin(userData) {
+      console.log("hola"+ userData)
+      // userData contendrá user y password enviados desde el componente LoginCard
+      this.user = userData.Mail;
+      this.password = userData.Password;
+
+      try {
+        const response = await this.authService.authenticate(this.user, this.password);
+        console.log(response);
+        this.loggedId = response.user_id;
+        this.userType = response.user_type;
+        this.token = response.token;
+        this.saveUserToLocalStorage(this.loggedId, this.userType, this.token);
+        this.navigateToHome();
+      } catch (error) {
+        console.log("Usuario no encontrado");
+      }
+    },
   }
 }
 </script>

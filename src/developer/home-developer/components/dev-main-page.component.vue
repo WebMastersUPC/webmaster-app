@@ -1,5 +1,6 @@
 <script>
 import {DeveloperEntity} from "../../../shared/models/developer.model.js";
+import {HomeService} from "../../../../public/services/home.service.js";
 
 export default {
   name: "developer-page",
@@ -10,16 +11,61 @@ export default {
       isEditingCategories: [false, false, false, false, false, false],
       categoryTexts: [],
       categories: ['categories.country', 'categories.phone', 'categories.email', 'categories.projectsFinished', 'categories.specialties'],
-      value:0
+      value: 0,
+      homeService: new HomeService(),
+      displayDialog: false,
+      newImgUrl: ''
     };
   },
   methods: {
     toggleEditingMain() {
+      if(this.isEditingMain){
+        console.log(this.developer.id)
+        let updatedInfo ={
+          description: this.mainText,
+          country: this.categoryTexts[0],
+          phone: this.categoryTexts[1],
+          specialties: this.categoryTexts[4],
+          profile_img_url: this.developer.profile_img_url
+        }
+        this.homeService.updateDevInfo(this.developer.id, updatedInfo)
+      }
       this.isEditingMain = !this.isEditingMain;
+
     },
 
     toggleEditingCategory(index) {
+      if(this.isEditingCategories[index]){
+        console.log(this.developer.phone)
+        let updatedInfo ={
+          description: this.mainText,
+          country: this.categoryTexts[0],
+          phone: this.categoryTexts[1],
+          specialties: this.categoryTexts[4]
+        }
+        this.homeService.updateDevInfo(this.developer.id, updatedInfo)
+      }
       this.isEditingCategories[index] = !this.isEditingCategories[index];
+    },
+    updateImg(){
+      if(this.newImgUrl === ''){
+        return;
+      }
+      let img ={
+        profile_img_url: this.newImgUrl
+      }
+      this.newImgUrl = '';
+      this.homeService.updateDevProfileImg(this.developer.id, img)
+          .then(() => {
+            this.displayDialog = false;
+            window.location.reload();
+          });
+    },
+    openDialog(){
+      this.displayDialog = true;
+    },
+    closeDialog(){
+      this.displayDialog = false;
     }
   },
   components: {},
@@ -30,16 +76,15 @@ export default {
     }
   },
   created() {
-    //console.log(this.developer);
+    console.log("hola", this.developer);
     this.categoryTexts = [
-      this.developer.name,
       this.developer.country,
       this.developer.phone,
-      this.developer.email,
-      this.developer.projectsFinished,
+      this.developer.user.mail,
+      this.developer.completed_projects,
       this.developer.specialties
     ];
-    this.value= this.developer.rating
+    //this.value = this.developer.rating
     this.mainText = this.developer.description
   }
 }
@@ -49,49 +94,64 @@ export default {
 <template>
   <pv-card aria-label="Developer Information">
     <template #title>
-      <pv-avatar :image="developer.img" class="mr-2" size="xlarge" shape="circle" aria-label="Developer Avatar"/>
+      <pv-avatar :image="developer.profile_img_url" class="mr-2" size="xlarge" shape="circle"
+                 aria-label="Developer Avatar" @click="openDialog"/>
       <div aria-label="Developer Details">
-        <p>{{developer.name}}</p>
-        <pv-rating v-model="value" readonly :cancel="false" aria-label="Developer Rating"/>
+        <p>{{ developer.name }}</p>
+        <!--<pv-rating v-model="value" readonly :cancel="false" aria-label="Developer Rating"/>-->
       </div>
     </template>
 
     <template #content>
       <hr aria-label="Separator Line">
-      <div class="subtitle" aria-label="Summary">{{$t('dev-main-page-part1')}}</div>
+      <div class="subtitle" aria-label="Summary">{{ $t('dev-main-page-part1') }}</div>
       <div class="editable-container" aria-label="Main Text Container">
-        <span v-if="!isEditingMain" class="editable-text" aria-label="Main Text">{{mainText}}</span>
-        <pv-textarea v-else v-model="mainText" type="text" class="editable-input" autoResize aria-label="Main Text Input"/>
-        <pv-button @click="toggleEditingMain" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingMain" aria-label="Edit Main Text Button"/>
-        <pv-button @click="toggleEditingMain" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else aria-label="Confirm Main Text Button"/>
+        <span v-if="!isEditingMain" class="editable-text" aria-label="Main Text">{{ mainText }}</span>
+        <pv-textarea v-else v-model="mainText" type="text" class="editable-input" autoResize
+                     aria-label="Main Text Input"/>
+        <pv-button @click="toggleEditingMain" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button"
+                   v-if="!isEditingMain" aria-label="Edit Main Text Button"/>
+        <pv-button @click="toggleEditingMain" icon="pi pi-check" class="p-button-rounded p-button-text edit-button"
+                   v-else aria-label="Confirm Main Text Button"/>
       </div>
 
       <template v-for="(category, index) in categories" :key="index">
         <hr aria-label="Separator Line" v-if="index !== 0">
         <div class="editable-container secondary" aria-label="Category Container">
           <div class="subtitle" aria-label="Category Title">{{ $t(category) }}</div>
-          <span v-if="!isEditingCategories[index]" class="editable-text" aria-label="Category Text">{{ categoryTexts[index] }}</span>
-          <input v-else v-model="categoryTexts[index]" type="text" class="editable-input" aria-label="Category Text Input"/>
-          <pv-button @click="toggleEditingCategory(index)" icon="pi pi-pencil" class="p-button-rounded p-button-text edit-button" v-if="!isEditingCategories[index]" aria-label="Edit Category Button"/>
-          <pv-button @click="toggleEditingCategory(index)" icon="pi pi-check" class="p-button-rounded p-button-text edit-button" v-else aria-label="Confirm Category Button"/>
+          <span v-if="!isEditingCategories[index]" class="editable-text"
+                aria-label="Category Text">{{ categoryTexts[index] }}</span>
+          <input v-else v-model="categoryTexts[index]" type="text" class="editable-input"
+                 aria-label="Category Text Input"/>
+          <pv-button @click="toggleEditingCategory(index)" icon="pi pi-pencil"
+                     class="p-button-rounded p-button-text edit-button" v-if="!isEditingCategories[index] && index !== 2 && index !== 3"
+                     aria-label="Edit Category Button"/>
+          <pv-button @click="toggleEditingCategory(index)" icon="pi pi-check"
+                     class="p-button-rounded p-button-text edit-button" v-else-if="index !== 2 && index !== 3" aria-label="Confirm Category Button"/>
         </div>
       </template>
 
     </template>
   </pv-card>
 
+  <pv-modal  v-model:visible="this.displayDialog" modal header="Update Image URL" >
+    <p>Enter the new image URL:</p>
+    <input type="text" v-model="newImgUrl" />
+    <pv-button label="Accept" @click="updateImg" />
+    <pv-button label="Cancel" @click="closeDialog" />
+  </pv-modal>
 
 </template>
 
 <style scoped>
 
-hr{
-  opacity:0.3;
+hr {
+  opacity: 0.3;
 }
 
 @media (max-width: 799px) {
-  .p-card{
-    margin-top:2rem;
+  .p-card {
+    margin-top: 2rem;
   }
 }
 
@@ -102,16 +162,19 @@ hr{
   margin-top: 4rem;
   max-height: 800px;
 }
+
 :deep(.p-card-title) {
   display: flex;
   align-items: center;
   margin: 20px 20px 0 20px;
   justify-content: center;
 }
+
 :deep(.p-avatar) {
   display: flex;
   justify-content: center;
 }
+
 img {
   min-width: 64px;
 }
@@ -119,9 +182,11 @@ img {
 :deep(.p-card-content) {
   margin: 0 20px;
 }
+
 :deep(.p-rating .p-rating-item.p-rating-item-active .p-rating-icon) {
   color: gold;
 }
+
 .subtitle {
   color: #64748b;
 }
@@ -131,16 +196,18 @@ img {
   align-items: center;
   margin-bottom: 10px;
 }
-.editable-text{
+
+.editable-text {
   word-wrap: break-word;
 }
+
 .editable-text,
 .editable-input {
   flex-grow: 1;
   border: none;
 }
 
-.editable-input{
+.editable-input {
   border: none;
   border-bottom: 1px solid black;
   outline: none;
@@ -158,7 +225,7 @@ img {
 
 }
 
-span{
+span {
   max-width: 90%;
 }
 
@@ -166,13 +233,15 @@ span{
   padding: 6px;
   height: 100%;
 }
+
 :deep(.p-button.p-button-text) {
   background-color: transparent;
   color: #B864F3;
   border-color: transparent;
 }
-.secondary{
-  display:grid;
+
+.secondary {
+  display: grid;
   grid-template-columns: 10fr 10fr 1fr;
 }
 
