@@ -5,23 +5,7 @@ const http= axios.create({
 })
 
 export class AuthService{
-    // getUsers(){
-    //     return http.get('/users')
-    // }
-    //
-    //  getEnterpriseInfoByID(id){
-    //      return http.get(`Profile/Enterprises/${id}`)
-    //  }
-    //
-    //
-    // getDeveloperList() {
-    //     return http.get('/developers');
-    // }
-    //
-    //  getDevInfoByID(id){
-    //      return http.get(`Profile/Developers/${id}`)
-    // }
-    //user_id = localStorage.getItem('userId');
+
 
     async authenticate(mail, password) {
         try {
