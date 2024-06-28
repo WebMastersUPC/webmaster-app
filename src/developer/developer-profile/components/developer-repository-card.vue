@@ -28,12 +28,11 @@ export default {
         <template v-if="projects.length" class="project-list" v-for="project in projects" aria-label="Project Item">
           <div class="project bg-blue-100" aria-label="Project Information">
             <h4>{{project.title}}</h4>
-            <a :href="project.urlPage" target="_blank" aria-label="Link to Project Page">{{$t('developer-repository-card-part2')}}</a>
           </div>
         </template>
         <template v-else aria-label="No Projects Message">
-          <div class="project bg-gray-100" v-for="i in 5" aria-label="Placeholder Project">
-            <div class="grey-rectangle" aria-label="Placeholder Rectangle"></div>
+          <div class="project bg-gray-100" aria-label="Placeholder Project">
+            No Projects
           </div>
         </template>
       </div>
@@ -79,6 +78,14 @@ hr{
 :deep(.p-card-content) {
   margin: 0 20px;
   height: 90%;
+}
+
+:deep(div.p-card-content){
+  display: block;
+  justify-content: center;
+  overflow: auto;
+  height: auto;
+  max-height: 680px;
 }
 
 .subtitle {

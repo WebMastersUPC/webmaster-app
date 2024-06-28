@@ -4,6 +4,7 @@ import {CompanyEntity} from "../models/company.model.js";
 import EnterpriseProjectCard from "../components/enterprise-project-card.component.vue";
 import EnterpriseProfileCard from "../components/enterprise-profile-card.component.vue";
 import {HomeService} from "../../../../public/services/home.service.js";
+import {ProjectService} from "../../../../public/services/project.service.js";
 
 export default {
   name: "enterprise-profile-page",
@@ -13,6 +14,7 @@ export default {
       enterpriseProfile: null,
       developerRepository: null,
       homeService: new HomeService(),
+      projectService: new ProjectService()
     }
   },
   created(){
@@ -34,6 +36,10 @@ export default {
     }).catch((error) => {
       console.error("Error en la solicitud:", error);
     });
+    this.projectService.getProjectByEnterprise(id).then((response) => {
+      this.developerRepository = response;
+      console.log(response);
+    });
   },
   methods(){
 
@@ -42,9 +48,9 @@ export default {
 </script>
 
 <template>
-  <div class="flex justify-content-evenly flex-wrap mb-5" v-if="enterpriseProfile ">
+  <div class="flex justify-content-evenly flex-wrap mb-5" v-if="enterpriseProfile">
     <enterprise-profile-card :enterprise="enterpriseProfile"/>
-    <!--<enterprise-project-card :projects="developerRepository"/>-->
+    <enterprise-project-card :projects="developerRepository"/>
   </div>
 </template>
 

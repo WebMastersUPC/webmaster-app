@@ -77,13 +77,13 @@ methods:{
         <template #content>
           <div >
             <div class="flex flex-column gap-4 align-items-center">
-              <pv-inputText aria-label="Email input field" type="text" v-model="mail" placeholder="Correo electrónico" class="border-round-3xl"/>
+              <pv-inputText aria-label="Email input field" type="email" v-model="mail" placeholder="Correo electrónico" class="border-round-3xl"/>
 
               <pv-inputText v-if="selectedRole === 'desarrollador'" aria-label="First name input field" type="text" v-model="firstName" placeholder="Nombre" class="border-round-3xl"/>
               <pv-inputText v-if="selectedRole === 'desarrollador'" aria-label="Last name input field" type="text" v-model="lastName" placeholder="Apellido" class="border-round-3xl"/>
               <pv-inputText v-if="selectedRole === 'empresa'" aria-label="Company name input field" type="text" v-model="companyName" placeholder="Nombre de la empresa" class="border-round-3xl"/>
 
-              <pv-inputText aria-label="Password input field" type="text" v-model="password" placeholder="Contraseña" class="border-round-3xl"/>
+              <pv-inputText aria-label="Password input field" type="password" v-model="password" placeholder="Contraseña" class="border-round-3xl"/>
               <pv-dropDown aria-label="Role selection dropdown menu" v-model="selectedRole" :options="roleOptions" option-label="label" option-value="value" placeholder="Selecciona un rol" class="border-round-3xl w-12rem "></pv-dropDown>
             </div>
 

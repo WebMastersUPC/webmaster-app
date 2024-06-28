@@ -93,6 +93,14 @@ span {
   max-width: 90%;
 }
 
+:deep(div.p-card-content){
+  display: block;
+  justify-content: center;
+  overflow: auto;
+  height: auto;
+  max-height: 680px;
+}
+
 .project-list {
   display: block;
   justify-content: center;

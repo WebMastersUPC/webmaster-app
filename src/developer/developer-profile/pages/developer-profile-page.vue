@@ -3,6 +3,7 @@ import DeveloperProfileCard from "../components/developer-profile-card.vue";
 import {AuthService} from "../../../../public/services/auth.service.js";
 import DeveloperRepositoryCard from "../components/developer-repository-card.vue";
 import {HomeService} from "../../../../public/services/home.service.js";
+import {ProjectService} from "../../../../public/services/project.service.js";
 
 export default {
   name: "developer-profile-page",
@@ -12,6 +13,7 @@ export default {
       developerProfile: null,
       developerRepository: null,
       homeService: new HomeService(),
+      projectService: new ProjectService()
     }
   },
   created(){
@@ -19,6 +21,10 @@ export default {
     this.homeService.getDevInfoByID(id).then((response)=> {
       this.developerProfile = response.data;
     })
+
+    this.projectService.getProjectByDeveloper(id).then((response) => {
+      this.developerRepository = response;
+    });
   },
   methods(){
 
@@ -29,7 +35,7 @@ export default {
 <template>
   <div class="flex justify-content-evenly flex-wrap mb-5" v-if="developerProfile ">
     <developer-profile-card :developer="developerProfile"/>
-    <!--<developer-repository-card :projects="developerRepository"/>-->
+    <developer-repository-card :projects="developerRepository"/>
   </div>
 </template>
 

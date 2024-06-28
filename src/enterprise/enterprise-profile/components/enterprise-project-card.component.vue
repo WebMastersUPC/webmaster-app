@@ -15,43 +15,12 @@ export default {
     };
   },
   methods: {
-    async openPosition(position, started, candidates) {
-      if (!started) {
-        this.position = position;
-        this.visible = true;
-        //console.log(candidates)
 
-        for(let candidate of candidates){
-          this.homeService.getDevInfoByID(candidate).then((response) => {
-            this.applicantsList.push(response.data)
-          });
-        }
-      }
-      else{
-        this.$router.push('/deliverables-list');
-      }
-
-    },
-
-    chooseApplicant(applicant) {
-      console.log(applicant);
-    },
-
-    goToDevProfile(applicant){
-      console.log(`go to dev profile, id: ${applicant}`);
-    },
-    // navigateToDeliverablesList() {
-    //   this.$router.push('/deliverables-list');
-    // },
   },
   props:{
     projects:{
       type: Array,
       required: true
-    },
-    applicants:{
-      type: Array,
-      required: false
     }
   },
   created(){
@@ -65,14 +34,19 @@ export default {
     <template #title> <p  style="color: #3554BC">Proyectos</p></template>
     <template #content>
       <hr>
-      <!--      <template class="project-list" v-for="project in projects">
-              <div class="project" @click="openPosition('center', project.started, project.candidates)">
+           <template v-if="projects.length > 0" class="project-list" v-for="project in projects">
+              <div class="project">
                 <h4>{{project.name}}</h4>
                 <p class="subtitle tipo-proyecto">{{project.type}}</p>
-                <p class="postulantes"  v-if="!project.started">Postulantes: {{project.candidates.length}}</p>
+                <p class="postulantes"  v-if="!project.started">Postulantes: {{project.applicants_id.length}}</p>
                 <pv-progressbar v-else :value="project.progress"></pv-progressbar>
               </div>
-            </template>-->
+            </template>
+      <template v-else aria-label="No Projects Message">
+        <div class="project bg-gray-100" aria-label="Placeholder Project">
+          No Projects
+        </div>
+      </template>
     </template>
   </pv-card>
 
@@ -111,6 +85,14 @@ hr{
   flex-grow: 1;
   overflow: hidden;
   max-height: 90%;
+}
+
+:deep(div.p-card-content){
+  display: block;
+  justify-content: center;
+  overflow: auto;
+  height: auto;
+  max-height: 680px;
 }
 
 :deep(.p-card-content) {
