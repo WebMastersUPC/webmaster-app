@@ -89,12 +89,12 @@ const router = createRouter({
                     component: CreateProject
                 },
                 {
-                    path: '/projects/:projectId/Deliverables',
+                    path: '/projects/enterprise/:projectId/Deliverables',
                     name: 'deliverable-list',
                     component: DeliverableList
                 },
                 {
-                    path: '/projects/:projectId/Deliverables',
+                    path: '/projects/developer/:projectId/Deliverables',
                     name: 'deliverables-list-developer',
                     component:DeliverablesListDeveloper
                 },

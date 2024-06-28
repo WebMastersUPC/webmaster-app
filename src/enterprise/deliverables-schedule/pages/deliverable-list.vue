@@ -11,8 +11,8 @@ export default {
   data() {
     return {
       deliverables: [],
-      //projectId: this.$route.params.projectId,
-      projectId: 1,
+      projectId: this.$route.params.projectId,
+      //projectId: 1,
       deliverableService: new DeliverableService(),
       visible: false,
       editableDeliverable: {
