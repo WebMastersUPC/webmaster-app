@@ -1,6 +1,6 @@
 <script>
-import {ProjectService} from "../../../../public/services/project.service.js";
-import {ProjectEntity} from "../../../shared/models/project.model.js";
+import { ProjectService } from "../../../../public/services/project.service.js";
+import { ProjectEntity } from "../../../shared/models/project.model.js";
 
 export default {
   name: "apply-project",
@@ -8,21 +8,21 @@ export default {
     return {
       showButtons: false,
       showBlurEffect: false,
-      projectService : new ProjectService()
+      projectService: new ProjectService()
     };
   },
-  props:{
-    project:{
-      type: ProjectEntity,
+  props: {
+    project: {
+      type: Object,
       required: true
     }
   },
   methods: {
-    sendApplicant(){
-      let developer_Id = localStorage.getItem('developer id')
-      let project_Id = localStorage.getItem('project id')
+    sendApplicant() {
+      let developer_Id = localStorage.getItem('developer id');
+      let project_Id = localStorage.getItem('project id');
       let entity = { developer_id: developer_Id };
-      this.projectService.addApplicant(project_Id, entity)
+      this.projectService.addApplicant(project_Id, entity);
     },
     showTemplate() {
       this.showBlurEffect = true;
@@ -37,23 +37,33 @@ export default {
         acceptClass: 'p-button-sm',
         rejectLabel: 'Rechazar',
         acceptLabel: 'Aceptar',
-        accept: () =>{
+        accept: () => {
           this.sendApplicant();
           this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
-          this.showBlurEffect = false
-          this.showButtons = true
+          this.showBlurEffect = false;
         },
         reject: () => {
           this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
-          this.showBlurEffect = false
+          this.showBlurEffect = false;
         },
         onHide: () => {
-          this.showBlurEffect = false
+          this.showBlurEffect = false;
         }
       });
+    },
+    checkProjectState() {
+      if (this.project.stateProject === 'Developing') {
+        this.showButtons = true;
+      } else {
+        this.showButtons = false;
+      }
     }
+  },
+  mounted() {
+    this.checkProjectState();
   }
 };
+
 </script>
 
 <template>
