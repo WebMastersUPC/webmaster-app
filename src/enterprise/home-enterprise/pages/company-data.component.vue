@@ -12,21 +12,25 @@ export default {
     return{
       homeService: new HomeService(),
       myCom:null,
-      enterprise:null
+      enterprise:null,
+      enterpriseId:null
     }
   },
   created(){
-    let id = localStorage.getItem('user id')
-     this.homeService.getEnterpriseInfoByID(id).then((response) => {
-     this.enterprise = response.data;
-       console.log(this.enterprise);
-       this.createUser()
-       console.log(this.myCom)
+    let id = localStorage.getItem('user id');
+    this.homeService.getEnterpriseInfoByID(id).then((response) => {
+      this.enterprise = response.data;
+      this.enterpriseId = response.data.enterprise_id;
+      console.log(this.enterprise);
+      this.createUser();
+      localStorage.setItem("enterprise id", this.enterpriseId);
+      console.log(this.myCom);
     });
   },
   methods:{
     createUser(){
       return this.myCom = new CompanyEntity(
+          this.enterprise.user_id,
           this.enterprise.enterprise_name,
           this.enterprise.profile_img_url,
           this.enterprise.description,

@@ -38,6 +38,8 @@
   "create-project-part17": "Publish Project",
   "create-project-part18": "OK",
   "create-project-part19": "Cancel",
+  "create-project-part20": "Confirm",
+  "create-project-part21": "Edit Project",
   "categories": {
     "country": "Country",
     "ruc": "RUC",

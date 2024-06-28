@@ -11,6 +11,18 @@ export class ProjectService {
         const response = await http.get(`/Project/${id}`);
         return response.data;
     }
+    async getAvailableProjects(){
+        const response = await http.get('/Project/available-projects')
+        return response.data;
+    }
+    async getProjectByDeveloper(developerId){
+        const response = await http.get(`/Project/by-developer/${developerId}`)
+        return response.data;
+    }
+    async getProjectByEnterprise(enterpriseId){
+        const response = await  http.get(`/Project/by-enterprise/${enterpriseId}`)
+        return response.data;
+    }
     async createProject(Project){
         const response = await http.post(`/Project`, Project);
         return response.data;
@@ -23,20 +35,20 @@ export class ProjectService {
         const response = await http.delete(`/Project/${id}`);
         return response.data;
     }
-    async assignDeveloper(id, Project){
-        const response = await http.put(`/Developer/${id}`, Project);
+    async assignDeveloper(project_id, Project){
+        const response = await http.post(`/Project/assign-developer/${project_id}`, Project);
         return response.data;
     }
-    async addApplicant(id, Project){
-        const response = await http.post(`/Applicant/${id}`, Project);
+    async addApplicant(project_id, Project){
+        const response = await http.post(`/Project/add-applicant/${project_id}`, Project);
         return response.data;
     }
-    async deleteDeveloper(id, Project) {
-        const response = await http.delete(`/Developer/${id}`, Project);
+    async deleteDeveloper(project_id, Project) {
+        const response = await http.delete(`/Project/delete-developer/${project_id}`, Project);
         return response.data;
     }
-    async deleteApplicant(id, Project) {
-        const response = await http.delete(`/Applicant/${id}`, Project);
+    async deleteApplicant(project_id, Project) {
+        const response = await http.delete(`/Project/delete-applicant/${project_id}`, Project);
         return response.data;
     }
 }

@@ -1,27 +1,37 @@
 ﻿import axios from 'axios';
-
+import { jwtDecode } from 'jwt-decode';
+    
 const http = axios.create({
-    baseURL: 'http://localhost:5127/api/v1', 
+    baseURL: 'http://localhost:5127/api/v1',
 });
 
 export default {
-    async getAllSupportRequests() {
-        const response = await http.get('/SupportRequest');
-        return response.data;
-    },
-
     async createSupportRequest(supportRequest) {
-        const response = await http.post('/SupportRequest', supportRequest);
-        return response.data;
-    },
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error('Token not found');
+            }
 
-    async updateSupportRequest(id, supportRequest) {
-        const response = await http.put(`/SupportRequest/${id}`, supportRequest);
-        return response.data;
-    },
+            const decodedToken = jwtDecode(token);
+            const userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid'];
+            if (!userId) {
+                throw new Error('User ID not found in token');
+            }
 
-    async deleteSupportRequest(id) {
-        const response = await http.delete(`/SupportRequest/${id}`);
-        return response.data;
-    }
+            supportRequest.append('userId', userId);
+
+            const response = await http.post('/SupportRequest', supportRequest, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error creating support request:', error);
+            console.log(error.response);
+            throw error;
+        }
+    },
 };

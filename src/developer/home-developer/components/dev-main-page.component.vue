@@ -1,5 +1,6 @@
 <script>
 import {DeveloperEntity} from "../../../shared/models/developer.model.js";
+import {HomeService} from "../../../../public/services/home.service.js";
 
 export default {
   name: "developer-page",
@@ -10,16 +11,61 @@ export default {
       isEditingCategories: [false, false, false, false, false, false],
       categoryTexts: [],
       categories: ['categories.country', 'categories.phone', 'categories.email', 'categories.projectsFinished', 'categories.specialties'],
-      value: 0
+      value: 0,
+      homeService: new HomeService(),
+      displayDialog: false,
+      newImgUrl: ''
     };
   },
   methods: {
     toggleEditingMain() {
+      if(this.isEditingMain){
+        console.log(this.developer.id)
+        let updatedInfo ={
+          description: this.mainText,
+          country: this.categoryTexts[0],
+          phone: this.categoryTexts[1],
+          specialties: this.categoryTexts[4],
+          profile_img_url: this.developer.profile_img_url
+        }
+        this.homeService.updateDevInfo(this.developer.id, updatedInfo)
+      }
       this.isEditingMain = !this.isEditingMain;
+
     },
 
     toggleEditingCategory(index) {
+      if(this.isEditingCategories[index]){
+        console.log(this.developer.phone)
+        let updatedInfo ={
+          description: this.mainText,
+          country: this.categoryTexts[0],
+          phone: this.categoryTexts[1],
+          specialties: this.categoryTexts[4]
+        }
+        this.homeService.updateDevInfo(this.developer.id, updatedInfo)
+      }
       this.isEditingCategories[index] = !this.isEditingCategories[index];
+    },
+    updateImg(){
+      if(this.newImgUrl === ''){
+        return;
+      }
+      let img ={
+        profile_img_url: this.newImgUrl
+      }
+      this.newImgUrl = '';
+      this.homeService.updateDevProfileImg(this.developer.id, img)
+          .then(() => {
+            this.displayDialog = false;
+            window.location.reload();
+          });
+    },
+    openDialog(){
+      this.displayDialog = true;
+    },
+    closeDialog(){
+      this.displayDialog = false;
     }
   },
   components: {},
@@ -49,7 +95,7 @@ export default {
   <pv-card aria-label="Developer Information">
     <template #title>
       <pv-avatar :image="developer.profile_img_url" class="mr-2" size="xlarge" shape="circle"
-                 aria-label="Developer Avatar"/>
+                 aria-label="Developer Avatar" @click="openDialog"/>
       <div aria-label="Developer Details">
         <p>{{ developer.name }}</p>
         <!--<pv-rating v-model="value" readonly :cancel="false" aria-label="Developer Rating"/>-->
@@ -78,16 +124,22 @@ export default {
           <input v-else v-model="categoryTexts[index]" type="text" class="editable-input"
                  aria-label="Category Text Input"/>
           <pv-button @click="toggleEditingCategory(index)" icon="pi pi-pencil"
-                     class="p-button-rounded p-button-text edit-button" v-if="!isEditingCategories[index]"
+                     class="p-button-rounded p-button-text edit-button" v-if="!isEditingCategories[index] && index !== 2 && index !== 3"
                      aria-label="Edit Category Button"/>
           <pv-button @click="toggleEditingCategory(index)" icon="pi pi-check"
-                     class="p-button-rounded p-button-text edit-button" v-else aria-label="Confirm Category Button"/>
+                     class="p-button-rounded p-button-text edit-button" v-else-if="index !== 2 && index !== 3" aria-label="Confirm Category Button"/>
         </div>
       </template>
 
     </template>
   </pv-card>
 
+  <pv-modal  v-model:visible="this.displayDialog" modal header="Update Image URL" >
+    <p>Enter the new image URL:</p>
+    <input type="text" v-model="newImgUrl" />
+    <pv-button label="Accept" @click="updateImg" />
+    <pv-button label="Cancel" @click="closeDialog" />
+  </pv-modal>
 
 </template>
 

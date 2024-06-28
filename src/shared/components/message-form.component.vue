@@ -1,27 +1,26 @@
 <template>
   <div class="form-container flex flex-column align-items-center justify-content-center">
-
     <div class="box2 flex flex-column w-10 gap-3">
       <div class="p-field pv-fluid">
-        <pv-inputText class="p-inputtext" id="recipient" v-model="form.recipient" :placeholder="$t('message-part1')" aria-label="Recipient" />
+        <pv-inputText class="p-inputtext" id="recipient" v-model="receiverId" :placeholder="$t('message-part1')" aria-label="Recipient" />
       </div>
-      <div class="p-field ">
-        <pv-inputText class="p-inputtext" id="title" v-model="form.title" :placeholder="$t('message-part2')" aria-label="Message Title" />
+      <div class="p-field">
+        <pv-inputText class="p-inputtext" id="title" v-model="title" :placeholder="$t('message-part2')" aria-label="Message Title" />
       </div>
-      <div class="p-field ">
-        <pv-inputText class="p-inputtext" id="subject" v-model="form.subject" :placeholder="$t('message-part3')" aria-label="Subject" />
+      <div class="p-field">
+        <pv-inputText class="p-inputtext" id="subject" v-model="subject" :placeholder="$t('message-part3')" aria-label="Subject" />
       </div>
-      <div class="p-field ">
-        <pv-textarea class="p-textarea" id="message" v-model="form.message" :placeholder="$t('message-part4')" aria-label="Message" />
+      <div class="p-field">
+        <pv-textarea class="p-textarea" id="message" v-model="content" :placeholder="$t('message-part4')" aria-label="Message" />
       </div>
       <div>
         <div class="p-inputtext pt-3">
           <label for="file" aria-label="File Attachment Label">{{$t('message-part5')}}</label>
           <pv-scrollpanel ref="scrollPanel" class="pv-scrollpanel" style="width: 100%; height: 400px" aria-label="File Upload Scroll Panel">
-            <pv-file-upload class="large-fileupload" name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" :maxFileSize="1000000" accept=".pdf,.doc,.docx" aria-label="File Upload">
-              <template #empty>
-                <div v-for="(image, index) in uploadedImages" :key="index">
-                  <p>{{ image.name }}</p>
+            <pv-file-upload class="large-fileupload" customUpload :auto="false" accept=".pdf,.doc,.docx" multiple @select="handleFileSelect" aria-label="File Upload">
+              <template #content>
+                <div v-for="(file, index) in files" :key="index">
+                  {{ file.name }} ({{ file.size }} bytes)
                 </div>
                 <p aria-label="File Upload Instructions">{{$t('message-part6')}}</p>
               </template>
@@ -30,39 +29,67 @@
         </div>
       </div>
       <div class="flex justify-content-center">
-        <pv-button class="p-button" :label="$t('message-part7')" @click="submitForm" aria-label="Submit Form Button" style="width:30%"/>
+        <pv-button class="p-button" :label="$t('message-part7')" @click="submitForm" aria-label="Submit Form Button" style="width:30%" />
       </div>
     </div>
-
   </div>
 </template>
 
-
 <script>
-import { ref } from "vue";
+import messageService from '../../../public/services/messenger.service.js';
 
 export default {
   name: "message-form",
-  setup() {
-    const form = ref({
-      username: '',
+  data() {
+    return {
+      receiverId: '',
       title: '',
       subject: '',
-      message: '',
-      file: null
-    });
-
-    const submitForm = () => {
-      console.log(form.value);
+      content: '',
+      files: []
     };
+  },
+  methods: {
+    handleFileSelect(event) {
+      this.files = event.files;
+    },
+    async submitForm() {
+      try {
+        const formData = new FormData();
+        formData.append('receiverId', this.receiverId);
+        formData.append('title', this.title);
+        formData.append('subject', this.subject);
+        formData.append('content', this.content);
 
-    return { form, submitForm };
+        if (this.files.length > 0) {
+          this.files.forEach(file => {
+            formData.append('attachment', file);
+          });
+        }
+
+        const response = await messageService.createMessage(formData);
+        console.log('Message created successfully:', response);
+
+        // Reset form
+        this.receiverId = '';
+        this.title = '';
+        this.subject = '';
+        this.content = '';
+        this.files = [];
+
+        alert('Message sent successfully!'); // Mensaje de éxito
+
+      } catch (error) {
+        console.error('Error creating message:', error);
+        console.log('Error response:', error.response);
+        alert('Error sending message. Please try again.'); // Manejo básico de errores
+      }
+    }
   }
 };
 </script>
 
 <style scoped>
-
 label {
   font-family: 'Lato', sans-serif;
 }
@@ -97,6 +124,4 @@ label {
 .p-button:hover {
   background-color: #0069d9;
 }
-
-
 </style>
