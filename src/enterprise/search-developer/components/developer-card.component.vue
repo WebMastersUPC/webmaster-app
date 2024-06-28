@@ -9,7 +9,7 @@ export default {
     developer: {
       type: DeveloperEntity,
       required: true
-    }
+    },
   },
   methods: {
     redirectToProfile() {
