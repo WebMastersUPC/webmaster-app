@@ -89,13 +89,15 @@ export default{
 </script>
 
 <template>
-  <div class="grid col-fixed justify-content-center gap-5 mt-8 mb-4">
+  <div id="searchDev">
+  <div  class="grid col-fixed justify-content-center gap-5 mt-8 mb-4">
     <developer-card v-for="developer in paginatedDevelopers"
                     :key="developer.name"
                     :developer="developer"></developer-card>
   </div>
   <pv-paginator :first="first" :rows="itemsPerPage" :totalRecords="developers.length"
              :rowsPerPageOptions="[5,10,20]" @page="onPageChange"></pv-paginator>
+  </div>
 </template>
 
 <style scoped>
@@ -111,4 +113,9 @@ export default{
   :deep(.p-paginator-page.p-paginator-element.p-link:hover){
     background: rgba(187, 13, 187, 0.54);
   }
+
+  #searchDev{
+    min-height: 54vh;
+  }
+
 </style>

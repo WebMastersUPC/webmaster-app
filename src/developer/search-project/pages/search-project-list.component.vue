@@ -67,6 +67,7 @@ export default{
 </script>
 
 <template>
+  <div id="searchDev">
   <div v-if="company.length === projects.length" class="grid col-fixed justify-content-center gap-5 mt-8 mb-4">
     <project-card v-for="(project,index) in projects"
                     v-if="company"
@@ -76,6 +77,7 @@ export default{
   </div>
   <pv-paginator :first="first" :rows="itemsPerPage" :totalRecords="projects.length"
                 :rowsPerPageOptions="[5,10,20]" @page="onPageChange"></pv-paginator>
+  </div>
 </template>
 
 <style scoped>
@@ -90,5 +92,9 @@ export default{
 }
 :deep(.p-paginator-page.p-paginator-element.p-link:hover){
   background: rgba(187, 13, 187, 0.54);
+}
+
+#searchDev{
+  min-height: 54vh;
 }
 </style>
