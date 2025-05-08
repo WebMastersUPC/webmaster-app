@@ -1,7 +1,8 @@
 import axios from 'axios';
+import {environment} from "../../src/environment/environment.js";
 
 const http= axios.create({
-    baseURL:'https://webmasterapi.azurewebsites.net/api/v1',
+    baseURL:environment.baseUrl,
 })
 
 export class AuthService{
